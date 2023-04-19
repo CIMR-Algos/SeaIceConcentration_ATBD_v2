@@ -1,0 +1,21 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: CIMR L2 Sea Ice Concentration and Sea Ice Edge ATBD
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Thomas
+    family-names: Lavergne
+    orcid: 'https://orcid.org/0000-0002-9498-4551'
+    affiliation: Norwegian Meteorological Institute
+repository-code: 'https://github.com/CIMR-Algos/SeaIceConcentration_ATBD'
+url: >-
+  https://cimr-algos.github.io/SeaIceConcentration_ATBD/intro.html
+keywords:
+  - Copernicus Imaging Microwave Radiometer (CIMR)
+  - ESA DEVALGO
+version: '1'
