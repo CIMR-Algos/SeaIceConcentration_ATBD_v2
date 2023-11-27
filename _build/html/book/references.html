@@ -1,0 +1,446 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>References &#8212; CIMR L2 SIC, SIED, and SIC1H ATBD v2</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/watermark.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Algorithm Input and Output Data Definition (IODD)" href="algorithm_input_output_data_definition.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CIMR L2 SIC, SIED, and SIC1H ATBD v2</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    CIMR L2 SIC, SIED, and SIC1H ATBD
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="abstract.html">
+   Abstract
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="applicable_ref_docs.html">
+   Applicable and Reference Documents
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="acronyms.html">
+   Acronyms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="definitions.html">
+   Definitions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction_purpose_scope.html">
+   Introduction, purpose and scope
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="background_justification_algorithm.html">
+   Background and justification of selected algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="L2_product_definition.html">
+   Level-2 product definition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="baseline_algorithm_definition.html">
+   Baseline Algorithm Definition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="algorithm_input_output_data_definition.html">
+   Algorithm Input and Output Data Definition (IODD)
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   References
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/CIMR-Algos/SeaIceConcentration_ATBD_v2"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/book/references.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>References</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h1>
+<div class="docutils container" id="id1">
+<dl class="citation">
+<dt class="label" id="id3"><span class="brackets">1</span></dt>
+<dd><p>Søren Andersen, Rasmus Tonboe, Stefan Kern, and Harald Schyberg. Improved retrieval of sea ice total concentration from spaceborne passive microwave observations using numerical weather prediction model fields: an intercomparison of nine algorithms. <em>Remote Sensing of Environment</em>, 104(4):374–392, 2006. <a class="reference external" href="https://doi.org/https://doi.org/10.1016/j.rse.2006.05.013">doi:https://doi.org/10.1016/j.rse.2006.05.013</a>.</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets">2</span></dt>
+<dd><p>M. J. Brodzik, B. Billingsley, T. Haran, B. Raup, and M. H. Savoie. EASE-Grid 2.0: incremental but significant improvements for earth-gridded data sets. <em>ISPRS International Journal of Geo-Information</em>, 1(1):32 – 45, 2012. <a class="reference external" href="https://doi.org/10.3390/ijgi1010032">doi:10.3390/ijgi1010032</a>.</p>
+</dd>
+<dt class="label" id="id5"><span class="brackets">3</span></dt>
+<dd><p>D. J. Cavalieri, P. Gloersen, and W. J. Campbell. Determination of sea ice parameters with the NIMBUS 7 SMMR. <em>Journal of Geophysical Research: Atmospheres</em>, 89(D4):5355–5369, 1984. <a class="reference external" href="https://doi.org/https://doi.org/10.1029/JD089iD04p05355">doi:https://doi.org/10.1029/JD089iD04p05355</a>.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets">4</span></dt>
+<dd><p>Donald J. Cavalieri. A microwave technique for mapping thin sea ice. <em>Journal of Geophysical Research: Oceans</em>, 99(C6):12561–12572, 1994. <a class="reference external" href="https://doi.org/https://doi.org/10.1029/94JC00707">doi:https://doi.org/10.1029/94JC00707</a>.</p>
+</dd>
+<dt class="label" id="id7"><span class="brackets">5</span></dt>
+<dd><p>J. C. Comiso. Characteristics of arctic winter sea ice from satellite multispectral microwave observations. <em>Journal of Geophysical Research: Oceans</em>, 91(C1):975–994, 1986. <a class="reference external" href="https://doi.org/https://doi.org/10.1029/JC091iC01p00975">doi:https://doi.org/10.1029/JC091iC01p00975</a>.</p>
+</dd>
+<dt class="label" id="id9"><span class="brackets">6</span></dt>
+<dd><p>N. Ivanova, L. T. Pedersen, R. T. Tonboe, S. Kern, G. Heygster, T. Lavergne, A. Sørensen, R. Saldo, G. Dybkjær, L. Brucker, and M. Shokr. Inter-comparison and evaluation of sea ice algorithms: towards further identification of challenges and optimal approach using passive microwave observations. <em>The Cryosphere</em>, 9(5):1797–1817, 2015. URL: <a class="reference external" href="https://tc.copernicus.org/articles/9/1797/2015/">https://tc.copernicus.org/articles/9/1797/2015/</a>, <a class="reference external" href="https://doi.org/10.5194/tc-9-1797-2015">doi:10.5194/tc-9-1797-2015</a>.</p>
+</dd>
+<dt class="label" id="id10"><span class="brackets">7</span></dt>
+<dd><p>Lise Kilic, Catherine Prigent, Filipe Aires, Georg Heygster, Victor Pellet, and Carlos Jimenez. Ice concentration retrieval from the analysis of microwaves: a new methodology designed for the copernicus imaging microwave radiometer. <em>Remote Sensing</em>, 2020. URL: <a class="reference external" href="https://www.mdpi.com/2072-4292/12/7/1060">https://www.mdpi.com/2072-4292/12/7/1060</a>, <a class="reference external" href="https://doi.org/10.3390/rs12071060">doi:10.3390/rs12071060</a>.</p>
+</dd>
+<dt class="label" id="id11"><span class="brackets">8</span></dt>
+<dd><p>Kjell Kloster. Ice type concentration by microwave radiometry - earth observation compendium for course agf-207. 1996.</p>
+</dd>
+<dt class="label" id="id12"><span class="brackets">9</span></dt>
+<dd><p>T. Lavergne, A. M. Sørensen, S. Kern, R. Tonboe, D. Notz, S. Aaboe, L. Bell, G. Dybkjær, S. Eastwood, C. Gabarro, G. Heygster, M. A. Killie, M. Brandt Kreiner, J. Lavelle, R. Saldo, S. Sandven, and L. T. Pedersen. Version 2 of the eumetsat osi saf and esa cci sea-ice concentration climate data records. <em>The Cryosphere</em>, 13(1):49–78, 2019. URL: <a class="reference external" href="https://tc.copernicus.org/articles/13/49/2019/">https://tc.copernicus.org/articles/13/49/2019/</a>, <a class="reference external" href="https://doi.org/10.5194/tc-13-49-2019">doi:10.5194/tc-13-49-2019</a>.</p>
+</dd>
+<dt class="label" id="id2"><span class="brackets">10</span></dt>
+<dd><p>Thomas Lavergne, Rasmus Tonboe, Jozef Rusin, Atle Sørensen, Jozef Kolbe, and Leif Pedersen. Algorithm Theoretical Basis Document for the Sea Ice Concentration datasets. Technical Report, ESA CCI+ Phase 1 project, 2021. URL: <a class="reference external" href="https://climate.esa.int/media/documents/SeaIce_CCI_P1_ATBD-SIC_D2.1_Issue_3.1_signed.pdf">https://climate.esa.int/media/documents/SeaIce_CCI_P1_ATBD-SIC_D2.1_Issue_3.1_signed.pdf</a>.</p>
+</dd>
+<dt class="label" id="id13"><span class="brackets">11</span></dt>
+<dd><p>Junshen Lu and Georg Heygster. AMSR-E/2 and SMOS Brightness Temperatures of Surface Types. 11 2018. URL: <a class="reference external" href="https://figshare.com/articles/figure/amsre2_SMOS_tie_points_png/7370261">https://figshare.com/articles/figure/amsre2_SMOS_tie_points_png/7370261</a>, <a class="reference external" href="https://doi.org/10.6084/m9.figshare.7370261.v2">doi:10.6084/m9.figshare.7370261.v2</a>.</p>
+</dd>
+<dt class="label" id="id14"><span class="brackets">12</span></dt>
+<dd><p>V. Ludwig, G. Spreen, C. Haas, L. Istomina, F. Kauker, and D. Murashkin. The 2018 north greenland polynya observed by a newly introduced merged optical and passive microwave sea-ice concentration dataset. <em>The Cryosphere</em>, 13(7):2051–2073, 2019. URL: <a class="reference external" href="https://tc.copernicus.org/articles/13/2051/2019/">https://tc.copernicus.org/articles/13/2051/2019/</a>, <a class="reference external" href="https://doi.org/10.5194/tc-13-2051-2019">doi:10.5194/tc-13-2051-2019</a>.</p>
+</dd>
+<dt class="label" id="id15"><span class="brackets">13</span></dt>
+<dd><p>Xiangchao Meng, Huanfeng Shen, Huifang Li, Liangpei Zhang, and Randi Fu. Review of the pansharpening methods for remote sensing images based on the idea of meta-analysis: practical discussion and challenges. <em>Information Fusion</em>, 46:102–113, 2019. <a class="reference external" href="https://doi.org/https://doi.org/10.1016/j.inffus.2018.05.006">doi:https://doi.org/10.1016/j.inffus.2018.05.006</a>.</p>
+</dd>
+<dt class="label" id="id16"><span class="brackets">14</span></dt>
+<dd><p>Leif Toudal Pedersen, Roberto Saldo, Natalia Ivanova, Stefan Kern, Georg Heygster, Rasmus Tonboe, Marcus Huntemann, Burcu Ozsoy, Fanny Ardhuin, and Lars Kaleschke. Reference dataset for sea ice concentration. 11 2021. URL: <a class="reference external" href="https://figshare.com/articles/dataset/Reference_dataset_for_sea_ice_concentration/6626549">https://figshare.com/articles/dataset/Reference_dataset_for_sea_ice_concentration/6626549</a>, <a class="reference external" href="https://doi.org/10.6084/m9.figshare.6626549.v7">doi:10.6084/m9.figshare.6626549.v7</a>.</p>
+</dd>
+<dt class="label" id="id17"><span class="brackets">15</span></dt>
+<dd><p>D. M. Smith. Extraction of winter total sea-ice concentration in the greenland and barents seas from ssm/i data. <em>International Journal of Remote Sensing</em>, 17(13):2625–2646, 1996. <a class="reference external" href="https://doi.org/10.1080/01431169608949096">doi:10.1080/01431169608949096</a>.</p>
+</dd>
+<dt class="label" id="id18"><span class="brackets">16</span></dt>
+<dd><p>Einar Svendsen, Christian Matzler, and Thomas C. Grenfell. A model for retrieving total sea ice concentration from a spaceborne dual-polarized passive microwave instrument operating near 90 ghz. <em>International Journal of Remote Sensing</em>, 8(10):1479–1487, 1987. <a class="reference external" href="https://doi.org/10.1080/01431168708954790">doi:10.1080/01431168708954790</a>.</p>
+</dd>
+<dt class="label" id="id19"><span class="brackets">17</span></dt>
+<dd><p>R. T. Tonboe, S. Eastwood, T. Lavergne, A. M. Sørensen, N. Rathmann, G. Dybkjær, L. T. Pedersen, J. L. Høyer, and S. Kern. The eumetsat sea ice concentration climate data record. <em>The Cryosphere</em>, 10(5):2275–2290, 2016. URL: <a class="reference external" href="https://tc.copernicus.org/articles/10/2275/2016/">https://tc.copernicus.org/articles/10/2275/2016/</a>, <a class="reference external" href="https://doi.org/10.5194/tc-10-2275-2016">doi:10.5194/tc-10-2275-2016</a>.</p>
+</dd>
+<dt class="label" id="id20"><span class="brackets">18</span></dt>
+<dd><p>Frank J. Wentz. A well-calibrated ocean algorithm for special sensor microwave / imager. <em>Journal of Geophysical Research: Oceans</em>, 102(C4):8703–8718, 1997. <a class="reference external" href="https://doi.org/https://doi.org/10.1029/96JC01751">doi:https://doi.org/10.1029/96JC01751</a>.</p>
+</dd>
+<dt class="label" id="id8"><span class="brackets">19</span></dt>
+<dd><p>Farzaneh Dadrass Javan, Farhad Samadzadegan, Soroosh Mehravar, Ahmad Toosi, Reza Khatami, and Alfred Stein. A review of image fusion techniques for pan-sharpening of high-resolution satellite imagery. <em>ISPRS Journal of Photogrammetry and Remote Sensing</em>, 171:101–117, 2021. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0924271620303002">https://www.sciencedirect.com/science/article/pii/S0924271620303002</a>, <a class="reference external" href="https://doi.org/https://doi.org/10.1016/j.isprsjprs.2020.11.001">doi:https://doi.org/10.1016/j.isprsjprs.2020.11.001</a>.</p>
+</dd>
+</dl>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="algorithm_input_output_data_definition.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Algorithm Input and Output Data Definition (IODD)</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Thomas Lavergne, Norwegian Meteorological Institute<br/>
+  
+    <div class="extra_footer">
+      <p>
+This ATBD was developed in the context of the ESA-funded CIMR DEVALGO study (2022-2024) (contract 4000137493).
+<br>
+ESA is not responsible in any way for the content of this document.
+</p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
