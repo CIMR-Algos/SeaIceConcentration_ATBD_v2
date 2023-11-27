@@ -13,7 +13,7 @@ default_l2_grid = 'ease2-2.5km-arctic'
 
 def run_notebook(l1b_path, l2_dir = default_l2_dir, l2_grid = default_l2_grid):
     
-    notebook = 'CIMR L2 Sea Ice Concentration algorithm.ipynb'
+    notebook = 'CIMR_L2_Sea_Ice_Concentration_algorithm.ipynb'
     notebook_out = notebook.replace('.ipynb','_out.ipynb')
 
     notebook_par = {'l1b_path': l1b_path, 'l2_dir': l2_dir, 'l2_grid': l2_grid,}
