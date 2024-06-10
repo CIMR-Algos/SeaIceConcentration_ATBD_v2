@@ -138,6 +138,7 @@ Scalars $\Sigma_{CW}$ and $\Sigma_{CI}$ are the uncertainty (variance) achieved 
 They are the two scalars we want to minimize when tuning our SIC algorithms. Given the variance-covariance matrices of the radiometric-induced noise, and those induced by the water
 and the consolidated ice signatures, the algorithm coefficients embedded in $\vec{v}$ control if the algorithm is more or less accurate at either end of the SIC range. 
 
+(dynamic_tuning)=
 #### Dynamic tuning of the generic SIC algorithm
 
 The algorithm coefficients embedded in $\vec{v}$ control the retrieval accuracy (eq. {eq}`eq_varSimp`) of the generic SIC algorithm (eq. {eq}`eq_mixC2`). An important step
@@ -420,6 +421,7 @@ In the current implementation, three types of L1B resampling are used, depending
          to resample the position and resolution of the KA TBs to those of the C-band TBs.
           
 
+(assumptions)=
 ### Algorithm Assumptions and Simplifications
 
 There are several assumptions and simplifications embedded in the selected algorithm. We describe the
@@ -480,8 +482,7 @@ systematic uncertainaties (i.e. bias). This is the reason why we suggest to impl
 {cite}`tonboe:2016:sicv1,ivanova:2015:sicci1,lavergne:2019:sicv2`.
 2. In coastal regions, the uncertainty of the Land-corrected L1B TBs will increase sharply due to the
 smaller contribution of water target to the TOA signal, the uncertainty of the fraction of land $\alpha$,
-and the uncertainty in the local Land emissivity (refer to the L1B/L2 Bridge ATBD {doc}`[AD-2] <01_applicable_ref_docs>`
-for a discussion of uncertainty propagation through the land spill-over correction step). Coastal SICs
+and the uncertainty in the local Land emissivity. Coastal SICs
 might thus see a larger contribution to their uncertainty from the TBs than from the tie-points.
 
 {numref}`fig_uncTree` presents an early version of the SIC uncertainty tree diagram, loosely using the format
