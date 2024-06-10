@@ -1,4 +1,4 @@
-# Baseline Algorithm Definition
+# Baseline Algorithm Definition for Sea Ice Concentration (SIC)
 
 In the following sections, the Level-2 sea-ice concentration algorithm is further described. It consists in those steps:
 
@@ -407,6 +407,19 @@ from a Backus-Gilbert approach that takes advantage of the overlap of C-band FoV
 `KKA` and `KA` do not involve much overlap between neighbouring FoVs and can thus probably be
 handled with simpler methods.
 
+Another aspect to consider is that the different feeds of the CIMR mission do not have the same
+OZA (Observation Zenith Angle), which can create stripes in the TB imagery. Adjusting for the OZA
+dependency of TBs must be catered for before the L1B resampling, in a pre-processing step before
+calling the L2 SIC and SIED algorithms.
+
+In the current implementation, three types of L1B resampling are used, depending on the SIC algorithm:
+* `KA` : This algorithm uses only TBs from a single frequency (two polarization): there is no need for resampling before applying the SIC algorithm.
+* `KKA` : This algorithm uses TBs from two frequencies (K and KA) that are from dual-frequency feeds. The selected resampling approach is an along-arc
+         resampling that does not mix between feeds, and thus does not mix between different OZAs.
+* `CKA` : This algorithm uses TBs from two frequencies (C and KA) that are from different feeds. This require a *classic* resampling (e.g. Backus Gilbert)
+         to resample the position and resolution of the KA TBs to those of the C-band TBs.
+          
+
 ### Algorithm Assumptions and Simplifications
 
 There are several assumptions and simplifications embedded in the selected algorithm. We describe the
@@ -446,4 +459,76 @@ intermediate concentration ice.
 This land-spillover effect can be partly corrected by estimating the fractional contribution of land surface
 to each Level-1B sample or FoV. However, coastal correction procedures are not perfect, and some false
 sea ice might remain along some coastlines and in fjords.
+
+### Derivation of total standard uncertainty
+
+The total uncertainty of L2 SIC (and its components) can be derived through uncertainty propagation analysis
+from Eq. {eq}`eq_hybridC`. In most cases, the main uncertainty source for the computation of SIC is not the
+total uncertainty of the L1B input (uncertainty *propagation* to L2) but rather the uncertainty of the
+algorithm tie-points (uncertainty *injection* at L2).
+
+Work initiated in the CIMR MACRAD study confirmed the results of {cite}`ivanova:2015:sicci1` that the
+uncertainties propagated from L1B TBs are typically of an order of magnitude smaller than those injected
+at L2 by the tie-point uncertainties, even for relatively 'noisy' channels as CIMR KA-band. In general,
+a good estimate of the L2 SIC uncertainties thus requires a good estimate of the tie-point uncertainties,
+not of the L1B uncertainty.
+
+This general picture must however be nuanced in two cases:
+1. The systematic (i.e. calibration) uncertainties in the CIMR L1B TOA TBs can have a direct impact on the
+systematic uncertainaties (i.e. bias). This is the reason why we suggest to implement
+{ref}`dynamic tuning of algorithm tie-points <dynamic_tuning>` for the CIMR L2 SIC algorithm
+{cite}`tonboe:2016:sicv1,ivanova:2015:sicci1,lavergne:2019:sicv2`.
+2. In coastal regions, the uncertainty of the Land-corrected L1B TBs will increase sharply due to the
+smaller contribution of water target to the TOA signal, the uncertainty of the fraction of land $\alpha$,
+and the uncertainty in the local Land emissivity (refer to the L1B/L2 Bridge ATBD {doc}`[AD-2] <01_applicable_ref_docs>`
+for a discussion of uncertainty propagation through the land spill-over correction step). Coastal SICs
+might thus see a larger contribution to their uncertainty from the TBs than from the tie-points.
+
+{numref}`fig_uncTree` presents an early version of the SIC uncertainty tree diagram, loosely using the format
+adopted in the EU FIDUCEO and QA4EO initiatives {cite}`mittaz:2019:uncert`. The SIC measurement function
+is at the center, and branches of the tree describe the uncertainty contribution from each term,
+including an indication (text) of the correlation structure of the uncertainties. These correlation
+structure would typically be expressed in Effect Tables.
+
+```{figure} ./static_imgs/SIC_uncertainty_diagram.png
+--- 
+name: fig_uncTree
+---
+Uncertainty tree diagram for the SIC measurement function, loosely following the format adopted
+in {cite}`mittaz:2019:uncert`. The measurement equation of SIC is at the center of the diagram,
+and each branch of the tree describes the uncertainty propagation from a specific element in the SIC
+equation. The $+0$  term is a notation for the unknown systematic uncertainties (e.g. those covered
+in {ref}`assumptions`).
+```
+
+A detailed description of the terms in {numref}`fig_uncTree` is not give here, but the reader is
+invited to note the different blocks of uncertainties:
+* $u(T^{1B}_{B})$ for uncertainty propagation from L1B
+* $u(T^{I}_{B})$ and $u(T^{W}_{B})$ for the Water and Ice tie-point uncertainty
+* $u(T^{\epsilon}_B)$ for uncertainty propagation through the RGB remapper
+* the $+0$ term to capture the unknown systematic uncertainties and limitations of such SIC algorithm
+
+In addition, note the dashed curve that runs between the three $u()$ terms. It represents the fact that the
+Water and Ice tie-points are dynamically tuned from subsets of L1B TBs, and that they thus all
+share the systematic (i.e. calibration) uncertainties, thus ensuring that the L2 SIC algorithm
+is and remains un-biased at the large (hemispheric) scales.
+
+The methodology to compute SIC uncertainties during the processing is not decided at this stage.
+We can either run own software implementing uncertainty propagation formulas, or rely on the
+(python) software in the [CoMeT toolkit](https://www.comet-toolkit.org/tools/)
+(and in particular the PunPy tool). The use of PunPy is under investigation in the on-going
+CIMR MACRAD study.
+
+```{figure} ./static_imgs/punpy_uncertainty.png
+--- 
+name: fig_uncPunpy
+---
+Geophysical uncertainty (combined impact of $u(T^{I}_{B})$ and $u(T^{W}_{B})$ through the SIC algorithm) for a `CKA` algorithm as a function
+of SIC. Orange dots are estimates from punpy, blue line is from own software. (Prelimiary) results from the CIMR MACRAD study.
+```
+{numref}`fig_uncPunpy` plots a (prelimiary) simulation result comparing using the PunPy tool (orange dots) and own
+software implementing uncertainty propagation (blue line) for simulating the tie-point (*a.k.a* geophysical) uncertainty
+contribution to the total L2 SIC uncertainty. Note how the simulations agree giving confidence that we could
+operate the PunPy tool for such a SIC algorithm. Note also the overal amount of the SIC uncertainty which is of below 4\% RMSE
+(while the CIMR MRD v5 requirement is <5\%).
 
