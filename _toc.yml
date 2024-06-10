@@ -19,11 +19,13 @@ chapters:
 - file: book/L2_product_definition
   title: Level-2 product definition
 - file: book/baseline_algorithm_definition
-  title: Baseline Algorithm Definition
+- file: book/baseline_algorithm_definition_SIED
 - file: book/algorithm_input_output_data_definition
   title: Algorithm Input and Output Data Definition (IODD)
+- file: algorithm/CIMR_L2_SeaIceConcentration_OfflinePreparation
+  title: Prototype Implementation (Offline Preparation) (ATBD v2)
 - file: algorithm/CIMR_L2_Sea_Ice_Concentration_algorithm
-  title: Prototype Implementation (ATBD v2)
+  title: Prototype Implementation (SIC and SIED) (ATBD v2)
 - file: algorithm/CIMR_L2_Sea_Ice_Concentration_performanceAssessment
   title: Prototype Performance Assessment (ATBD v2)
 - file: book/roadmap_for_future_atbd_developments
