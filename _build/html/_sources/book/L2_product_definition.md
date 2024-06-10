@@ -31,7 +31,7 @@ The SIC1H product files will have variables similar to those in {numref}`l2_sic_
 if these have to be skipped for timeliness requirements. By the same token, we expect only one SIC algorithm to run within the {term}`NRT1H`
 chain and thus only one SIC group in the data file. Finally, depending on the configuration of the {term}`NRT1H` chain, selected brightness
 temperature channels might also be shipped in the {term}`SIC1H` product file, to help downstream applications
-within sea-ice navigation safety (e.g. regional sea-ice drift and type monitoring). Candidate microwave channels are Ku (H- and V-pol) and Ka (H- and V-pol).
+within sea-ice navigation safety (e.g. regional sea-ice drift and type monitoring). Candidate microwave channels are K (H- and V-pol) and Ka (H- and V-pol).
 
 ```{table} NetCDF Group: Processed data (TBC) for SIC1H
 :name: l2_sic1h_variables

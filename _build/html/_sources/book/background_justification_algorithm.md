@@ -9,7 +9,7 @@ by the EUMETSAT {term}`OSI SAF` and the ESA {term}`CCI` Sea Ice teams.
 Since the early 2000s, the OSI SAF have been developing state-of-the-art algorithms including swath-based
 retrievals, dynamic generation of tie-points, atmospheric correction
 of the brightness temperatures using {term}`RTM`s, and per-FoV uncertainties. Traditionally,
-these algorithms have used the KU and KA microwave bands from the {term}`SSMIS` and 
+these algorithms have used the K and KA microwave bands from the {term}`SSMIS` and 
 later the {term}`AMSR2` missions.
 
 Since the mid 2010s, the CCI Sea Ice projects have contribute critical R&D input to the
@@ -21,7 +21,7 @@ use of C-band radiometry, and {cite:t}`sicci+1:2021:sic_atbd` describes the use 
 (using near-90 GHz imagery).
 
 The proposed CIMR Level-2 SIC algorithm take full advantage of these approaches by exploiting
-the C-, KU-, and KA-band imagery of CIMR with dynamic tuning of the tie-points, and pan-sharpening
+the C-, K-, and KA-band imagery of CIMR with dynamic tuning of the tie-points, and pan-sharpening
 techniques to obtain <5 km, <5% SICs meeting the CIMR mission requirements ([AD-1]).
 
 Although many developments have been materialized through OSI SAF and CCI SIC R&D, the proposed
@@ -37,7 +37,7 @@ the <5 km resolution to support operational sea-ice services with safe navigatio
 
 We propose to implement the CIMR {term}`SIC1H` Level-2 processing chain with building blocks from the {term}`SIC3H`
 algorithm but removing some steps that require most computing time. For example, the {term}`SIC1H` product might
-be built only on KU and KA imagery, and do not use {term}`RTM` correction of the brightness temperature. Another
+be built only on K and KA imagery, and do not use {term}`RTM` correction of the brightness temperature. Another
 time-saving step can be to not estimate uncertainties, or at least with a simplified algorithm.
 
 ## Sea Ice Edge (SIED)

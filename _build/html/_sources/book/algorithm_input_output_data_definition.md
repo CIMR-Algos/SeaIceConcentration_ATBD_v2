@@ -5,7 +5,7 @@
 
 | Field | Description | Shape/Amount |
 | ---   | ----------- | ------------ |
-| L1B TB | L1B Brightness Temperature at C, KU and KA-bands (both H and V polarization) | full swath or section of it (Nscans, Npos) |
+| L1B TB | L1B Brightness Temperature at C, K and KA-bands (both H and V polarization) | full swath or section of it (Nscans, Npos) |
 | L1B NeΔT | Random radiometric uncertainty of the channels | full swath or section of it (Nscans, Npos) |
 
 ### Output data

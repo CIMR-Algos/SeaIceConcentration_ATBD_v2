@@ -1,4 +1,4 @@
-# Baseline Algorithm Definition
+# Baseline Algorithm Definition for Sea Ice Concentration (SIC)
 
 In the following sections, the Level-2 sea-ice concentration algorithm is further described. It consists in those steps:
 
@@ -15,28 +15,28 @@ Concept of the CIMR Level-2 {term}`SIC` processing moving from input L1B TB (lef
 different microwave channels and their spatial resolution.
 ```
 
-The first two steps above are applied three times, for three combinations of CIMR TB channels `CKA`, `KUKA`, and `KA`. `CKA` and `KUKA` combinations
-have both been tested in the EUMETSAT OSI SAF and ESA CCI Sea Ice projects {cite:p}`lavergne:2019:sicv2`. The `KU` combination is the basis for the
+The first two steps above are applied three times, for three combinations of CIMR TB channels `CKA`, `KKA`, and `KA`. `CKA` and `KUKA` combinations
+have both been tested in the EUMETSAT OSI SAF and ESA CCI Sea Ice projects {cite:p}`lavergne:2019:sicv2`. The `K` combination is the basis for the
 'Polarization Mode' of the Bootstrap SIC algorithm {cite:p}`comiso:1986:sic,ivanova:2015:sicci1`.
 
 {numref}`combis` introduces the three channel combinations used to prepare intermediate SICs in the Level-2 algorithm.
 The channel combinations are applied at different spatial resolutions, dictated by the lowest frequency of the set. They result
-in different accuracies (algorithms using C-band have better accuracy than those using only Ku and Ka channels). Note that the '<= X km'
+in different accuracies (algorithms using C-band have better accuracy than those using only K and Ka channels). Note that the '<= X km'
 in column 'Resolution' corresponds to the spatial resolution after the L1B remapping step and is thus at least the native resolution of
 the coarsest channel, but can also be better in case Backus-Gilbert techniques are implemented to take advantage of the overlap of FoVs
-(most relevant at C-band and away from the swath center at Ku-band).
+(most relevant at C-band and away from the swath center at K-band).
 
 ```{table} The three combinations of microwave channels used for the intermediate SICs.
 :name: combis
 | Id          | Channels  |  Resolution |  Accuracy |
 | ----------- | --------  | ------ | ------ |
 | `CKA`       | $\vec{T}=(\textrm{C-Vpol, Ka-Vpol, Ka-Hpol})$ |  C (<= 15 km)  |  Excellent |
-| `KUKA`      | $\vec{T}=(\textrm{Ku-Vpol, Ka-Vpol, Ka-Hpol})$ |  Ku (<= 5 km)  |  Good |
+| `KKA`      | $\vec{T}=(\textrm{K-Vpol, Ka-Vpol, Ka-Hpol})$ |  K (<= 5 km)  |  Good |
 | `KA`        | $\vec{T}=(\textrm{Ka-Vpol, Ka-Hpol})$ |  Ka (4-5 km)  |  Poor |
 ```
 
 In {numref}`combis`, $\vec{T}$ is the vector of brightness temperature input to the SIC algorithm. As described later, the definition of the SIC algorithms
-is slightly different for 2-dimensional algorithms (like `KA`: 2 imagery channels in $\vec{T}$) than for 3-dimensional algorithms (like `CKA` and `KUKA`: 3
+is slightly different for 2-dimensional algorithms (like `KA`: 2 imagery channels in $\vec{T}$) than for 3-dimensional algorithms (like `CKA` and `KKA`: 3
 imagery channels in $\vec{T}$).
 
 The third step deploys a pan-sharpening methodology to combine pairs of intermediate SICs into the final Level-2 SICs. Pan-sharpening (aka image fusion, resolution enhancement, etc...) is
@@ -54,9 +54,9 @@ should be made available in the Level-2 product (with one of them given prominen
 | Id          | Base image $C_{LR}$ |  Sharpener $C_{HR}$ | Target Resolution | Target Accuracy |
 | ----------- | --------    | ------     | ------ | --- |
 | `CKA`       | SIC from `CKA` | n/a | C (<= 15 km)  |  Excellent |
-| `CKA@KU`    | SIC from `CKA` | SIC from `KUKA` | Ku (<= 5 km)  |  Excellent |
+| `CKA@K`    | SIC from `CKA` | SIC from `KUKA` | K (<= 5 km)  |  Excellent |
 | `CKA@KA`    | SIC from `CKA` | SIC from `KA` | Ka (4-5 km)  |  Excellent |
-| `KUKA@KA`   | SIC from `KUKA` | SIC from `KA` | Ka (4-5 km)  |  Good |
+| `KKA@KA`   | SIC from `KUKA` | SIC from `KA` | Ka (4-5 km)  |  Good |
 ```
 
 {numref}`pansharp` lists candidate Level-2 SICs from CIMR, most of them obtained from pan-sharpening of intermediate SICs (`CKA` is directly
@@ -93,7 +93,7 @@ C(\vec{T}) = \frac{\vec{v} \cdot (\vec{T} - <\vec{T}^W>)}{\vec{v} \cdot (<\vec{T
 $$ (eq_mixC2)
 
 where $\vec{T}=(T_1,...,T_i,...,T_n)$ the vector of $T_B$ measured in $n$ channels, and $\vec{v}=(v_1,...,v_i,...,v_n)$ a unit vector in $\mathbb{R}^n$ ($\|\vec{v}\|=1$). In general, $\vec{T}$ can include all
-microwave channels of a microwave imager ($n=10$ for CIMR counting only the V- and H-pol channels). For this Level-2 SIC algorithm however, we consider $n=2$ (`KA` configuration) and $n=3$ (`CKA` and `KUKA` configurations).
+microwave channels of a microwave imager ($n=10$ for CIMR counting only the V- and H-pol channels). For this Level-2 SIC algorithm however, we consider $n=2$ (`KA` configuration) and $n=3$ (`CKA` and `KKA` configurations).
 
 Eq. {eq}`eq_mixC2` defines a general form for our SIC algorithms. The SIC is the ratio of the distance from the measured TB to the water tie-point, to the distance between the ice and the water tie-points, both distances being measured along an $n$-dimensional direction $\vec{v}$. By construction, these algorithms all achieve zero bias on average at the water and consolidated sea-ice cases, since $C(<\vec{T}^W>)=0$ and $C(<\vec{T}^I>)=1$.
 
@@ -112,7 +112,7 @@ such as ice type, snow depth, layering, etc...)
 Eq. {eq}`eq_varFull` expresses the total uncertainty (variance) of SIC as a combination of the uncertainty (variance) contributions from the Water and Ice signatures (\emph{aka} tie-points uncertainty)
 and the instrument noise, normalized by the dynamic range between Ice and Water mean signatures, measured along the direction of $\vec{v}$. If the dynamic range (in the denominator) is small with
 respect to the uncertainties (in the numerator), then the total uncertainty will be large. This is the main reason why algorithm using C-band (large dynamic range between water and ice) have lower
-retrieval uncertainty than those only using Ku- or Ka-band (smaller dynamic range).
+retrieval uncertainty than those only using K- or Ka-band (smaller dynamic range).
 
 An alternative expression for eq. {eq}`eq_varFull` is given in eq. {eq}`eq_varSimp`:
 
@@ -138,6 +138,7 @@ Scalars $\Sigma_{CW}$ and $\Sigma_{CI}$ are the uncertainty (variance) achieved 
 They are the two scalars we want to minimize when tuning our SIC algorithms. Given the variance-covariance matrices of the radiometric-induced noise, and those induced by the water
 and the consolidated ice signatures, the algorithm coefficients embedded in $\vec{v}$ control if the algorithm is more or less accurate at either end of the SIC range. 
 
+(dynamic_tuning)=
 #### Dynamic tuning of the generic SIC algorithm
 
 The algorithm coefficients embedded in $\vec{v}$ control the retrieval accuracy (eq. {eq}`eq_varSimp`) of the generic SIC algorithm (eq. {eq}`eq_mixC2`). An important step
@@ -161,7 +162,7 @@ by the two tiepoints, and the definition and tuning of $\vec{v}$ becomes critica
 We compute the unit vector $\vec{u}$ that sustains the direction of largest variance in $\vec{v}\Sigma_I$. $\vec{u}$ is obtained by Principal Component Analysis (PCA) of the set of TBs for
 known 100% SIC conditions. $\vec{u}$ defines the "consolidated ice line", a concept used in many heritage SIC algorithms including the Bootstrap algorithms {cite:p}`comiso:1986:sic` and
 the Bristol algorithm {cite:p}`smith:1996:bristol`. The ice line extends from Multiyear ice ({term}`MYI`) to First-Year ice ({term}`FYI`). Because Ka-band offers the best dynamic range across the different
-ice types, it is used in all three channel configurations (`CKA`, `KUKA` and `KA`). The main purpose of including Ka-band is to anchor $\vec{u}$ along the ice-line.
+ice types, it is used in all three channel configurations (`CKA`, `KKA` and `KA`). The main purpose of including Ka-band is to anchor $\vec{u}$ along the ice-line.
 
 Once $\vec{u}$ is known a scalar quantity $d$ can be computed for each vector $\vec{T}$. We call $d$ the “Distance Along the Line” ({term}`DAL`):
 
@@ -184,7 +185,7 @@ unique vector $\vec{v}$. Indeed, let $\vec{u}=(u_1,u_2)$ then $\vec{v}=(-u2,u1)$
 fully defined from the two sets of TBs over known ocean and ice conditions, since those sets define the tie-points
 $<\vec{T}^W>$ and $<\vec{T}^I>$, as well as $\vec{u}$ and automatically $\vec{v}$.
 
-__For a 3-dimensional algorithm__ ($n=3$ as for the `CKA` and the `KUKA` configurations), the constraint in eq. {eq}`eq_vdotu`
+__For a 3-dimensional algorithm__ ($n=3$ as for the `CKA` and the `KKA` configurations), the constraint in eq. {eq}`eq_vdotu`
 does not define a unique vector $\vec{v}$. One degree of freedom is left for defining $\vec{v}$: the rotation angle $\theta_v$ around
 the ice-line defined by $\vec{u}$. An infinity of $\vec{v}$ - and thus an infinity of SIC algorithms as defined by eq. {eq}`eq_mixC2` - 
 pass the constraint in eq. {eq}`eq_vdotu`. To fully define a 3-dimensional algorithm, we find the rotation angle $\theta_v$ that
@@ -199,7 +200,7 @@ into a hybrid SIC algorithm as described in {ref}`sec_hybrid_sics`.
 --- 
 name: fig_3d_rotation
 ---
-Three-dimensional diagram of open-water (H) and closed-ice (ice line between D and A) brightness temperatures in a `KUKA` configuration (Ku-V, Ka-V, Ka-H space) (black dots). The original figure is from {cite:t}`smith:1996:bristol`.
+Three-dimensional diagram of open-water (H) and closed-ice (ice line between D and A) brightness temperatures in a `KKA` configuration (K-V, Ka-V, Ka-H space) (black dots). The original figure is from {cite:t}`smith:1996:bristol`.
 The direction U (violet, sustained by unit vector $\vec{u}$) is shown, and vectors $\vec{v}_{Bristol}$ (blue), $\vec{v}_{BestIce}$ (red), and $\vec{v}_{BestOW}$ (green) are added, as well as an illustration of the optimization of the direction
 of $\theta_v$ around the ice-line. (b) Evolution of the SIC algorithm accuracy for open-water (blue) and closed-ice (red) training samples as a function of the rotation angle $\theta_v$ in the range $[-90^{\circ};+90^{\circ}]$.
 Square symbols indicate the $\theta_v$ and accuracy for the Bootstrap Frequency Model (BFM) algorithm and the Bristol (BRI) algorithms. Disk symbols locate the optimized algorithm. Figure reproduced from {cite:t}`lavergne:2019:sicv2`.
@@ -219,16 +220,16 @@ Two techniques have been deployed in the EUMETSAT OSI SAF and ESA CCI Sea Ice Co
 
 The atmospheric correction of TB was first introduced by {cite:t}`andersen:2006:nwp` and later refined by {cite:t}`tonboe:2016:sicv1` and {cite:t}`lavergne:2019:sicv2` (Sect. 3.4.1). These authors used a {term}`RTM`
 (typically those of {cite:t}`wentz:1997:rtm`) and auxiliary fields from Numerical Weather Prediction models (e.g. T2m, wind speed, total columnar water vapour, etc...) to correct TBs for the
-contribution of the atmosphere and ocean surfaces to the TOA signal. The effect in reducing SIC uncertainty is noticeable for algorithms using only Ku-, Ka- or W-band imagery (Fig. 6, {cite:t}`ivanova:2015:sicci1`)
+contribution of the atmosphere and ocean surfaces to the TOA signal. The effect in reducing SIC uncertainty is noticeable for algorithms using only K-, Ka- or W-band imagery (Fig. 6, {cite:t}`ivanova:2015:sicci1`)
 but not so much for algorithms using C-band imagery. The RTM-based correction step has most impact over low SIC areas, and no effect over consolidated 100% SIC areas.
 While mature, the technique requires a more complex flow-diagram and e.g. an internal iteration loop to implement the RTM-based correction. We do not include
 this correction step in this version of the ATBD, but it could be included later.
 
-To use an ice-curve instead of an ice-line was first introduce in {cite:t}`lavergne:2019:sicv2` (Sect. 3.4.2). This was required for algorithms relying on Ku- and Ka-band imagery only to compensate for the
+To use an ice-curve instead of an ice-line was first introduce in {cite:t}`lavergne:2019:sicv2` (Sect. 3.4.2). This was required for algorithms relying on K- and Ka-band imagery only to compensate for the
 difference in depth of the emitting-layer at these two microwave frequencies. The correction had most impact in the Arctic winter months where un-corrected SICs were underestimated in Multiyear ice regions
-north for Greenland and the Canadian Arctic Archipelago. While C- and Ku-band also have different emitting-layer depth, the impact on `CKA` SIC is not expected to be large because of the large dynamic range
-between open water and ice TBs at C-band, and the low sensitivity of C-band to different sea-ice type. For the `KUKA` configuration, the ice-curve technique would be required, on the other end the main use
-of `KUKA` SICs in the CIMR Level-2 product is to pan-sharpen the `CKA` estimates, so that regional biases in `KUKA` should not be critical. Since `KA` SICs use one microwave frequency only, there should not
+north for Greenland and the Canadian Arctic Archipelago. While C- and K-band also have different emitting-layer depth, the impact on `CKA` SIC is not expected to be large because of the large dynamic range
+between open water and ice TBs at C-band, and the low sensitivity of C-band to different sea-ice type. For the `KKA` configuration, the ice-curve technique would be required, on the other end the main use
+of `KKA` SICs in the CIMR Level-2 product is to pan-sharpen the `CKA` estimates, so that regional biases in `KUKA` should not be critical. Since `KA` SICs use one microwave frequency only, there should not
 be the need for the ice-curve technique. Implementing an ice-curve instead of an ice-line adds complexity to the processing algorithm and in this version of the ATBD is is left out. 
 
 ```{note}
@@ -243,7 +244,7 @@ As introduced above, a 2-dimensional algorithm (like in the `KA` configuration) 
 Eq. {eq}`eq_mixC2` is used directly to compute SIC from $\vec{T}$.
 
 
-For 3-dimensional algorithms like `CKA` and the `KUKA`, however, we can tune an algorithm that performs best over the low SIC range (noted $C_{BestOW}$ or $C_{OW}$) and another algorithm that performs best
+For 3-dimensional algorithms like `CKA` and the `KKA`, however, we can tune an algorithm that performs best over the low SIC range (noted $C_{BestOW}$ or $C_{OW}$) and another algorithm that performs best
 over the high SIC range (noted noted $C_{BestIce}$ or $C_{CI}$). In order to compute a single SIC value for a given $\vec{T}$, we design an hybrid SIC algorithm that combines $C_{OW}$ and $C_{CI}$
 linearly:
 
@@ -265,7 +266,7 @@ $$ (eq_hybridC_w)
 Eq. {eq}`eq_hybridC` and {eq}`eq_hybridC_w` are used to compute a single SIC value from an input $\vec{T}$. This involves eq. {eq}`eq_mixC2` twice (once for $C_{OW}(\vec{T})$ and once for $C_{CI}(\vec{T})$).
 The same weighting equation in eq. {eq}`eq_hybridC` is used to combine the uncertainty estimates (variances) $\Sigma_C$ of $C_{OW}$ and $C_{CI}$ (computed using eq. {eq}`eq_varSimp`).
 
-To summarize, SICs in the `CKA` and `KUKA` channels combinations are computed using eq. {eq}`eq_hybridC` while
+To summarize, SICs in the `CKA` and `KKA` channels combinations are computed using eq. {eq}`eq_hybridC` while
 SICs in the `KA` channel combination are computed using eq. {eq}`eq_mixC2` directly.
 
 #### Open Water Filter (OWF), thresholding, and climatology masking of SIC
@@ -282,7 +283,7 @@ Historically, these noisy, non-physical SIC values have been removed from the SI
 (sec_owf)=
 ##### Open Water Filter
 The {term}`OWF` is a filter that detects where the ocean is most probably free for ice, and sets the SIC value to 0% SIC in the final product. This filter is needed to get
-exactly 0% SIC over large ocean areas away from the ice cover. Historically, OWFs have been based on the Ku- and Ka-band channels, sometimes also 22.2 GHz. It generally involved so-called 'Gradient Ratio'
+exactly 0% SIC over large ocean areas away from the ice cover. Historically, OWFs have been based on the K- and Ka-band channels, sometimes also 22.2 GHz. It generally involved so-called 'Gradient Ratio'
 {term}`GR` values.
 
 In the CIMR Level-2 SIC algorithm, we follow recent developments at the EUMETSAT OSI SAF and rather use a normalized version of the {term}`DAL` metric (eq. {eq}`eq_dal`) as the basis for
@@ -347,7 +348,7 @@ in the polar regions. Field-of-views outside the maximum climatology mask are ei
 (sec_pansharpen)=
 #### Enhanced-resolution SICs using pan-sharpening
 
-The sections above described generically how intermediate SIC fields can be prepared from different channel combinations of CIMR's imagery (`CKA`, `KUKA`, `KA`). As a result of the input channels, these intermediate SIC fields will have different
+The sections above described generically how intermediate SIC fields can be prepared from different channel combinations of CIMR's imagery (`CKA`, `KKA`, `KA`). As a result of the input channels, these intermediate SIC fields will have different
 spatial resolution, and different expected accuracy (see {numref}`combis`). The next step in the processing of CIMR Level-2 SIC product is to combine these intermediate SIC fields using a pan-sharpening approach, to obtain final SIC fields
 that have both high resolution and high accuracy (see {numref}`pansharp` and {numref}`fig_sic_concept`).
 
@@ -383,12 +384,12 @@ SIC retrieval (previous investigations have been deploying the technique on Eart
 name: fig_pansharpen_ex
 ---
 Illustration of the pan-sharpening technique using {term}`SSM/I` data in the ESA CCI Sea Ice project (CCI+ Phase 1). The example is for the Arctic on 10th April 2013.
-Top-left: $C_{HR}$ (using the near-90 GHz imagery of SSM/I), top-right: $C_{LR}$ (using a `KUKA` configuration), bottom-left: $\Delta_{edges}$ from eq. {eq}`eq_pansharpen`, and bottom-right: the resulting $C_{ER}$.
+Top-left: $C_{HR}$ (using the near-90 GHz imagery of SSM/I), top-right: $C_{LR}$ (using a `KKA` configuration), bottom-left: $\Delta_{edges}$ from eq. {eq}`eq_pansharpen`, and bottom-right: the resulting $C_{ER}$.
 In this case, $C_{LR}$ and $C_{HR}$ had been remapped onto a common 12.5 km EASE2 grid.
 ```
 
 {numref}`fig_pansharpen_ex` gives an illustration of the resolution enhancement capability of the pan-sharpening technique with the {term}`SSM/I` mission. In that case,
-the "LR" SIC was from a `KUKA` configuration, and the "HR" SIC from using W-band (85.5 GHz) imagery. Transposed to CIMR, a candidate "LR" would be from `CKA` and "HR" from `KA`.
+the "LR" SIC was from a `KKA` configuration, and the "HR" SIC from using W-band (85.5 GHz) imagery. Transposed to CIMR, a candidate "LR" would be from `CKA` and "HR" from `KA`.
 
 At this stage, we cannot foresee what is the combination of intermediate SICs that will achieve best results (in terms of resolution and accuracy) for the CIMR Level-2 SIC product.
 We thus write this ATBD considering several options for SIC fields in the final Level-2 product file ({numref}`fig_sic_concept`). These candidate combinations are listed in {numref}`pansharp`.
@@ -397,16 +398,30 @@ We thus write this ATBD considering several options for SIC fields in the final 
 ### CIMR Level-1b re-sampling approach
 
 The CIMR Level-2 SIC algorithm involves re-sampling and re-mapping at two stages. The Level-1b brightness
-temperature samples must be remapped on common location and resolution before applying the `CKA`, `KUKA`,
-and `KA` algorithms ({numref}`fig_sic_concept`). At a later stage, the intermediate SICs $C_{CKA}$, $C_{KUKA}$, and $C_{KA}$ must be re-sampled
+temperature samples must be remapped on common location and resolution before applying the `CKA`, `KKA`,
+and `KA` algorithms ({numref}`fig_sic_concept`). At a later stage, the intermediate SICs $C_{CKA}$, $C_{KKA}$, and $C_{KA}$ must be re-sampled
 and re-mapped as part of the pan-sharpening step ({ref}`sec_pansharpen`).
 
 At the time of writing, the exact method for re-sampling and re-mapping is not defined. The method
 might depend on which algorithm is to be applied. For example, the `CKA` algorithm might benefit
 from a Backus-Gilbert approach that takes advantage of the overlap of C-band FoVs. On the other hand,
-`KUKA` and `KA` do not involve much overlap between neighbouring FoVs and can thus probably be
+`KKA` and `KA` do not involve much overlap between neighbouring FoVs and can thus probably be
 handled with simpler methods.
 
+Another aspect to consider is that the different feeds of the CIMR mission do not have the same
+OZA (Observation Zenith Angle), which can create stripes in the TB imagery. Adjusting for the OZA
+dependency of TBs must be catered for before the L1B resampling, in a pre-processing step before
+calling the L2 SIC and SIED algorithms.
+
+In the current implementation, three types of L1B resampling are used, depending on the SIC algorithm:
+* `KA` : This algorithm uses only TBs from a single frequency (two polarization): there is no need for resampling before applying the SIC algorithm.
+* `KKA` : This algorithm uses TBs from two frequencies (K and KA) that are from dual-frequency feeds. The selected resampling approach is an along-arc
+         resampling that does not mix between feeds, and thus does not mix between different OZAs.
+* `CKA` : This algorithm uses TBs from two frequencies (C and KA) that are from different feeds. This require a *classic* resampling (e.g. Backus Gilbert)
+         to resample the position and resolution of the KA TBs to those of the C-band TBs.
+          
+
+(assumptions)=
 ### Algorithm Assumptions and Simplifications
 
 There are several assumptions and simplifications embedded in the selected algorithm. We describe the
@@ -446,4 +461,75 @@ intermediate concentration ice.
 This land-spillover effect can be partly corrected by estimating the fractional contribution of land surface
 to each Level-1B sample or FoV. However, coastal correction procedures are not perfect, and some false
 sea ice might remain along some coastlines and in fjords.
+
+### Derivation of total standard uncertainty
+
+The total uncertainty of L2 SIC (and its components) can be derived through uncertainty propagation analysis
+from Eq. {eq}`eq_hybridC`. In most cases, the main uncertainty source for the computation of SIC is not the
+total uncertainty of the L1B input (uncertainty *propagation* to L2) but rather the uncertainty of the
+algorithm tie-points (uncertainty *injection* at L2).
+
+Work initiated in the CIMR MACRAD study confirmed the results of {cite}`ivanova:2015:sicci1` that the
+uncertainties propagated from L1B TBs are typically of an order of magnitude smaller than those injected
+at L2 by the tie-point uncertainties, even for relatively 'noisy' channels as CIMR KA-band. In general,
+a good estimate of the L2 SIC uncertainties thus requires a good estimate of the tie-point uncertainties,
+not of the L1B uncertainty.
+
+This general picture must however be nuanced in two cases:
+1. The systematic (i.e. calibration) uncertainties in the CIMR L1B TOA TBs can have a direct impact on the
+systematic uncertainaties (i.e. bias). This is the reason why we suggest to implement
+{ref}`dynamic tuning of algorithm tie-points <dynamic_tuning>` for the CIMR L2 SIC algorithm
+{cite}`tonboe:2016:sicv1,ivanova:2015:sicci1,lavergne:2019:sicv2`.
+2. In coastal regions, the uncertainty of the Land-corrected L1B TBs will increase sharply due to the
+smaller contribution of water target to the TOA signal, the uncertainty of the fraction of land $\alpha$,
+and the uncertainty in the local Land emissivity. Coastal SICs
+might thus see a larger contribution to their uncertainty from the TBs than from the tie-points.
+
+{numref}`fig_uncTree` presents an early version of the SIC uncertainty tree diagram, loosely using the format
+adopted in the EU FIDUCEO and QA4EO initiatives {cite}`mittaz:2019:uncert`. The SIC measurement function
+is at the center, and branches of the tree describe the uncertainty contribution from each term,
+including an indication (text) of the correlation structure of the uncertainties. These correlation
+structure would typically be expressed in Effect Tables.
+
+```{figure} ./static_imgs/SIC_uncertainty_diagram.png
+--- 
+name: fig_uncTree
+---
+Uncertainty tree diagram for the SIC measurement function, loosely following the format adopted
+in {cite}`mittaz:2019:uncert`. The measurement equation of SIC is at the center of the diagram,
+and each branch of the tree describes the uncertainty propagation from a specific element in the SIC
+equation. The $+0$  term is a notation for the unknown systematic uncertainties (e.g. those covered
+in {ref}`assumptions`).
+```
+
+A detailed description of the terms in {numref}`fig_uncTree` is not give here, but the reader is
+invited to note the different blocks of uncertainties:
+* $u(T^{1B}_{B})$ for uncertainty propagation from L1B
+* $u(T^{I}_{B})$ and $u(T^{W}_{B})$ for the Water and Ice tie-point uncertainty
+* $u(T^{\epsilon}_B)$ for uncertainty propagation through the RGB remapper
+* the $+0$ term to capture the unknown systematic uncertainties and limitations of such SIC algorithm
+
+In addition, note the dashed curve that runs between the three $u()$ terms. It represents the fact that the
+Water and Ice tie-points are dynamically tuned from subsets of L1B TBs, and that they thus all
+share the systematic (i.e. calibration) uncertainties, thus ensuring that the L2 SIC algorithm
+is and remains un-biased at the large (hemispheric) scales.
+
+The methodology to compute SIC uncertainties during the processing is not decided at this stage.
+We can either run own software implementing uncertainty propagation formulas, or rely on the
+(python) software in the [CoMeT toolkit](https://www.comet-toolkit.org/tools/)
+(and in particular the PunPy tool). The use of PunPy is under investigation in the on-going
+CIMR MACRAD study.
+
+```{figure} ./static_imgs/punpy_uncertainty.png
+--- 
+name: fig_uncPunpy
+---
+Geophysical uncertainty (combined impact of $u(T^{I}_{B})$ and $u(T^{W}_{B})$ through the SIC algorithm) for a `CKA` algorithm as a function
+of SIC. Orange dots are estimates from punpy, blue line is from own software. (Prelimiary) results from the CIMR MACRAD study.
+```
+{numref}`fig_uncPunpy` plots a (prelimiary) simulation result comparing using the PunPy tool (orange dots) and own
+software implementing uncertainty propagation (blue line) for simulating the tie-point (*a.k.a* geophysical) uncertainty
+contribution to the total L2 SIC uncertainty. Note how the simulations agree giving confidence that we could
+operate the PunPy tool for such a SIC algorithm. Note also the overal amount of the SIC uncertainty which is of below 4\% RMSE
+(while the CIMR MRD v5 requirement is <5\%).
 
