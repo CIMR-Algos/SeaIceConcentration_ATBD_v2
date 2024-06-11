@@ -17,3 +17,11 @@ To run the prototype algorithms (jupyter notebooks) and build the ATBD (jupyterb
 1. Fetch the input and reference data and organize it under `data/` as in [data/README.md](./data/README.md)
 2. Run `jupyter-book build .`
 
+# Licensing
+
+Please acknowledge the author(s) of this work by citing the repository (see CITATION.cff).
+
+Unless specified otherwise, the following licenses apply to this work:
+1. All software (including computational notebooks and module files) is licensed as GNU GPL v3
+2. All text and original graphics (in particular in the JupyterBook ATBD) is licensed as CC-BY
+
