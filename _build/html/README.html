@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="_static/styles.css?v=3437f865" />
@@ -334,7 +334,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -350,6 +352,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">CIMR L2 Sea Ice Concentration and Sea Ice Edge ATBD</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-prototype-algorithms-and-building-the-atbd-jupyterbook">Running the prototype algorithms and building the ATBD JupyterBook</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -367,6 +379,14 @@ document.write(`
 and other ATBDs it produced is available from <a class="reference external" href="https://github.com/CIMR-Algos">CIMR-Algos</a>.</p>
 <p>This repository is based on an <a class="reference external" href="https://github.com/CIMR-Algos/ATBD-Template">ATBD-Template</a>. See the README file of the ATBD-Template for instructions
 how to fetch and build the ATBD.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="running-the-prototype-algorithms-and-building-the-atbd-jupyterbook">
+<h1>Running the prototype algorithms and building the ATBD JupyterBook<a class="headerlink" href="#running-the-prototype-algorithms-and-building-the-atbd-jupyterbook" title="Link to this heading">#</a></h1>
+<p>To run the prototype algorithms (jupyter notebooks) and build the ATBD (jupyterbook):</p>
+<ol class="arabic simple">
+<li><p>Fetch the input and reference data and organize it under <code class="docutils literal notranslate"><span class="pre">data/</span></code> as in <a class="reference internal" href="data/README.html"><span class="std std-doc">data/README.md</span></a></p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">.</span></code></p></li>
+</ol>
 </section>
 
     <script type="text/x-thebe-config">
@@ -406,7 +426,22 @@ how to fetch and build the ATBD.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">CIMR L2 Sea Ice Concentration and Sea Ice Edge ATBD</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-prototype-algorithms-and-building-the-atbd-jupyterbook">Running the prototype algorithms and building the ATBD JupyterBook</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>

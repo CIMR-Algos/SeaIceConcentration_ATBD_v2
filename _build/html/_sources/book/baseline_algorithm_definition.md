@@ -212,30 +212,6 @@ all $\theta_v$ values in the range $[-90^{\circ};+90^{\circ}]$ are tested with a
 __In higher dimensions__ ($n>3$), the contraint in eq. {eq}`eq_vdotu` leaves ($n-2 >= 2$) degrees of freedom, which requires other optimization approaches than the
 brute-force strategy we adopt in 3 dimensions. Such higher dimensions SIC algorithms are not envisaged for the CIMR Level-2 SIC product.
 
-##### Two uncertainty-reduction techniques
-
-Two techniques have been deployed in the EUMETSAT OSI SAF and ESA CCI Sea Ice Concentration processing chains to reduce the SIC retrieval uncertainty:
-1. atmospheric correction of the brightness temperature using an {term}`RTM`;
-2. using an ice-curve instead of the ice-line.
-
-The atmospheric correction of TB was first introduced by {cite:t}`andersen:2006:nwp` and later refined by {cite:t}`tonboe:2016:sicv1` and {cite:t}`lavergne:2019:sicv2` (Sect. 3.4.1). These authors used a {term}`RTM`
-(typically those of {cite:t}`wentz:1997:rtm`) and auxiliary fields from Numerical Weather Prediction models (e.g. T2m, wind speed, total columnar water vapour, etc...) to correct TBs for the
-contribution of the atmosphere and ocean surfaces to the TOA signal. The effect in reducing SIC uncertainty is noticeable for algorithms using only K-, Ka- or W-band imagery (Fig. 6, {cite:t}`ivanova:2015:sicci1`)
-but not so much for algorithms using C-band imagery. The RTM-based correction step has most impact over low SIC areas, and no effect over consolidated 100% SIC areas.
-While mature, the technique requires a more complex flow-diagram and e.g. an internal iteration loop to implement the RTM-based correction. We do not include
-this correction step in this version of the ATBD, but it could be included later.
-
-To use an ice-curve instead of an ice-line was first introduce in {cite:t}`lavergne:2019:sicv2` (Sect. 3.4.2). This was required for algorithms relying on K- and Ka-band imagery only to compensate for the
-difference in depth of the emitting-layer at these two microwave frequencies. The correction had most impact in the Arctic winter months where un-corrected SICs were underestimated in Multiyear ice regions
-north for Greenland and the Canadian Arctic Archipelago. While C- and K-band also have different emitting-layer depth, the impact on `CKA` SIC is not expected to be large because of the large dynamic range
-between open water and ice TBs at C-band, and the low sensitivity of C-band to different sea-ice type. For the `KKA` configuration, the ice-curve technique would be required, on the other end the main use
-of `KKA` SICs in the CIMR Level-2 product is to pan-sharpen the `CKA` estimates, so that regional biases in `KUKA` should not be critical. Since `KA` SICs use one microwave frequency only, there should not
-be the need for the ice-curve technique. Implementing an ice-curve instead of an ice-line adds complexity to the processing algorithm and in this version of the ATBD is is left out. 
-
-```{note}
-The RTM-based correction and ice-curve techniques are not included in this version of the ATBD, but could be included later if deemed necessary (they are mature techniques but add complexity and
-dependence to auxiliary data sources).
-```
 
 (sec_hybrid_sics)=
 #### An hybrid SIC algorithms
@@ -395,6 +371,7 @@ At this stage, we cannot foresee what is the combination of intermediate SICs th
 We thus write this ATBD considering several options for SIC fields in the final Level-2 product file ({numref}`fig_sic_concept`). These candidate combinations are listed in {numref}`pansharp`.
 
 
+(l1b_resampling)=
 ### CIMR Level-1b re-sampling approach
 
 The CIMR Level-2 SIC algorithm involves re-sampling and re-mapping at two stages. The Level-1b brightness
@@ -408,8 +385,16 @@ from a Backus-Gilbert approach that takes advantage of the overlap of C-band FoV
 `KKA` and `KA` do not involve much overlap between neighbouring FoVs and can thus probably be
 handled with simpler methods.
 
+```{figure} ./static_imgs/illustration_CIMR_scan.png
+--- 
+name: fig_cimr_scan
+---
+Illustration of the scanning pattern of CIMR, with a focus on the C/X and K/KA feeds. This shows a portion of a scanline for the C/X feed system (4 feeds),
+and for the K/KA feed system (8 feeds). The L-band scanline is not shown (as it has only 1 feed, and is not used in the SIC/SIED algorithm). Colors are for OZAs. 
+```
+
 Another aspect to consider is that the different feeds of the CIMR mission do not have the same
-OZA (Observation Zenith Angle), which can create stripes in the TB imagery. Adjusting for the OZA
+OZA (Observation Zenith Angle), which can create stripes in the TB imagery ({num_ref}`fig_cimr_scan`). Adjusting for the OZA
 dependency of TBs must be catered for before the L1B resampling, in a pre-processing step before
 calling the L2 SIC and SIED algorithms.
 

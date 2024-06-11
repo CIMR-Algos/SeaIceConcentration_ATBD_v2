@@ -9,3 +9,11 @@ and other ATBDs it produced is available from [CIMR-Algos](https://github.com/CI
 
 This repository is based on an [ATBD-Template](https://github.com/CIMR-Algos/ATBD-Template). See the README file of the ATBD-Template for instructions
 how to fetch and build the ATBD.
+
+# Running the prototype algorithms and building the ATBD JupyterBook
+
+To run the prototype algorithms (jupyter notebooks) and build the ATBD (jupyterbook):
+
+1. Fetch the input and reference data and organize it under `data/` as in [data/README.md](./data/README.md)
+2. Run `jupyter-book build .`
+
