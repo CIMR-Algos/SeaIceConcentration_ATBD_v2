@@ -339,18 +339,13 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sea-ice-concentration-sic3h">
-   Sea Ice Concentration (SIC3H)
+  <a class="reference internal nav-link" href="#combined-sea-ice-concentration-and-edge-l2-product-nrt3h">
+   Combined Sea Ice Concentration and Edge L2 product (NRT3H)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sea-ice-concentration-1h-sic1h">
-   Sea Ice Concentration 1H (SIC1H)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sea-ice-edge-sied">
-   Sea Ice Edge (SIED)
+  <a class="reference internal nav-link" href="#combined-sea-ice-concentration-and-edge-l2-product-nrt1h">
+   Combined Sea Ice Concentration and Edge L2 product (NRT1H)
   </a>
  </li>
 </ul>
@@ -373,18 +368,13 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sea-ice-concentration-sic3h">
-   Sea Ice Concentration (SIC3H)
+  <a class="reference internal nav-link" href="#combined-sea-ice-concentration-and-edge-l2-product-nrt3h">
+   Combined Sea Ice Concentration and Edge L2 product (NRT3H)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sea-ice-concentration-1h-sic1h">
-   Sea Ice Concentration 1H (SIC1H)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sea-ice-edge-sied">
-   Sea Ice Edge (SIED)
+  <a class="reference internal nav-link" href="#combined-sea-ice-concentration-and-edge-l2-product-nrt1h">
+   Combined Sea Ice Concentration and Edge L2 product (NRT1H)
   </a>
  </li>
 </ul>
@@ -399,15 +389,20 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="level-2-product-definition">
 <h1>Level-2 product definition<a class="headerlink" href="#level-2-product-definition" title="Permalink to this headline">#</a></h1>
-<p>The CIMR Level-2 SIC, SIC1H, and SIED products are on instrument grid, thus with a (<a class="reference internal" href="definitions.html#term-Nscanl"><span class="xref std std-term">Nscanl</span></a>,<a class="reference internal" href="definitions.html#term-Nscanp"><span class="xref std std-term">Nscanp</span></a>) structure. We
-describe below the main variables for each type of products. Each product file will in addition have geolocation information
-(latitude and longiture) and attributes, that are not described here at this stage.</p>
-<section id="sea-ice-concentration-sic3h">
-<h2>Sea Ice Concentration (SIC3H)<a class="headerlink" href="#sea-ice-concentration-sic3h" title="Permalink to this headline">#</a></h2>
-<p><a class="reference internal" href="#l2-sic-variables"><span class="std std-numref">Table 1</span></a> define the content (TBC) of the Level-2 sea-ice concentration (<a class="reference internal" href="acronyms.html#term-SIC3H"><span class="xref std std-term">SIC3H</span></a>) product files.
-Their structure is inspired by that of the EUMETSAT OSI SAF and ESA CCI products.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In the table below, we use <em>ESA2 grid (nx,ny)</em> for the shape of the L2 product fields, thus a <em>gridded</em> SIC and SIED L2 product. This corresponds
+to the current implementation, in the later sections of this ATBD. However, most of the SIC (and SIED) algorithm is applied in <em>swath</em> projection.
+Later versions of the algorithm could thus prepare <em>swath</em>-based L2 products.</p>
+</div>
+<p>Because the SIED algorithm runs from the final SIC field, and to minimize the number of product files, we store the SIED fields
+in the same file as the SIC fields.</p>
+<section id="combined-sea-ice-concentration-and-edge-l2-product-nrt3h">
+<h2>Combined Sea Ice Concentration and Edge L2 product (NRT3H)<a class="headerlink" href="#combined-sea-ice-concentration-and-edge-l2-product-nrt3h" title="Permalink to this headline">#</a></h2>
+<p><a class="reference internal" href="#l2-sic-variables"><span class="std std-numref">Table 1</span></a> define the content of the Level-2 <a class="reference internal" href="acronyms.html#term-NRT3H"><span class="xref std std-term">NRT3H</span></a> combined sea-ice concentration and sea-ice edge product file.
+The structure is inspired by that of the EUMETSAT OSI SAF and ESA CCI products.</p>
 <table class="colwidths-auto table" id="l2-sic-variables">
-<caption><span class="caption-number">Table 1 </span><span class="caption-text">NetCDF Group: Processed data (TBC) for SIC3H</span><a class="headerlink" href="#l2-sic-variables" title="Permalink to this table">#</a></caption>
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">NetCDF Group: Processed data (TBC) for SIC and SIED NRT3H</span><a class="headerlink" href="#l2-sic-variables" title="Permalink to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>name</p></th>
 <th class="head"><p>description</p></th>
@@ -418,53 +413,51 @@ Their structure is inspired by that of the EUMETSAT OSI SAF and ESA CCI products
 <tbody>
 <tr class="row-even"><td><p>ice_conc</p></td>
 <td><p>The main SIC variable, with all filters applied</p></td>
-<td><p>n/a [0-1]</p></td>
-<td><p>(Nscanl,Nscanp)</p></td>
+<td><p>% [0 - 100]</p></td>
+<td><p>EASE2 grid (nx,ny)</p></td>
 </tr>
-<tr class="row-odd"><td><p>raw_ice_conc_values</p></td>
+<tr class="row-odd"><td><p>ice_edge</p></td>
+<td><p>The main SIED variable (binary field)</p></td>
+<td><p>n/a [0 or 1]</p></td>
+<td><p>EASE2 grid (nx,ny)</p></td>
+</tr>
+<tr class="row-even"><td><p>raw_ice_conc_values</p></td>
 <td><p>“raw” SIC values before the <a class="reference internal" href="acronyms.html#term-OWF"><span class="xref std std-term">OWF</span></a> and thresholds are applied</p></td>
-<td><p>n/a [0-1]</p></td>
-<td><p>(Nscanl,Nscanp)</p></td>
+<td><p>% [-20 - 120]</p></td>
+<td><p>EASE2 grid (nx,ny)</p></td>
 </tr>
-<tr class="row-even"><td><p>total_standard_uncertainty</p></td>
+<tr class="row-odd"><td><p>total_standard_uncertainty</p></td>
 <td><p>total uncertainty (1 sigma) of the SIC field</p></td>
-<td><p>n/a [0-1]</p></td>
-<td><p>(Nscanl,Nscanp)</p></td>
+<td><p>% [0 - 100]</p></td>
+<td><p>EASE2 grid (nx,ny)</p></td>
 </tr>
-<tr class="row-odd"><td><p>algorithm_standard_uncertainty</p></td>
-<td><p>uncertainty (1 sigma) contribution due to the tie-point variability</p></td>
-<td><p>n/a [0-1]</p></td>
-<td><p>(Nscanl,Nscanp)</p></td>
+<tr class="row-even"><td><p>probability_correct</p></td>
+<td><p>Probability (<span class="math notranslate nohighlight">\(P \in [0.5;1]\)</span>) of correct classification</p></td>
+<td><p>n/a</p></td>
+<td><p>EASE2 grid (nx,ny)</p></td>
 </tr>
-<tr class="row-even"><td><p>smearing_standard_uncertainty</p></td>
-<td><p>uncertainty (1 sigma) contribution due to renapping and pan-sharpening</p></td>
-<td><p>n/a [0-1]</p></td>
-<td><p>(Nscanl,Nscanp)</p></td>
-</tr>
-<tr class="row-odd"><td><p>radiometric_standard_uncertainty</p></td>
-<td><p>uncertainty (1 sigma) contribution due to <span class="math notranslate nohighlight">\(Ne\Delta T\)</span></p></td>
-<td><p>n/a [0-1]</p></td>
-<td><p>(Nscanl,Nscanp)</p></td>
-</tr>
-<tr class="row-even"><td><p>status_flag</p></td>
+<tr class="row-odd"><td><p>status_flag</p></td>
 <td><p>A flag indicating status of retrieval, e.g. “nominal”, “over land”, …</p></td>
 <td><p>n/a</p></td>
-<td><p>(Nscanl,Nscanp)</p></td>
+<td><p>EASE2 grid (nx,ny)</p></td>
 </tr>
 </tbody>
 </table>
-<p>At this stage, it is foreseen that the SIC3H product files can have several SIC estimates, from different channel combinations. Each
-SIC will have its own group, similar to that in <a class="reference internal" href="#l2-sic-variables"><span class="std std-numref">Table 1</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>At this stage, an hypothesis is that the SIC3H product files could hold several SIC estimates (from different algorithms). Each
+SIC would then possibly have its own group, similar to that in <a class="reference internal" href="#l2-sic-variables"><span class="std std-numref">Table 1</span></a>.</p>
+</div>
 </section>
-<section id="sea-ice-concentration-1h-sic1h">
-<h2>Sea Ice Concentration 1H (SIC1H)<a class="headerlink" href="#sea-ice-concentration-1h-sic1h" title="Permalink to this headline">#</a></h2>
+<section id="combined-sea-ice-concentration-and-edge-l2-product-nrt1h">
+<h2>Combined Sea Ice Concentration and Edge L2 product (NRT1H)<a class="headerlink" href="#combined-sea-ice-concentration-and-edge-l2-product-nrt1h" title="Permalink to this headline">#</a></h2>
 <p>The SIC1H product files will have variables similar to those in <a class="reference internal" href="#l2-sic-variables"><span class="std std-numref">Table 1</span></a>, possibly less of them (e.g. no uncertainty variable)
 if these have to be skipped for timeliness requirements. By the same token, we expect only one SIC algorithm to run within the <a class="reference internal" href="acronyms.html#term-NRT1H"><span class="xref std std-term">NRT1H</span></a>
 chain and thus only one SIC group in the data file. Finally, depending on the configuration of the <a class="reference internal" href="acronyms.html#term-NRT1H"><span class="xref std std-term">NRT1H</span></a> chain, selected brightness
-temperature channels might also be shipped in the <a class="reference internal" href="acronyms.html#term-SIC1H"><span class="xref std std-term">SIC1H</span></a> product file, to help downstream applications
-within sea-ice navigation safety (e.g. regional sea-ice drift and type monitoring). Candidate microwave channels are K (H- and V-pol) and Ka (H- and V-pol).</p>
+temperature channels might also be included in the <a class="reference internal" href="acronyms.html#term-SIC1H"><span class="xref std std-term">SIC1H</span></a> product file, to help downstream applications
+within sea-ice navigation safety (e.g. regional sea-ice drift and type monitoring). Candidate microwave channels are K (H- and V-pol) and KA (H- and V-pol).</p>
 <table class="colwidths-auto table" id="l2-sic1h-variables">
-<caption><span class="caption-number">Table 2 </span><span class="caption-text">NetCDF Group: Processed data (TBC) for SIC1H</span><a class="headerlink" href="#l2-sic1h-variables" title="Permalink to this table">#</a></caption>
+<caption><span class="caption-number">Table 2 </span><span class="caption-text">NetCDF Group: Processed data (TBC) for SIC and SIED NRT1H</span><a class="headerlink" href="#l2-sic1h-variables" title="Permalink to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>name</p></th>
 <th class="head"><p>description</p></th>
@@ -475,54 +468,28 @@ within sea-ice navigation safety (e.g. regional sea-ice drift and type monitorin
 <tbody>
 <tr class="row-even"><td><p>ice_conc</p></td>
 <td><p>The main SIC variable, with all filters applied</p></td>
-<td><p>n/a [0-1]</p></td>
-<td><p>(Nscanl,Nscanp)</p></td>
+<td><p>% [0 - 100]</p></td>
+<td><p>EASE2 grid (nx,ny)</p></td>
 </tr>
-<tr class="row-odd"><td><p>raw_ice_conc_values</p></td>
+<tr class="row-odd"><td><p>ice_edge</p></td>
+<td><p>The main SIED variable (binary field)</p></td>
+<td><p>n/a [0 or 1]</p></td>
+<td><p>EASE2 grid (nx,ny)</p></td>
+</tr>
+<tr class="row-even"><td><p>raw_ice_conc_values</p></td>
 <td><p>“raw” SIC values before the <a class="reference internal" href="acronyms.html#term-OWF"><span class="xref std std-term">OWF</span></a> and thresholds are applied</p></td>
-<td><p>n/a [0-1]</p></td>
-<td><p>(Nscanl,Nscanp)</p></td>
+<td><p>% [-20 - 120]</p></td>
+<td><p>EASE2 grid (nx,ny)</p></td>
 </tr>
-<tr class="row-even"><td><p>status_flag</p></td>
+<tr class="row-odd"><td><p>status_flag</p></td>
 <td><p>A flag indicating status of retrieval, e.g. “nominal”, “over land”, …</p></td>
 <td><p>n/a</p></td>
-<td><p>(Nscanl,Nscanp)</p></td>
+<td><p>EASE2 grid (nx,ny)</p></td>
 </tr>
-<tr class="row-odd"><td><p>brightness_temperature</p></td>
+<tr class="row-even"><td><p>brightness_temperature</p></td>
 <td><p>brightness temperature (NRT1H) for selected channels, remapped at the location of ice_conc</p></td>
 <td><p>K</p></td>
-<td><p>(Nband,Nscanl,Nscanp)</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="sea-ice-edge-sied">
-<h2>Sea Ice Edge (SIED)<a class="headerlink" href="#sea-ice-edge-sied" title="Permalink to this headline">#</a></h2>
-<p><a class="reference internal" href="#l2-sic-variables"><span class="std std-numref">Table 1</span></a> define the content (TBC) of the Level-2 sea-ice edge (<a class="reference internal" href="acronyms.html#term-SIED"><span class="xref std std-term">SIED</span></a>) product files.</p>
-<table class="colwidths-auto table" id="l2-sie-variables">
-<caption><span class="caption-number">Table 3 </span><span class="caption-text">NetCDF Group: Processed data (TBC) for SIED</span><a class="headerlink" href="#l2-sie-variables" title="Permalink to this table">#</a></caption>
-<thead>
-<tr class="row-odd"><th class="head"><p>name</p></th>
-<th class="head"><p>description</p></th>
-<th class="head"><p>units</p></th>
-<th class="head"><p>dimensions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>ice_edge</p></td>
-<td><p>The main SIED variable: 0 for open water, 1 for sea ice.</p></td>
-<td><p>n/a</p></td>
-<td><p>(Nscanl,Nscanp)</p></td>
-</tr>
-<tr class="row-odd"><td><p>probability_correct</p></td>
-<td><p>Probability (<span class="math notranslate nohighlight">\(P \in [0.5;1]\)</span>) of correct classification</p></td>
-<td><p>n/a</p></td>
-<td><p>(Nscanl,Nscanp)</p></td>
-</tr>
-<tr class="row-even"><td><p>status_flag</p></td>
-<td><p>A flag indicating status of retrieval, e.g. “nominal”, “over land”, …</p></td>
-<td><p>n/a</p></td>
-<td><p>(Nscanl,Nscanp)</p></td>
+<td><p>EASE2 grid (nx,ny,nBands)</p></td>
 </tr>
 </tbody>
 </table>
