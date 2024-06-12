@@ -11,7 +11,7 @@ more accurate SICs.
 
 The atmospheric correction of TB was first introduced by {cite:t}`andersen:2006:nwp` and later refined by {cite:t}`tonboe:2016:sicv1` and {cite:t}`lavergne:2019:sicv2` (Sect. 3.4.1). These authors used a {term}`RTM`
 (typically those of {cite:t}`wentz:1997:rtm`) and auxiliary fields from Numerical Weather Prediction models (e.g. T2m, wind speed, total columnar water vapour, etc...) to correct TBs for the
-contribution of the atmosphere and ocean surfaces to the TOA signal. The effect in reducing SIC uncertainty is noticeable for algorithms using only K-, Ka- or W-band imagery (Fig. 6, {cite:t}`ivanova:2015:sicci1`)
+contribution of the atmosphere and ocean surfaces to the TOA signal. The effect in reducing SIC uncertainty is noticeable for algorithms using only K-, KA- or W-band imagery (Fig. 6, {cite:t}`ivanova:2015:sicci1`)
 but not so much for algorithms using C-band imagery. The RTM-based correction step has most impact over low SIC areas, and no effect over consolidated 100% SIC areas.
 While mature, the technique requires a more complex flow-diagram and e.g. an internal iteration loop to implement the RTM-based correction.
 

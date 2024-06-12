@@ -43,7 +43,7 @@ The dashed horizontal line represents the objective for CIMR mission in terms of
 but not accuracy, by using its 89 GHz imagery channels. CIMR can meet both resolution and accuracy requirements, pending appropriate algorithms are designed and adopted.
 
 Key assets of {term}`CIMR` in terms of SIC monitoring are:
-1. high resolution (4-5 km) capabilities at K- and Ka-band, two microwave frequencies that are at the core of most state-of-the-art sea-ice concentration algorithms today;
+1. high resolution (4-5 km) capabilities at K- and KA-band, two microwave frequencies that are at the core of most state-of-the-art sea-ice concentration algorithms today;
 2. medium resolution (15 km) capabilities at C-band, a channel where the the atmosphere is mostly transparent and the sea-ice emissivities do not vary too much with sea-ice type;
 3. the swath width and especially the "no hole at the pole" capability to improve coverage of sea ice monitoring in the Arctic;
 4. the availability of a forward and a backward scan to improve the accuracy of retrievals.
@@ -51,7 +51,7 @@ Key assets of {term}`CIMR` in terms of SIC monitoring are:
 CIMR has a requirement to provide some Level-2 products with 1 hour latency (see {term}`Near Real Time 1H`), including SIC, to
 support safety at sea in Arctic regions. This requirement is translated in a dedicated {term}`SIC1H` Level-2 product that has to achieve
 high resolution within a short latency. This might lead to reduced accuracy wrt to the nominal {term}`SIC3H` product. Typically, it means
-the SIC1H algorithm should focus on K- and Ka-band imagery and potential skip some parts of the {term}`SIC3H` algorithm, e.g. atmospheric correction
+the SIC1H algorithm should focus on K- and KA-band imagery and potential skip some parts of the {term}`SIC3H` algorithm, e.g. atmospheric correction
 of the brightness temperatures or deriving uncertainty estimates.
 
 {term}`Sea Ice Edge` is a binary surface classification product derived from SIC. Users of the {term}`SIED` product typically do not need

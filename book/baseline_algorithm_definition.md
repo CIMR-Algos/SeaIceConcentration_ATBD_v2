@@ -21,7 +21,7 @@ have both been tested in the EUMETSAT OSI SAF and ESA CCI Sea Ice projects {cite
 
 {numref}`combis` introduces the three channel combinations used to prepare intermediate SICs in the Level-2 algorithm.
 The channel combinations are applied at different spatial resolutions, dictated by the lowest frequency of the set. They result
-in different accuracies (algorithms using C-band have better accuracy than those using only K and Ka channels). Note that the '<= X km'
+in different accuracies (algorithms using C-band have better accuracy than those using only K and KA channels). Note that the '<= X km'
 in column 'Resolution' corresponds to the spatial resolution after the L1B remapping step and is thus at least the native resolution of
 the coarsest channel, but can also be better in case Backus-Gilbert techniques are implemented to take advantage of the overlap of FoVs
 (most relevant at C-band and away from the swath center at K-band).
@@ -30,9 +30,9 @@ the coarsest channel, but can also be better in case Backus-Gilbert techniques a
 :name: combis
 | Id          | Channels  |  Resolution |  Accuracy |
 | ----------- | --------  | ------ | ------ |
-| `CKA`       | $\vec{T}=(\textrm{C-Vpol, Ka-Vpol, Ka-Hpol})$ |  C (<= 15 km)  |  Excellent |
-| `KKA`      | $\vec{T}=(\textrm{K-Vpol, Ka-Vpol, Ka-Hpol})$ |  K (<= 5 km)  |  Good |
-| `KA`        | $\vec{T}=(\textrm{Ka-Vpol, Ka-Hpol})$ |  Ka (4-5 km)  |  Poor |
+| `CKA`       | $\vec{T}=(\textrm{C-Vpol, KA-Vpol, KA-Hpol})$ |  C (<= 15 km)  |  Excellent |
+| `KKA`      | $\vec{T}=(\textrm{K-Vpol, KA-Vpol, KA-Hpol})$ |  K (<= 5 km)  |  Good |
+| `KA`        | $\vec{T}=(\textrm{KA-Vpol, KA-Hpol})$ |  KA (4-5 km)  |  Poor |
 ```
 
 In {numref}`combis`, $\vec{T}$ is the vector of brightness temperature input to the SIC algorithm. As described later, the definition of the SIC algorithms
@@ -55,8 +55,8 @@ should be made available in the Level-2 product (with one of them given prominen
 | ----------- | --------    | ------     | ------ | --- |
 | `CKA`       | SIC from `CKA` | n/a | C (<= 15 km)  |  Excellent |
 | `CKA@K`    | SIC from `CKA` | SIC from `KUKA` | K (<= 5 km)  |  Excellent |
-| `CKA@KA`    | SIC from `CKA` | SIC from `KA` | Ka (4-5 km)  |  Excellent |
-| `KKA@KA`   | SIC from `KUKA` | SIC from `KA` | Ka (4-5 km)  |  Good |
+| `CKA@KA`    | SIC from `CKA` | SIC from `KA` | KA (4-5 km)  |  Excellent |
+| `KKA@KA`   | SIC from `KUKA` | SIC from `KA` | KA (4-5 km)  |  Good |
 ```
 
 {numref}`pansharp` lists candidate Level-2 SICs from CIMR, most of them obtained from pan-sharpening of intermediate SICs (`CKA` is directly
@@ -112,7 +112,7 @@ such as ice type, snow depth, layering, etc...)
 Eq. {eq}`eq_varFull` expresses the total uncertainty (variance) of SIC as a combination of the uncertainty (variance) contributions from the Water and Ice signatures (\emph{aka} tie-points uncertainty)
 and the instrument noise, normalized by the dynamic range between Ice and Water mean signatures, measured along the direction of $\vec{v}$. If the dynamic range (in the denominator) is small with
 respect to the uncertainties (in the numerator), then the total uncertainty will be large. This is the main reason why algorithm using C-band (large dynamic range between water and ice) have lower
-retrieval uncertainty than those only using K- or Ka-band (smaller dynamic range).
+retrieval uncertainty than those only using K- or KA-band (smaller dynamic range).
 
 An alternative expression for eq. {eq}`eq_varFull` is given in eq. {eq}`eq_varSimp`:
 
@@ -161,8 +161,8 @@ by the two tiepoints, and the definition and tuning of $\vec{v}$ becomes critica
 
 We compute the unit vector $\vec{u}$ that sustains the direction of largest variance in $\vec{v}\Sigma_I$. $\vec{u}$ is obtained by Principal Component Analysis (PCA) of the set of TBs for
 known 100% SIC conditions. $\vec{u}$ defines the "consolidated ice line", a concept used in many heritage SIC algorithms including the Bootstrap algorithms {cite:p}`comiso:1986:sic` and
-the Bristol algorithm {cite:p}`smith:1996:bristol`. The ice line extends from Multiyear ice ({term}`MYI`) to First-Year ice ({term}`FYI`). Because Ka-band offers the best dynamic range across the different
-ice types, it is used in all three channel configurations (`CKA`, `KKA` and `KA`). The main purpose of including Ka-band is to anchor $\vec{u}$ along the ice-line.
+the Bristol algorithm {cite:p}`smith:1996:bristol`. The ice line extends from Multiyear ice ({term}`MYI`) to First-Year ice ({term}`FYI`). Because KA-band offers the best dynamic range across the different
+ice types, it is used in all three channel configurations (`CKA`, `KKA` and `KA`). The main purpose of including KA-band is to anchor $\vec{u}$ along the ice-line.
 
 Once $\vec{u}$ is known a scalar quantity $d$ can be computed for each vector $\vec{T}$. We call $d$ the “Distance Along the Line” ({term}`DAL`):
 
@@ -200,7 +200,7 @@ into a hybrid SIC algorithm as described in {ref}`sec_hybrid_sics`.
 --- 
 name: fig_3d_rotation
 ---
-Three-dimensional diagram of open-water (H) and closed-ice (ice line between D and A) brightness temperatures in a `KKA` configuration (K-V, Ka-V, Ka-H space) (black dots). The original figure is from {cite:t}`smith:1996:bristol`.
+Three-dimensional diagram of open-water (H) and closed-ice (ice line between D and A) brightness temperatures in a `KKA` configuration (K-V, KA-V, KA-H space) (black dots). The original figure is from {cite:t}`smith:1996:bristol`.
 The direction U (violet, sustained by unit vector $\vec{u}$) is shown, and vectors $\vec{v}_{Bristol}$ (blue), $\vec{v}_{BestIce}$ (red), and $\vec{v}_{BestOW}$ (green) are added, as well as an illustration of the optimization of the direction
 of $\theta_v$ around the ice-line. (b) Evolution of the SIC algorithm accuracy for open-water (blue) and closed-ice (red) training samples as a function of the rotation angle $\theta_v$ in the range $[-90^{\circ};+90^{\circ}]$.
 Square symbols indicate the $\theta_v$ and accuracy for the Bootstrap Frequency Model (BFM) algorithm and the Bristol (BRI) algorithms. Disk symbols locate the optimized algorithm. Figure reproduced from {cite:t}`lavergne:2019:sicv2`.
@@ -259,7 +259,7 @@ Historically, these noisy, non-physical SIC values have been removed from the SI
 (sec_owf)=
 ##### Open Water Filter
 The {term}`OWF` is a filter that detects where the ocean is most probably free for ice, and sets the SIC value to 0% SIC in the final product. This filter is needed to get
-exactly 0% SIC over large ocean areas away from the ice cover. Historically, OWFs have been based on the K- and Ka-band channels, sometimes also 22.2 GHz. It generally involved so-called 'Gradient Ratio'
+exactly 0% SIC over large ocean areas away from the ice cover. Historically, OWFs have been based on the K- and KA-band channels, sometimes also 22.2 GHz. It generally involved so-called 'Gradient Ratio'
 {term}`GR` values.
 
 In the CIMR Level-2 SIC algorithm, we follow recent developments at the EUMETSAT OSI SAF and rather use a normalized version of the {term}`DAL` metric (eq. {eq}`eq_dal`) as the basis for
