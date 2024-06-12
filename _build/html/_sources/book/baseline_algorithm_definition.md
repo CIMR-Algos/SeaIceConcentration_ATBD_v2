@@ -157,7 +157,7 @@ __A 1-dimensional algorithm__ ($n=1$) is fully defined once the tie-points $<\ve
 To exploit better spatial resolution and thus using the higher frequency channels, SIC investigators had to adopt multi-dimensional SIC algorithms. In higher dimensions, SIC algorithms are not fully defined
 by the two tiepoints, and the definition and tuning of $\vec{v}$ becomes critical to the accuracy.
 
-##### Defining $\vec{u}$ as the vector sustaining the ice line
+##### Defining *u* as the vector sustaining the ice line
 
 We compute the unit vector $\vec{u}$ that sustains the direction of largest variance in $\vec{v}\Sigma_I$. $\vec{u}$ is obtained by Principal Component Analysis (PCA) of the set of TBs for
 known 100% SIC conditions. $\vec{u}$ defines the "consolidated ice line", a concept used in many heritage SIC algorithms including the Bootstrap algorithms {cite:p}`comiso:1986:sic` and
@@ -170,7 +170,7 @@ $$
 d = \vec{T} \cdot \vec{u}
 $$ (eq_dal)
 
-##### Optimizing $\vec{v}$ perpendicular to the ice line
+##### Optimizing *v* perpendicularly to the ice line
 
 As in the Bootstrap and Bristol algorithms, we impose that vector $\vec{v}$ is orthogonal to vector $\vec{u}$.
 
@@ -193,17 +193,17 @@ minimizes the retrieval uncertainty of the algorithm for either the set of known
 conditions. In general, the $\theta_v$ that minimizes the retrieval uncertainty over open water conditions does not minimize the
 retrieval uncertainty over consolidated ice conditions (and vice-versa). We thus define two $\theta_v$ values, corresponding to
 two $\vec{v}$ vectors and thus two SIC algorithms. The concept of a 3-dimensional algorithm and the optimization of the rotation
-angle $\theta_v$ are illustrated on {numref}`fig_3d_rotation`. The two SIC algorithms, called "BestIce" and "BestOW", will be combined
+angle $\theta_v$ are illustrated on {numref}`fig_3d_rotation` (reproduced from {cite:t}`lavergne:2019:sicv2` adapted from {cite:t}`smith:1996:bristol`). The two SIC algorithms, called "BestIce" and "BestOW", will be combined
 into a hybrid SIC algorithm as described in {ref}`sec_hybrid_sics`.
 
 ```{figure} ./static_imgs/SIC_3d_and_rotation.png
 --- 
 name: fig_3d_rotation
 ---
-Three-dimensional diagram of open-water (H) and closed-ice (ice line between D and A) brightness temperatures in a `KKA` configuration (K-V, KA-V, KA-H space) (black dots). The original figure is from {cite:t}`smith:1996:bristol`.
+Three-dimensional diagram of open-water (H) and closed-ice (ice line between D and A) brightness temperatures in a `KKA` configuration (K-V, KA-V, KA-H space) (black dots).
 The direction U (violet, sustained by unit vector $\vec{u}$) is shown, and vectors $\vec{v}_{Bristol}$ (blue), $\vec{v}_{BestIce}$ (red), and $\vec{v}_{BestOW}$ (green) are added, as well as an illustration of the optimization of the direction
 of $\theta_v$ around the ice-line. (b) Evolution of the SIC algorithm accuracy for open-water (blue) and closed-ice (red) training samples as a function of the rotation angle $\theta_v$ in the range $[-90^{\circ};+90^{\circ}]$.
-Square symbols indicate the $\theta_v$ and accuracy for the Bootstrap Frequency Model (BFM) algorithm and the Bristol (BRI) algorithms. Disk symbols locate the optimized algorithm. Figure reproduced from {cite:t}`lavergne:2019:sicv2`.
+Square symbols indicate the $\theta_v$ and accuracy for the Bootstrap Frequency Model (BFM) algorithm and the Bristol (BRI) algorithms. Disk symbols locate the optimized algorithm.
 ```
 
 The optimization of $\theta_v$ values uses a Quaternion rotation notation in 3 dimensions. A brute-force approach is chosen where
@@ -339,9 +339,9 @@ with the NORSEX algorithm of {cite:t}`svendsen:1987:norsex`. A pan-sharpening wa
 We select a robust and simple pan-sharpening formulation for the CIMR Level-2 SIC product:
 
 $$
-\begin{array}{lc}
+\begin{array}{lcc}
 C_{ER} &=& \textrm{Remap}_{HR}(C_{LR}) +  \Delta_{edges} \\
-       &=& \textrm{Remap}_{HR}(C_{LR}) + ( C_{HR} - C_{HR, blurred} ) \\ 
+       &=& \textrm{Remap}_{HR}(C_{LR}) + ( C_{HR} - C_{HR, blurred} ) \\
 \end{array}
 $$ (eq_pansharpen)
 
@@ -349,7 +349,8 @@ In Eq. {eq}`eq_pansharpen`, suffix "ER" refers to enhanced resolution (the final
 and "HR" to "high resolution" (the SIC used as sharpener). Eq. {eq}`eq_pansharpen` also involves $C_{HR, blurred}$ which is C_{HR} blurred to
 the spatial resolution of $C_{LR}$. The quantity $( C_{HR} - C_{HR, blurred})$ is sometimes referred to as a $\Delta_{edges}$ as it takes
 small values everywhere but in the regions where $C_{HR}$ exhibits sharp gradients (e.g. in the {term}`MIZ`). The $\textrm{Remap}_{HR}$ operator
-remaps the location (only the location, not the resolution) of $C_{LR}$ to those of $C_{HR}$ to enable adding the two fields together. The resulting SIC field, $C_{ER}$ is
+remaps the location (only the location, not the resolution) of $C_{LR}$ to those of $C_{HR}$ to enable adding the two fields together.
+The resulting SIC field, $C_{ER}$ is
 thus at the locations of $C_{HR}$, with the spatial resolution of $C_{HR}$ and the accuracy of $C_{LR}$ (if the pan-sharpening works perfectly).
 
 To the best of our knowledge, the CIMR Level-2 SIC product is the first time the pan-sharpening technique will be used in swath projection for passive microwave
@@ -405,7 +406,7 @@ In the current implementation, three types of L1B resampling are used, depending
 * `CKA` : This algorithm uses TBs from two frequencies (C and KA) that are from different feeds. This require a *classic* resampling (e.g. Backus Gilbert)
          to resample the position and resolution of the KA TBs to those of the C-band TBs.
 
-(assumptions)=
+(sec_assumptions)=
 ### Algorithm Assumptions and Simplifications
 
 There are several assumptions and simplifications embedded in the selected algorithm. We describe the
@@ -479,11 +480,9 @@ structure would typically be expressed in Effect Tables.
 --- 
 name: fig_uncTree
 ---
-Uncertainty tree diagram for the SIC measurement function, loosely following the format adopted
-in {cite}`mittaz:2019:uncert`. The measurement equation of SIC is at the center of the diagram,
+Uncertainty tree diagram for the SIC measurement function. The measurement equation of SIC is at the center of the diagram,
 and each branch of the tree describes the uncertainty propagation from a specific element in the SIC
-equation. The $+0$  term is a notation for the unknown systematic uncertainties (e.g. those covered
-in {ref}`assumptions`).
+equation. The $+0$  term is a notation for the unknown systematic uncertainties.
 ```
 
 A detailed description of the terms in {numref}`fig_uncTree` is not give here, but the reader is
@@ -491,7 +490,7 @@ invited to note the different blocks of uncertainties:
 * $u(T^{1B}_{B})$ for uncertainty propagation from L1B
 * $u(T^{I}_{B})$ and $u(T^{W}_{B})$ for the Water and Ice tie-point uncertainty
 * $u(T^{\epsilon}_B)$ for uncertainty propagation through the RGB remapper
-* the $+0$ term to capture the unknown systematic uncertainties and limitations of such SIC algorithm
+* the $+0$ term to capture the unknown systematic uncertainties and limitations of such SIC algorithm (e.g. those covered in {ref}`sec_assumptions`)
 
 In addition, note the dashed curve that runs between the three $u()$ terms. It represents the fact that the
 Water and Ice tie-points are dynamically tuned from subsets of L1B TBs, and that they thus all

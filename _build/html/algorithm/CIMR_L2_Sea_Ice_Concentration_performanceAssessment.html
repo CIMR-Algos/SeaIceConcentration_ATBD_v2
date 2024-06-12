@@ -1,114 +1,177 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Algorithm Performance Assessment &#8212; CIMR L2 SIC, SIED, and SIC1H ATBD v2</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/watermark.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=3437f865" />
+    <link rel="stylesheet" type="text/css" href="../_static/watermark.css?v=80f188f4" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'algorithm/CIMR_L2_Sea_Ice_Concentration_performanceAssessment';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Roadmap for future ATBD development" href="../book/roadmap_for_future_atbd_developments.html" />
     <link rel="prev" title="A Level-2 Sea Ice Concentration (SIC) and Sea Ice Edge (SIED) algorithm for CIMR" href="CIMR_L2_Sea_Ice_Concentration_algorithm.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
-    
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../book/intro.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">CIMR L2 SIC, SIED, and SIC1H ATBD v2</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../_static/logo.jpg" class="logo__image only-light" alt="CIMR L2 SIC, SIED, and SIC1H ATBD v2 - Home"/>
+    <script>document.write(`<img src="../_static/logo.jpg" class="logo__image only-dark" alt="CIMR L2 SIC, SIED, and SIC1H ATBD v2 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -118,466 +181,222 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/abstract.html">
-   Abstract
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/applicable_ref_docs.html">
-   Applicable and Reference Documents
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/acronyms.html">
-   Acronyms
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/definitions.html">
-   Definitions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/introduction_purpose_scope.html">
-   Introduction, purpose and scope
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/background_justification_algorithm.html">
-   Background and justification of selected algorithm
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/L2_product_definition.html">
-   Level-2 product definition
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/baseline_algorithm_definition.html">
-   Baseline Algorithm Definition for Sea Ice Concentration (SIC)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/baseline_algorithm_definition_SIED.html">
-   Baseline Algorithm Definition for Sea Ice EDge (SIED)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/algorithm_input_output_data_definition.html">
-   Algorithm Input and Output Data Definition (IODD)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="CIMR_L2_SeaIceConcentration_OfflinePreparation.html">
-   Prototype Implementation (Offline Preparation) (ATBD v2)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="CIMR_L2_Sea_Ice_Concentration_algorithm.html">
-   Prototype Implementation (SIC and SIED) (ATBD v2)
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Prototype Performance Assessment (ATBD v2)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/roadmap_for_future_atbd_developments.html">
-   Roadmap for future ATBD developments (ATBD v2)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/references.html">
-   References
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../book/abstract.html">Abstract</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/applicable_ref_docs.html">Applicable and Reference Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/definitions.html">Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/introduction_purpose_scope.html">Introduction, purpose and scope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/background_justification_algorithm.html">Background and justification of selected algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/L2_product_definition.html">Level-2 product definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/baseline_algorithm_definition.html">Baseline Algorithm Definition for Sea Ice Concentration (SIC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/baseline_algorithm_definition_SIED.html">Baseline Algorithm Definition for Sea Ice EDge (SIED)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/algorithm_input_output_data_definition.html">Algorithm Input and Output Data Definition (IODD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CIMR_L2_SeaIceConcentration_OfflinePreparation.html">Prototype Implementation (Offline Preparation) (ATBD v2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CIMR_L2_Sea_Ice_Concentration_algorithm.html">Prototype Implementation (SIC and SIED) (ATBD v2)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Prototype Performance Assessment (ATBD v2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/roadmap_for_future_atbd_developments.html">Roadmap for future ATBD developments (ATBD v2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/references.html">References</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/CIMR-Algos/SeaIceConcentration_ATBD_v2/main?urlpath=tree/book/algorithm/CIMR_L2_Sea_Ice_Concentration_performanceAssessment.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
-</div>
+  
+  <div id="rtd-footer-container"></div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/CIMR-Algos/SeaIceConcentration_ATBD_v2" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-<a href="https://github.com/CIMR-Algos/SeaIceConcentration_ATBD_v2"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="bottom"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
 
 </a>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/algorithm/CIMR_L2_Sea_Ice_Concentration_performanceAssessment.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/algorithm/CIMR_L2_Sea_Ice_Concentration_performanceAssessment.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
   </span>
 
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#l1-e2es-demonstration-reference-scenario-picasso-scene-definition">
-   L1 E2ES Demonstration Reference Scenario (Picasso) scene definition
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#algorithm-performance-metrics-mpef">
-   Algorithm Performance Metrics (MPEF)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#algorithm-calibration-data-set-acdat">
-   Algorithm Calibration Data Set (ACDAT)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#algorithm-validation-data-set-avdat">
-   Algorithm Validation Data Set (AVDAT)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#test-results-using-demonstration-reference-scenario">
-   Test Results using Demonstration Reference Scenario
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#compare-l2-sic-cka-ka-against-the-reference-sic">
-     Compare L2 SIC (CKA@KA) against the reference SIC
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#coarsen-the-1km-sic-results-to-the-expected-spatial-resolution-of-the-l2-sic-product">
-       Coarsen the 1km SIC results to the expected spatial resolution of the L2 SIC product
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compare-maps-of-sic-and-maps-of-sic-differences">
-       Compare maps of SIC and maps of SIC differences
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compare-as-histogram-of-differences-with-bias-and-rmse-full-range-of-sic">
-       Compare as histogram of differences, with BIAS and RMSE (full range of SIC)
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compare-as-histogram-of-differences-with-bias-and-rmse-open-water-and-closed-ice">
-       Compare as histogram of differences, with BIAS and RMSE (Open Water and Closed Ice)
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compare-sied-with-integrated-ice-edge-error-and-related-metrics">
-       Compare SIED with Integrated Ice Edge Error and related metrics
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#performance-evaluation-of-the-intermediate-sic-results-from-cka-kka-and-ka">
-       Performance evaluation of the intermediate SIC results from
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         CKA
-        </span>
-       </code>
-       ,
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         KKA
-        </span>
-       </code>
-       and
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         KA
-        </span>
-       </code>
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary-performance-assessment-sic-and-sied">
-   Summary Performance Assessment SIC and SIED
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Algorithm Performance Assessment</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#l1-e2es-demonstration-reference-scenario-picasso-scene-definition">
-   L1 E2ES Demonstration Reference Scenario (Picasso) scene definition
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#algorithm-performance-metrics-mpef">
-   Algorithm Performance Metrics (MPEF)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#algorithm-calibration-data-set-acdat">
-   Algorithm Calibration Data Set (ACDAT)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#algorithm-validation-data-set-avdat">
-   Algorithm Validation Data Set (AVDAT)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#test-results-using-demonstration-reference-scenario">
-   Test Results using Demonstration Reference Scenario
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#compare-l2-sic-cka-ka-against-the-reference-sic">
-     Compare L2 SIC (CKA@KA) against the reference SIC
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#coarsen-the-1km-sic-results-to-the-expected-spatial-resolution-of-the-l2-sic-product">
-       Coarsen the 1km SIC results to the expected spatial resolution of the L2 SIC product
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compare-maps-of-sic-and-maps-of-sic-differences">
-       Compare maps of SIC and maps of SIC differences
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compare-as-histogram-of-differences-with-bias-and-rmse-full-range-of-sic">
-       Compare as histogram of differences, with BIAS and RMSE (full range of SIC)
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compare-as-histogram-of-differences-with-bias-and-rmse-open-water-and-closed-ice">
-       Compare as histogram of differences, with BIAS and RMSE (Open Water and Closed Ice)
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compare-sied-with-integrated-ice-edge-error-and-related-metrics">
-       Compare SIED with Integrated Ice Edge Error and related metrics
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#performance-evaluation-of-the-intermediate-sic-results-from-cka-kka-and-ka">
-       Performance evaluation of the intermediate SIC results from
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         CKA
-        </span>
-       </code>
-       ,
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         KKA
-        </span>
-       </code>
-       and
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         KA
-        </span>
-       </code>
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary-performance-assessment-sic-and-sied">
-   Summary Performance Assessment SIC and SIED
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Algorithm Performance Assessment</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-e2es-demonstration-reference-scenario-picasso-scene-definition">L1 E2ES Demonstration Reference Scenario (Picasso) scene definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-performance-metrics-mpef">Algorithm Performance Metrics (MPEF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-calibration-data-set-acdat">Algorithm Calibration Data Set (ACDAT)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-validation-data-set-avdat">Algorithm Validation Data Set (AVDAT)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-results-using-demonstration-reference-scenario">Test Results using Demonstration Reference Scenario</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-l2-sic-cka-ka-against-the-reference-sic">Compare L2 SIC (CKA@KA) against the reference SIC</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coarsen-the-1km-sic-results-to-the-expected-spatial-resolution-of-the-l2-sic-product">Coarsen the 1km SIC results to the expected spatial resolution of the L2 SIC product</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-maps-of-sic-and-maps-of-sic-differences">Compare maps of SIC and maps of SIC differences</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-as-histogram-of-differences-with-bias-and-rmse-full-range-of-sic">Compare as histogram of differences, with BIAS and RMSE (full range of SIC)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-as-histogram-of-differences-with-bias-and-rmse-open-water-and-closed-ice">Compare as histogram of differences, with BIAS and RMSE (Open Water and Closed Ice)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-sied-with-integrated-ice-edge-error-and-related-metrics">Compare SIED with Integrated Ice Edge Error and related metrics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-evaluation-of-the-intermediate-sic-results-from-cka-kka-and-ka">Performance evaluation of the intermediate SIC results from <code class="docutils literal notranslate"><span class="pre">CKA</span></code>, <code class="docutils literal notranslate"><span class="pre">KKA</span></code> and <code class="docutils literal notranslate"><span class="pre">KA</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-performance-assessment-sic-and-sied">Summary Performance Assessment SIC and SIED</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="algorithm-performance-assessment">
-<h1>Algorithm Performance Assessment<a class="headerlink" href="#algorithm-performance-assessment" title="Permalink to this headline">#</a></h1>
+<h1>Algorithm Performance Assessment<a class="headerlink" href="#algorithm-performance-assessment" title="Link to this heading">#</a></h1>
 <p>We compare the outcome of the prototype Level-2 SIC algorithm against ground-truth from the the Test Cards. The main comparison is against the so-called “Polar Scene 1” prepared by the ESA CIMR SCEPS study. We use the v2.1 simulated L1B file (January 2024).</p>
 <section id="l1-e2es-demonstration-reference-scenario-picasso-scene-definition">
-<h2>L1 E2ES Demonstration Reference Scenario (Picasso) scene definition<a class="headerlink" href="#l1-e2es-demonstration-reference-scenario-picasso-scene-definition" title="Permalink to this headline">#</a></h2>
+<h2>L1 E2ES Demonstration Reference Scenario (Picasso) scene definition<a class="headerlink" href="#l1-e2es-demonstration-reference-scenario-picasso-scene-definition" title="Link to this heading">#</a></h2>
 <p>At this stage, we base our performance assessment on the more realistic “Polar Scene 1” prepared by the ESA CIMR SCEPS study. The scene represents a typical winter polar case in the area around Svalbard and the Barents Sea. For the v2.1 simulation, the SIC field used by SCEPS in their simulation is from a model run (NEMO/CICE system).</p>
 <p>The geophysical parameters are first processed through the SCEPS forward simulator to generate Top-of-Atmosphere (TOA) brightness temperatures at all microwave channels, and second through the SCEPS instrument simulator to prepare a simulated L1B file. The input data and various parts of the simulator are documented in SCEPS reports.</p>
 </section>
 <section id="algorithm-performance-metrics-mpef">
-<h2>Algorithm Performance Metrics (MPEF)<a class="headerlink" href="#algorithm-performance-metrics-mpef" title="Permalink to this headline">#</a></h2>
+<h2>Algorithm Performance Metrics (MPEF)<a class="headerlink" href="#algorithm-performance-metrics-mpef" title="Link to this heading">#</a></h2>
 <p>For SIC, the two main metrics are:</p>
 <ul class="simple">
 <li><p>the <strong>bias</strong> (arithmetic average of the errors)</p></li>
@@ -587,7 +406,7 @@ title="Print to PDF"
 <p><em>Goessling, H. F., S. Tietsche, J. J. Day, E. Hawkins, and T. Jung (2016), Predictability of the Arctic sea ice edge, Geophys. Res. Lett., 43, 1642–1650, doi:10.1002/2015GL067232.</em></p>
 </section>
 <section id="algorithm-calibration-data-set-acdat">
-<h2>Algorithm Calibration Data Set (ACDAT)<a class="headerlink" href="#algorithm-calibration-data-set-acdat" title="Permalink to this headline">#</a></h2>
+<h2>Algorithm Calibration Data Set (ACDAT)<a class="headerlink" href="#algorithm-calibration-data-set-acdat" title="Link to this heading">#</a></h2>
 <p>The L2 SIC algorithm is tuned in the Offline Preparation notebook. We have several types of tuning, and this chapter compares the results from these different tunings:</p>
 <ul class="simple">
 <li><p>Static tuning against ESA CCI RRDP SIC0 and SIC1 data;</p></li>
@@ -595,11 +414,11 @@ title="Print to PDF"
 </ul>
 </section>
 <section id="algorithm-validation-data-set-avdat">
-<h2>Algorithm Validation Data Set (AVDAT)<a class="headerlink" href="#algorithm-validation-data-set-avdat" title="Permalink to this headline">#</a></h2>
+<h2>Algorithm Validation Data Set (AVDAT)<a class="headerlink" href="#algorithm-validation-data-set-avdat" title="Link to this heading">#</a></h2>
 <p>The L2 SIC is compared against the SIC (variable <code class="docutils literal notranslate"><span class="pre">sea_ice_concentration</span></code>) from the GEO files in the SCEPS simulations.</p>
 </section>
 <section id="test-results-using-demonstration-reference-scenario">
-<h2>Test Results using Demonstration Reference Scenario<a class="headerlink" href="#test-results-using-demonstration-reference-scenario" title="Permalink to this headline">#</a></h2>
+<h2>Test Results using Demonstration Reference Scenario<a class="headerlink" href="#test-results-using-demonstration-reference-scenario" title="Link to this heading">#</a></h2>
 <p>In the following, we compare the result of the prototype L2 SIC algorithm (as stored in a L2 netCDF product file produced in the previous sections of this ATBD) against the ground truth from the SCEPS Polar Scene 1. The comparison is made in various ways to better understand the observed differences.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -635,12 +454,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/thomasl/mambaforge/envs/py310/lib/python3.10/site-packages/pyproj/crs/crs.py:1296: UserWarning: You will likely lose important projection information when converting to a PROJ string from another format. See: https://proj.org/faq.html#what-is-the-best-format-for-describing-coordinate-reference-systems
-  proj = self._crs.to_proj4(version=version)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -662,10 +475,15 @@ CIMRL1B-ALLFEEDS
 </div>
 </div>
 <section id="compare-l2-sic-cka-ka-against-the-reference-sic">
-<h3>Compare L2 SIC (CKA&#64;KA) against the reference SIC<a class="headerlink" href="#compare-l2-sic-cka-ka-against-the-reference-sic" title="Permalink to this headline">#</a></h3>
+<h3>Compare L2 SIC (CKA&#64;KA) against the reference SIC<a class="headerlink" href="#compare-l2-sic-cka-ka-against-the-reference-sic" title="Link to this heading">#</a></h3>
 <p>Access the reference SIC from the Test Card and compare to the SIC retrieved by the algorithm.</p>
 <p>This requires access to the SCEPS files.</p>
 <div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">owci_flg_cice</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">owci_flg_ow</span>   <span class="o">=</span> <span class="mi">1</span>
@@ -761,9 +579,10 @@ TOA file:  ../data/ref/cimr_sceps_toa_card_devalgo_polarscene_1_20161217_v2p0_aa
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="coarsen-the-1km-sic-results-to-the-expected-spatial-resolution-of-the-l2-sic-product">
-<h4>Coarsen the 1km SIC results to the expected spatial resolution of the L2 SIC product<a class="headerlink" href="#coarsen-the-1km-sic-results-to-the-expected-spatial-resolution-of-the-l2-sic-product" title="Permalink to this headline">#</a></h4>
+<h4>Coarsen the 1km SIC results to the expected spatial resolution of the L2 SIC product<a class="headerlink" href="#coarsen-the-1km-sic-results-to-the-expected-spatial-resolution-of-the-l2-sic-product" title="Link to this heading">#</a></h4>
 <p>Both the Test Card and the L2 SIC product are prepared on an EASE2 polar grid with <strong>1 km spacing</strong>. However the planned resolution for the L2 SIC is coarser, possibly closer to <strong>4 km</strong>. Here we first coarsen both 2D fields before computing the metrics, to reduce unwanted (potential) gridding / remapping artefacts.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -799,7 +618,7 @@ TOA file:  ../data/ref/cimr_sceps_toa_card_devalgo_polarscene_1_20161217_v2p0_aa
 </div>
 </section>
 <section id="compare-maps-of-sic-and-maps-of-sic-differences">
-<h4>Compare maps of SIC and maps of SIC differences<a class="headerlink" href="#compare-maps-of-sic-and-maps-of-sic-differences" title="Permalink to this headline">#</a></h4>
+<h4>Compare maps of SIC and maps of SIC differences<a class="headerlink" href="#compare-maps-of-sic-and-maps-of-sic-differences" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cmap_sic</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">cmocean</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">ice</span><span class="p">)</span>
@@ -846,7 +665,7 @@ TOA file:  ../data/ref/cimr_sceps_toa_card_devalgo_polarscene_1_20161217_v2p0_aa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_performanceAssessment_10_0.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_performanceAssessment_10_0.png" />
+<img alt="../_images/e782bcb95e3e307ab5a082ca9a4b0780e501f4aaec23b8558aa560777990891e.png" src="../_images/e782bcb95e3e307ab5a082ca9a4b0780e501f4aaec23b8558aa560777990891e.png" />
 </div>
 </div>
 <p>The maps above show the Reference SIC (Far left), the L2 SIC (field <em>ice_conc</em>) from <code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code> (Left), the difference of the two (Right), and the difference between field <em>raw_ice_conc_values</em> (still from <code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code> results) and the Reference SIC.</p>
@@ -856,7 +675,7 @@ TOA file:  ../data/ref/cimr_sceps_toa_card_devalgo_polarscene_1_20161217_v2p0_aa
 <p>Next, we will look at histograms and metrics of the differences.</p>
 </section>
 <section id="compare-as-histogram-of-differences-with-bias-and-rmse-full-range-of-sic">
-<h4>Compare as histogram of differences, with BIAS and RMSE (full range of SIC)<a class="headerlink" href="#compare-as-histogram-of-differences-with-bias-and-rmse-full-range-of-sic" title="Permalink to this headline">#</a></h4>
+<h4>Compare as histogram of differences, with BIAS and RMSE (full range of SIC)<a class="headerlink" href="#compare-as-histogram-of-differences-with-bias-and-rmse-full-range-of-sic" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">6</span><span class="p">),)</span>
@@ -897,7 +716,7 @@ TOA file:  ../data/ref/cimr_sceps_toa_card_devalgo_polarscene_1_20161217_v2p0_aa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_performanceAssessment_13_0.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_performanceAssessment_13_0.png" />
+<img alt="../_images/fd6a67c8ec952438b97226d2bf1eee0e4a77f3ae72091820e46b0e9404454115.png" src="../_images/fd6a67c8ec952438b97226d2bf1eee0e4a77f3ae72091820e46b0e9404454115.png" />
 </div>
 </div>
 <p>Three histograms are shown above. On the left a comparison of three histograms over the full range of SIC, at the center an histogram of the difference between L2 SIC (<code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code> <em>ice_conc</em>) and the Reference SIC, to the right an histogram of the difference betwen L2 SIC (<code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code> <em>raw_ice_conc_values</em>) and the Reference SIC.</p>
@@ -906,7 +725,7 @@ TOA file:  ../data/ref/cimr_sceps_toa_card_devalgo_polarscene_1_20161217_v2p0_aa
 <p>The histogram plot in the right panel is for the difference betwen L2 SIC (<code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code> <em>raw_ice_conc_values</em>) and the Reference SIC reveals that SIC differences are almost entirely contained in the [-10 ; +10] range. The computed RMSE is 4.8%.</p>
 </section>
 <section id="compare-as-histogram-of-differences-with-bias-and-rmse-open-water-and-closed-ice">
-<h4>Compare as histogram of differences, with BIAS and RMSE (Open Water and Closed Ice)<a class="headerlink" href="#compare-as-histogram-of-differences-with-bias-and-rmse-open-water-and-closed-ice" title="Permalink to this headline">#</a></h4>
+<h4>Compare as histogram of differences, with BIAS and RMSE (Open Water and Closed Ice)<a class="headerlink" href="#compare-as-histogram-of-differences-with-bias-and-rmse-open-water-and-closed-ice" title="Link to this heading">#</a></h4>
 <p>Next we look at histograms and validation metrics for the two ends of the SIC range: Open Water and Consolidated Ice. We first show a map of the regions where the Open Water and Closed Ice conditions are extracted from:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -920,7 +739,7 @@ TOA file:  ../data/ref/cimr_sceps_toa_card_devalgo_polarscene_1_20161217_v2p0_aa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_performanceAssessment_16_0.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_performanceAssessment_16_0.png" />
+<img alt="../_images/643ec8cb453ff4c91d916e23d5d2117bb9bda4d3c92620c31ef766ad55230d2f.png" src="../_images/643ec8cb453ff4c91d916e23d5d2117bb9bda4d3c92620c31ef766ad55230d2f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -957,7 +776,7 @@ TOA file:  ../data/ref/cimr_sceps_toa_card_devalgo_polarscene_1_20161217_v2p0_aa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_performanceAssessment_17_0.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_performanceAssessment_17_0.png" />
+<img alt="../_images/ff2639d2ebf00bc1c495b270ec3b833127c1bbd833bdb8da00ca218bfb35c1b3.png" src="../_images/ff2639d2ebf00bc1c495b270ec3b833127c1bbd833bdb8da00ca218bfb35c1b3.png" />
 </div>
 </div>
 <p>The two histograms above show the difference between the <em>unfiltered</em> SICs (field <code class="docutils literal notranslate"><span class="pre">raw_ice_conc_values</span></code>) from the L2 SIC to the Reference SIC over Open Water conditions (left panel, red) and Closed Ice (right panel, yellow). We remind that the SIC over Closed Ice conditions is not 100% but rather in the 85 - 95% range.</p>
@@ -965,14 +784,14 @@ TOA file:  ../data/ref/cimr_sceps_toa_card_devalgo_polarscene_1_20161217_v2p0_aa
 <p>The bias reported for Open Water conditions (left panel) is very small (-0.2 % SIC). This is expected since the SIC algorithm was partly tuned on the simulated CIMR L1B brightness temperatures duringt the Offline Preparation step. Because we only had a single simulated L1B swath available, we had to train the SIC algorithm on the same swath that we applied it to. As mentionned above, the operational setup would be different since the algorithm would be tuned regularly (e.g. daily) against a rolling archive of CIMR swaths (typically 5-7 past days) and not directly on the swath bring processed. Nonetheless, experience of such dynamic tuning in the context of the ESA CCI or OSI SAF products show that low bias (&lt; 0.5%) can be achieved with the dynamic tuning over open water conditions.</p>
 <p>The bias reported for Closed Ice conditions (right panel) is slithly larger (-1.2 % SIC). Here we remind that the high-concentration range of the SIC algorithm was not trained dynamically against the simulated L1B TBs, but rather directly against the CCI Sea Ice Round-Robin Data Package (RRDP) SIC1 conditions, that collects both AMSR-E and AMSR2 TBs. The tuning is indirect since, to the best of our knowledge, the parametric sea-ice emissivity model used in the SCEPS simulator is also tuned against the same CCI RRDP SIC1 conditions. We could not tune against the simulated TBs because this would have required a significant number of samples over near 100% SIC conditions, while the Reference SIC is in the 85 - 95% range. Experience from the ESA CCI or OSI SAF products show that small (negative) biases can be achieved for high SIC range using dynamic tuning, but that regional biases can remain with different sea-ice types (typically negative bias for multiyear-ice conditions and positive biases for first-year ice conditions). The impact of sea-ice type on the performance of the selected L2 SIC algorithm could not be investigated here because the sea-ice emissivity model used to generate the SCEPS Polar Scene 1 (v2.1) does not include a dependency on sea-ice type (and because this region would mostly have first-year ice cover in reality).</p>
 <p>The RMSEs over Open Water and Closed Ice conditions are very similar and are less than 1.5%. This is smaller than the RMSEs reported in previous sections (that were for the whole SIC range at once) and smaller than the target requirement from the CIMR MRD for the L2 SIC product (5%). Such excellent performance are probably because:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>the OW (red) and CI (yellow) evaluation regions avoid the Marginal Ice Zone and intermediate ice concentration regions, which is where footprint-mismatch and resampling errors have most impact;</p></li>
 <li><p>the simulated TBs do not necessarily cover the typical range of geophysical variability (e.g. wind speeds over the ocean, sea-ice type dependency, etc…).</p></li>
 </ol>
 <p>While staying careful in extrapolating the results above to potential in-flight performances, we note that previous studies, e.g. in OSI SAF and ESA CCI have shown that RMSE &lt; 5% could be achieved (in winter freezing conditions). The <code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code> algorithm applied to CIMR L1B data has a strong potential to achieve the MRD requirements and beyond.</p>
 </section>
 <section id="compare-sied-with-integrated-ice-edge-error-and-related-metrics">
-<h4>Compare SIED with Integrated Ice Edge Error and related metrics<a class="headerlink" href="#compare-sied-with-integrated-ice-edge-error-and-related-metrics" title="Permalink to this headline">#</a></h4>
+<h4>Compare SIED with Integrated Ice Edge Error and related metrics<a class="headerlink" href="#compare-sied-with-integrated-ice-edge-error-and-related-metrics" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prepare_IIEE_mask</span><span class="p">(</span><span class="n">l2_sied</span><span class="p">,</span> <span class="n">tc_sied</span><span class="p">):</span>
@@ -1010,18 +829,18 @@ TOA file:  ../data/ref/cimr_sceps_toa_card_devalgo_polarscene_1_20161217_v2p0_aa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_performanceAssessment_20_0.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_performanceAssessment_20_0.png" />
+<img alt="../_images/5f55f645140dd3fc2ab97fa9a2c917e4d3517a4a5c9dd28ed3cb934647259ab5.png" src="../_images/5f55f645140dd3fc2ab97fa9a2c917e4d3517a4a5c9dd28ed3cb934647259ab5.png" />
 </div>
 </div>
 <p>The maps above show a zoom of the Reference Sea Ice Edge (SIC &gt; 15%), the L2 SIED (computed by the L2 algorithm based on the <code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code> SIC), and a visualization of the agreement and mismatch between the two. White color is used where both SIED products agree. Blue where the L2 SIED misses sea-ice (underestimation), and red where the L2 SIED overestimates the sea-ice cover.</p>
 <p>From this example, it is apparent that the L2 SIED understimates the sea-ice cover in the marginal ice zone, especially in presence of thin sea ice (eastern part of the domain). Conversely, it detects more sea ice than there is along the coasts (land is grey in the left-most panel).</p>
 <p>The underestimation is not a surprise and might be a consequence of:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>the SIED product being computed from the <em>filtered</em> SIC field (after OWF);</p></li>
 <li><p>the SIC being currently slightly low-biased because of its non-optimal tuning (see the results on SIC above).</p></li>
 </ol>
 <p>The overstimation along the coastline was also expected and can be improved in the future CIMR L2 processing by:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>detecting and masking land-dominated FoVs ahead of the SIC processing (currently all FoVs are processed and gridded into the final product);</p></li>
 <li><p>implementing a land/water spill-over correction of the TBs as a pre-processing to the L2 algorithms (including SIC);</p></li>
 </ol>
@@ -1054,7 +873,7 @@ OverEstimation:  13248
 </div>
 </section>
 <section id="performance-evaluation-of-the-intermediate-sic-results-from-cka-kka-and-ka">
-<h4>Performance evaluation of the intermediate SIC results from <code class="docutils literal notranslate"><span class="pre">CKA</span></code>, <code class="docutils literal notranslate"><span class="pre">KKA</span></code> and <code class="docutils literal notranslate"><span class="pre">KA</span></code><a class="headerlink" href="#performance-evaluation-of-the-intermediate-sic-results-from-cka-kka-and-ka" title="Permalink to this headline">#</a></h4>
+<h4>Performance evaluation of the intermediate SIC results from <code class="docutils literal notranslate"><span class="pre">CKA</span></code>, <code class="docutils literal notranslate"><span class="pre">KKA</span></code> and <code class="docutils literal notranslate"><span class="pre">KA</span></code><a class="headerlink" href="#performance-evaluation-of-the-intermediate-sic-results-from-cka-kka-and-ka" title="Link to this heading">#</a></h4>
 <p>For illustration purposes, show the validation statistics obtained from the <em>intermediate</em> SIC algorithms.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1103,9 +922,9 @@ OverEstimation:  13248
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_performanceAssessment_24_0.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_performanceAssessment_24_0.png" />
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_performanceAssessment_24_1.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_performanceAssessment_24_1.png" />
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_performanceAssessment_24_2.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_performanceAssessment_24_2.png" />
+<img alt="../_images/0ba88c8440299b4b5bf12ffd20425b63e49fba94275da6629948edcaedfbde2d.png" src="../_images/0ba88c8440299b4b5bf12ffd20425b63e49fba94275da6629948edcaedfbde2d.png" />
+<img alt="../_images/27e1df487875b55f7a37059d59c1489679a989279afa20b9bb21f009c8400085.png" src="../_images/27e1df487875b55f7a37059d59c1489679a989279afa20b9bb21f009c8400085.png" />
+<img alt="../_images/495dfb8e53fde01a2e254f8de3acdcc8dd78215d551dbf385d225994af960025.png" src="../_images/495dfb8e53fde01a2e254f8de3acdcc8dd78215d551dbf385d225994af960025.png" />
 </div>
 </div>
 <p>The 3 histograms above (top: <code class="docutils literal notranslate"><span class="pre">CKA</span></code>, middle: <code class="docutils literal notranslate"><span class="pre">KKA</span></code>, bottom: <code class="docutils literal notranslate"><span class="pre">KA</span></code>) illustrates well known performance of these algorithms: the performance of SIC algorithm is generally better when it makes use of lower microwave frequencies.</p>
@@ -1114,7 +933,7 @@ OverEstimation:  13248
 </section>
 </section>
 <section id="summary-performance-assessment-sic-and-sied">
-<h2>Summary Performance Assessment SIC and SIED<a class="headerlink" href="#summary-performance-assessment-sic-and-sied" title="Permalink to this headline">#</a></h2>
+<h2>Summary Performance Assessment SIC and SIED<a class="headerlink" href="#summary-performance-assessment-sic-and-sied" title="Link to this heading">#</a></h2>
 <p>In summary, the performance assessment conducted in this ATBD against the realistic SCEPS Polar Scene 1 is encouraging and validates the excellent capabilities CIMR will offer for sea-ice concentration and sea-ice edge mapping in the polar regions.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
@@ -1144,57 +963,120 @@ OverEstimation:  13248
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="CIMR_L2_Sea_Ice_Concentration_algorithm.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">A Level-2 Sea Ice Concentration (SIC) and Sea Ice Edge (SIED) algorithm for CIMR</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="CIMR_L2_Sea_Ice_Concentration_algorithm.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">A Level-2 Sea Ice Concentration (SIC) and Sea Ice Edge (SIED) algorithm for CIMR</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="../book/roadmap_for_future_atbd_developments.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="../book/roadmap_for_future_atbd_developments.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Roadmap for future ATBD development</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-e2es-demonstration-reference-scenario-picasso-scene-definition">L1 E2ES Demonstration Reference Scenario (Picasso) scene definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-performance-metrics-mpef">Algorithm Performance Metrics (MPEF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-calibration-data-set-acdat">Algorithm Calibration Data Set (ACDAT)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-validation-data-set-avdat">Algorithm Validation Data Set (AVDAT)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-results-using-demonstration-reference-scenario">Test Results using Demonstration Reference Scenario</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-l2-sic-cka-ka-against-the-reference-sic">Compare L2 SIC (CKA@KA) against the reference SIC</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coarsen-the-1km-sic-results-to-the-expected-spatial-resolution-of-the-l2-sic-product">Coarsen the 1km SIC results to the expected spatial resolution of the L2 SIC product</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-maps-of-sic-and-maps-of-sic-differences">Compare maps of SIC and maps of SIC differences</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-as-histogram-of-differences-with-bias-and-rmse-full-range-of-sic">Compare as histogram of differences, with BIAS and RMSE (full range of SIC)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-as-histogram-of-differences-with-bias-and-rmse-open-water-and-closed-ice">Compare as histogram of differences, with BIAS and RMSE (Open Water and Closed Ice)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-sied-with-integrated-ice-edge-error-and-related-metrics">Compare SIED with Integrated Ice Edge Error and related metrics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-evaluation-of-the-intermediate-sic-results-from-cka-kka-and-ka">Performance evaluation of the intermediate SIC results from <code class="docutils literal notranslate"><span class="pre">CKA</span></code>, <code class="docutils literal notranslate"><span class="pre">KKA</span></code> and <code class="docutils literal notranslate"><span class="pre">KA</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-performance-assessment-sic-and-sied">Summary Performance Assessment SIC and SIED</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Thomas Lavergne, Norwegian Meteorological Institute<br/>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thomas Lavergne, Norwegian Meteorological Institute
+</p>
+
+  </div>
   
-    <div class="extra_footer">
-      <p>
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
 This ATBD was developed in the context of the ESA-funded CIMR DEVALGO study (2022-2024) (contract 4000137493).
 <br>
 ESA is not responsible in any way for the content of this document.
 </p>
 
-    </div>
-</p>
-        </footer>
-    </div>
-    
 </div>
+  </div>
+  
+</div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

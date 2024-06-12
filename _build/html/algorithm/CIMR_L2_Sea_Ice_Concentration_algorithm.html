@@ -1,114 +1,177 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>A Level-2 Sea Ice Concentration (SIC) and Sea Ice Edge (SIED) algorithm for CIMR &#8212; CIMR L2 SIC, SIED, and SIC1H ATBD v2</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/watermark.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles.css?v=3437f865" />
+    <link rel="stylesheet" type="text/css" href="../_static/watermark.css?v=80f188f4" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'algorithm/CIMR_L2_Sea_Ice_Concentration_algorithm';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Algorithm Performance Assessment" href="CIMR_L2_Sea_Ice_Concentration_performanceAssessment.html" />
     <link rel="prev" title="Offline preparations for L2 Sea Ice Concentration (SIC) and Sea Ice Edge (SIED) algorithms for CIMR" href="CIMR_L2_SeaIceConcentration_OfflinePreparation.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
-    
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../book/intro.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="../_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">CIMR L2 SIC, SIED, and SIC1H ATBD v2</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="../_static/logo.jpg" class="logo__image only-light" alt="CIMR L2 SIC, SIED, and SIC1H ATBD v2 - Home"/>
+    <script>document.write(`<img src="../_static/logo.jpg" class="logo__image only-dark" alt="CIMR L2 SIC, SIED, and SIC1H ATBD v2 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -118,452 +181,217 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/abstract.html">
-   Abstract
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/applicable_ref_docs.html">
-   Applicable and Reference Documents
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/acronyms.html">
-   Acronyms
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/definitions.html">
-   Definitions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/introduction_purpose_scope.html">
-   Introduction, purpose and scope
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/background_justification_algorithm.html">
-   Background and justification of selected algorithm
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/L2_product_definition.html">
-   Level-2 product definition
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/baseline_algorithm_definition.html">
-   Baseline Algorithm Definition for Sea Ice Concentration (SIC)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/baseline_algorithm_definition_SIED.html">
-   Baseline Algorithm Definition for Sea Ice EDge (SIED)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/algorithm_input_output_data_definition.html">
-   Algorithm Input and Output Data Definition (IODD)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="CIMR_L2_SeaIceConcentration_OfflinePreparation.html">
-   Prototype Implementation (Offline Preparation) (ATBD v2)
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Prototype Implementation (SIC and SIED) (ATBD v2)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="CIMR_L2_Sea_Ice_Concentration_performanceAssessment.html">
-   Prototype Performance Assessment (ATBD v2)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/roadmap_for_future_atbd_developments.html">
-   Roadmap for future ATBD developments (ATBD v2)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../book/references.html">
-   References
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../book/abstract.html">Abstract</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/applicable_ref_docs.html">Applicable and Reference Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/definitions.html">Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/introduction_purpose_scope.html">Introduction, purpose and scope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/background_justification_algorithm.html">Background and justification of selected algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/L2_product_definition.html">Level-2 product definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/baseline_algorithm_definition.html">Baseline Algorithm Definition for Sea Ice Concentration (SIC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/baseline_algorithm_definition_SIED.html">Baseline Algorithm Definition for Sea Ice EDge (SIED)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/algorithm_input_output_data_definition.html">Algorithm Input and Output Data Definition (IODD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CIMR_L2_SeaIceConcentration_OfflinePreparation.html">Prototype Implementation (Offline Preparation) (ATBD v2)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Prototype Implementation (SIC and SIED) (ATBD v2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CIMR_L2_Sea_Ice_Concentration_performanceAssessment.html">Prototype Performance Assessment (ATBD v2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/roadmap_for_future_atbd_developments.html">Roadmap for future ATBD developments (ATBD v2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../book/references.html">References</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/CIMR-Algos/SeaIceConcentration_ATBD_v2/main?urlpath=tree/book/algorithm/CIMR_L2_Sea_Ice_Concentration_algorithm.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
-</div>
+  
+  <div id="rtd-footer-container"></div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/CIMR-Algos/SeaIceConcentration_ATBD_v2" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-<a href="https://github.com/CIMR-Algos/SeaIceConcentration_ATBD_v2"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="bottom"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
 
 </a>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/algorithm/CIMR_L2_Sea_Ice_Concentration_algorithm.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/algorithm/CIMR_L2_Sea_Ice_Concentration_algorithm.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
   </span>
 
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#parametrize-the-run">
-   Parametrize the run
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#load-the-tuned-cka-kka-and-ka-algorithms-from-the-offline-preparations-notebook">
-     Load the tuned CKA, KKA, and KA algorithms (from the Offline Preparations notebook)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#step-1-load-the-l1b-files-and-prepare-remapped-tb-arrays-for-each-algo">
-   Step 1: Load the L1B files and prepare remapped TB arrays for each algo
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#step-2-apply-the-3-algos-to-compute-intermediate-sics">
-   Step 2: Apply the 3 algos to compute intermediate SICs
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#step-3-pan-sharpening-and-computation-of-final-level-2-sic">
-   Step 3 : Pan-sharpening and computation of “final” Level-2 SIC
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-3-1-regrid-base-sic-coarse-resolution-to-sharpener-sic-high-resolution-grid">
-     Step 3.1 Regrid ‘base’ SIC (coarse resolution) to ‘sharpener’ SIC (high resolution) grid
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-3-2-prepare-the-blurred-sharpener-sic-field">
-     Step 3.2 Prepare the ‘blurred’ sharpener SIC field
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-3-3-compute-delta-edges-and-finally-c-er">
-     Step 3.3 Compute
-     <span class="math notranslate nohighlight">
-      \(\Delta_{edges}\)
-     </span>
-     and finally
-     <span class="math notranslate nohighlight">
-      \(C_{ER}\)
-     </span>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#step-4-combine-forward-and-backward-scans">
-   Step 4 : Combine forward and backward scans
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-4-1-load-the-grid-definition-from-parameter-file">
-     Step 4.1 : Load the grid definition from parameter file
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-4-2-grid-the-forward-and-backward-fields-separately">
-     Step 4.2 : Grid the forward and backward fields separately
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-4-3-combine-the-forward-and-backward-fields">
-     Step 4.3 : Combine the forward and backward fields
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#step-5-compute-the-sea-ice-edge-field">
-   Step 5: Compute the sea-ice EDGE field
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#step-6-write-level-2-product-file">
-   Step 6: Write Level-2 product file
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>A Level-2 Sea Ice Concentration (SIC) and Sea Ice Edge (SIED) algorithm for CIMR</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#parametrize-the-run">
-   Parametrize the run
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#load-the-tuned-cka-kka-and-ka-algorithms-from-the-offline-preparations-notebook">
-     Load the tuned CKA, KKA, and KA algorithms (from the Offline Preparations notebook)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#step-1-load-the-l1b-files-and-prepare-remapped-tb-arrays-for-each-algo">
-   Step 1: Load the L1B files and prepare remapped TB arrays for each algo
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#step-2-apply-the-3-algos-to-compute-intermediate-sics">
-   Step 2: Apply the 3 algos to compute intermediate SICs
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#step-3-pan-sharpening-and-computation-of-final-level-2-sic">
-   Step 3 : Pan-sharpening and computation of “final” Level-2 SIC
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-3-1-regrid-base-sic-coarse-resolution-to-sharpener-sic-high-resolution-grid">
-     Step 3.1 Regrid ‘base’ SIC (coarse resolution) to ‘sharpener’ SIC (high resolution) grid
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-3-2-prepare-the-blurred-sharpener-sic-field">
-     Step 3.2 Prepare the ‘blurred’ sharpener SIC field
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-3-3-compute-delta-edges-and-finally-c-er">
-     Step 3.3 Compute
-     <span class="math notranslate nohighlight">
-      \(\Delta_{edges}\)
-     </span>
-     and finally
-     <span class="math notranslate nohighlight">
-      \(C_{ER}\)
-     </span>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#step-4-combine-forward-and-backward-scans">
-   Step 4 : Combine forward and backward scans
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-4-1-load-the-grid-definition-from-parameter-file">
-     Step 4.1 : Load the grid definition from parameter file
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-4-2-grid-the-forward-and-backward-fields-separately">
-     Step 4.2 : Grid the forward and backward fields separately
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-4-3-combine-the-forward-and-backward-fields">
-     Step 4.3 : Combine the forward and backward fields
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#step-5-compute-the-sea-ice-edge-field">
-   Step 5: Compute the sea-ice EDGE field
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#step-6-write-level-2-product-file">
-   Step 6: Write Level-2 product file
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>A Level-2 Sea Ice Concentration (SIC) and Sea Ice Edge (SIED) algorithm for CIMR</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametrize-the-run">Parametrize the run</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-tuned-cka-kka-and-ka-algorithms-from-the-offline-preparations-notebook">Load the tuned CKA, KKA, and KA algorithms (from the Offline Preparations notebook)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-load-the-l1b-files-and-prepare-remapped-tb-arrays-for-each-algo">Step 1: Load the L1B files and prepare remapped TB arrays for each algo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-apply-the-3-algos-to-compute-intermediate-sics">Step 2: Apply the 3 algos to compute intermediate SICs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-pan-sharpening-and-computation-of-final-level-2-sic">Step 3 : Pan-sharpening and computation of “final” Level-2 SIC</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-1-regrid-base-sic-coarse-resolution-to-sharpener-sic-high-resolution-grid">Step 3.1 Regrid ‘base’ SIC (coarse resolution) to ‘sharpener’ SIC (high resolution) grid</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-2-prepare-the-blurred-sharpener-sic-field">Step 3.2 Prepare the ‘blurred’ sharpener SIC field</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-3-compute-delta-edges-and-finally-c-er">Step 3.3 Compute <span class="math notranslate nohighlight">\(\Delta_{edges}\)</span> and finally <span class="math notranslate nohighlight">\(C_{ER}\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-combine-forward-and-backward-scans">Step 4 : Combine forward and backward scans</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-1-load-the-grid-definition-from-parameter-file">Step 4.1 : Load the grid definition from parameter file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-2-grid-the-forward-and-backward-fields-separately">Step 4.2 : Grid the forward and backward fields separately</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-3-combine-the-forward-and-backward-fields">Step 4.3 : Combine the forward and backward fields</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-compute-the-sea-ice-edge-field">Step 5: Compute the sea-ice EDGE field</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-write-level-2-product-file">Step 6: Write Level-2 product file</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="a-level-2-sea-ice-concentration-sic-and-sea-ice-edge-sied-algorithm-for-cimr">
-<h1>A Level-2 Sea Ice Concentration (SIC) and Sea Ice Edge (SIED) algorithm for CIMR<a class="headerlink" href="#a-level-2-sea-ice-concentration-sic-and-sea-ice-edge-sied-algorithm-for-cimr" title="Permalink to this headline">#</a></h1>
+<h1>A Level-2 Sea Ice Concentration (SIC) and Sea Ice Edge (SIED) algorithm for CIMR<a class="headerlink" href="#a-level-2-sea-ice-concentration-sic-and-sea-ice-edge-sied-algorithm-for-cimr" title="Link to this heading">#</a></h1>
 <p>This notebook implements a prototype for a Level-2 SIC3H and SIED3H algorithm for the CIMR mission.</p>
 <p>We refer to the corresponding <a class="reference external" href="https://cimr-algos.github.io/SeaIceConcentration_ATBD/intro.html">ATBD</a> and especially the <a class="reference external" href="https://cimr-algos.github.io/SeaIceConcentration_ATBD/baseline_algorithm_definition.html#baseline-algorithm-definition">Baseline Algorithm Definition</a>.</p>
 <p>In particular, the figure below illustrates the overall concept of the processing:
@@ -608,7 +436,7 @@ title="Print to PDF"
 </div>
 </div>
 <section id="parametrize-the-run">
-<h2>Parametrize the run<a class="headerlink" href="#parametrize-the-run" title="Permalink to this headline">#</a></h2>
+<h2>Parametrize the run<a class="headerlink" href="#parametrize-the-run" title="Link to this heading">#</a></h2>
 <p>Here we decide on some values that yield for the whole notebook</p>
 <div class="cell tag_parameters docutils container">
 <div class="cell_input docutils container">
@@ -729,7 +557,7 @@ Algorithm tuning method:  CIMRL1B-ALLFEEDS
 </div>
 </div>
 <section id="load-the-tuned-cka-kka-and-ka-algorithms-from-the-offline-preparations-notebook">
-<h3>Load the tuned CKA, KKA, and KA algorithms (from the Offline Preparations notebook)<a class="headerlink" href="#load-the-tuned-cka-kka-and-ka-algorithms-from-the-offline-preparations-notebook" title="Permalink to this headline">#</a></h3>
+<h3>Load the tuned CKA, KKA, and KA algorithms (from the Offline Preparations notebook)<a class="headerlink" href="#load-the-tuned-cka-kka-and-ka-algorithms-from-the-offline-preparations-notebook" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">alg</span> <span class="ow">in</span> <span class="n">algos</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
@@ -771,7 +599,7 @@ Load tuned KA algo from ../data/aux/KA_sic_CIMRL1B-ALLFEEDS.json
 </section>
 </section>
 <section id="step-1-load-the-l1b-files-and-prepare-remapped-tb-arrays-for-each-algo">
-<h2>Step 1: Load the L1B files and prepare remapped TB arrays for each algo<a class="headerlink" href="#step-1-load-the-l1b-files-and-prepare-remapped-tb-arrays-for-each-algo" title="Permalink to this headline">#</a></h2>
+<h2>Step 1: Load the L1B files and prepare remapped TB arrays for each algo<a class="headerlink" href="#step-1-load-the-l1b-files-and-prepare-remapped-tb-arrays-for-each-algo" title="Link to this heading">#</a></h2>
 <p>The three algorithms <code class="docutils literal notranslate"><span class="pre">CKA</span></code>, <code class="docutils literal notranslate"><span class="pre">KKA</span></code>, and <code class="docutils literal notranslate"><span class="pre">KA</span></code> combine different microwave channels (e.g. <code class="docutils literal notranslate"><span class="pre">CKA</span></code> combines C-Vpol, KA-Vpol, and KA-Hpol). Since each frequency channel is not sampled at the same location nor resolution, we must prepare location-matched, resolution-matched TB arrays for each algorithm.</p>
 <p>In this version of the algorithm, we prepare TB arrays at the spatial resolution of the coarsest channel (e.g. we prepare C-Vpol, KA-Vpol, and KA-Hpol to the resolution of C-Vpol as input to the <code class="docutils literal notranslate"><span class="pre">CKA</span></code> algorithm).</p>
 <p>We also split the L1B TB array in a forward and backward TB arrays.</p>
@@ -872,6 +700,13 @@ Load tuned KA algo from ../data/aux/KA_sic_CIMRL1B-ALLFEEDS.json
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING (align_arrays_to_start_at_zero_scan_angle): dim n_horns is not in 3rd pos for KA:scan_angle_feeds_offsets_relative_to_reflector
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING (align_arrays_to_start_at_zero_scan_angle): dim n_horns is not in 3rd pos for KA:apc_hv_hbs
+WARNING (align_arrays_to_start_at_zero_scan_angle): dim n_horns is not in 3rd pos for KA:apc_hv_ext
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING (align_arrays_to_start_at_zero_scan_angle): dim n_horns is not in 3rd pos for KU:scan_angle_feeds_offsets_relative_to_reflector
 </pre></div>
 </div>
@@ -882,13 +717,6 @@ WARNING (align_arrays_to_start_at_zero_scan_angle): dim n_horns is not in 3rd po
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING (align_arrays_to_start_at_zero_scan_angle): dim n_horns is not in 3rd pos for C:scan_angle_feeds_offsets_relative_to_reflector
 WARNING (align_arrays_to_start_at_zero_scan_angle): dim n_horns is not in 3rd pos for C:apc_hv_hbs
 WARNING (align_arrays_to_start_at_zero_scan_angle): dim n_horns is not in 3rd pos for C:apc_hv_ext
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING (align_arrays_to_start_at_zero_scan_angle): dim n_horns is not in 3rd pos for KA:scan_angle_feeds_offsets_relative_to_reflector
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING (align_arrays_to_start_at_zero_scan_angle): dim n_horns is not in 3rd pos for KA:apc_hv_hbs
-WARNING (align_arrays_to_start_at_zero_scan_angle): dim n_horns is not in 3rd pos for KA:apc_hv_ext
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/thomasl/Work/DEVALGO/Tools/tools/collocation.py:145: RuntimeWarning: invalid value encountered in cast
@@ -903,7 +731,7 @@ WARNING (align_arrays_to_start_at_zero_scan_angle): dim n_horns is not in 3rd po
 </div>
 </section>
 <section id="step-2-apply-the-3-algos-to-compute-intermediate-sics">
-<h2>Step 2: Apply the 3 algos to compute intermediate SICs<a class="headerlink" href="#step-2-apply-the-3-algos-to-compute-intermediate-sics" title="Permalink to this headline">#</a></h2>
+<h2>Step 2: Apply the 3 algos to compute intermediate SICs<a class="headerlink" href="#step-2-apply-the-3-algos-to-compute-intermediate-sics" title="Link to this heading">#</a></h2>
 <p>This applies the three algorithms on their respective TB arrays (obtained from the L1B remapping of the TBs). The SIC algorithms are applied separately for the forward and backward scan of the swath.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -984,20 +812,20 @@ WARNING (align_arrays_to_start_at_zero_scan_angle): dim n_horns is not in 3rd po
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_14_0.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_14_0.png" />
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_14_1.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_14_1.png" />
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_14_2.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_14_2.png" />
+<img alt="../_images/0bb3ba3fef74a2763ba2988d48d5128999833dbca1cfbb88b41ee5d405a705be.png" src="../_images/0bb3ba3fef74a2763ba2988d48d5128999833dbca1cfbb88b41ee5d405a705be.png" />
+<img alt="../_images/47db80494628eacbd00f2d7d66c2ce2b89cd16f485aa6c0f7912c7a958167121.png" src="../_images/47db80494628eacbd00f2d7d66c2ce2b89cd16f485aa6c0f7912c7a958167121.png" />
+<img alt="../_images/2af624cae9ace27b7988db8594b29719d6b52b726a17ee372602be8db3603bbe.png" src="../_images/2af624cae9ace27b7988db8594b29719d6b52b726a17ee372602be8db3603bbe.png" />
 </div>
 </div>
 <p>From the images above, it is clear that the three algorithms see high and low concentrations in the same locations in the Test Card, which means they are returning related SIC fields that we can later combine. The uncertainties (SDEV) are as expected lower for <code class="docutils literal notranslate"><span class="pre">CKA</span></code> than for <code class="docutils literal notranslate"><span class="pre">KKA</span></code> that are lower than those of <code class="docutils literal notranslate"><span class="pre">KA</span></code>.</p>
 </section>
 <section id="step-3-pan-sharpening-and-computation-of-final-level-2-sic">
-<h2>Step 3 : Pan-sharpening and computation of “final” Level-2 SIC<a class="headerlink" href="#step-3-pan-sharpening-and-computation-of-final-level-2-sic" title="Permalink to this headline">#</a></h2>
+<h2>Step 3 : Pan-sharpening and computation of “final” Level-2 SIC<a class="headerlink" href="#step-3-pan-sharpening-and-computation-of-final-level-2-sic" title="Link to this heading">#</a></h2>
 <p>The third step deploys a pan-sharpening methodology to combine pairs of intermediate SICs into the final Level-2 SICs. In our case, the ‘base’ image can be the high-accuracy / coarse-resolution intermediate SIC from <code class="docutils literal notranslate"><span class="pre">CKA</span></code> and the ‘sharpener’ image can be the low-accuracy / fine-resolution intermediate SIC from <code class="docutils literal notranslate"><span class="pre">KA</span></code>. This results in a final SIC named <code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code>.</p>
 <p>The ATBD calls for more such pan-sharpening to happen, but for the time being we focus on <code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code>.</p>
 <p>The pansharpening equation is simply
 $<span class="math notranslate nohighlight">\(
-\begin{array}{lc}
+\begin{array}{lcc}
 C_{ER} &amp;=&amp; \textrm{Remap}_{HR}(C_{LR}) +  \Delta_{edges} \\
        &amp;=&amp; \textrm{Remap}_{HR}(C_{LR}) + ( C_{HR} - C_{HR, blurred} ) \\ 
 \end{array}
@@ -1009,13 +837,13 @@ small values everywhere but in the regions where <span class="math notranslate n
 remaps the location (only the location, not the resolution) of <span class="math notranslate nohighlight">\(C_{LR}\)</span> to those of <span class="math notranslate nohighlight">\(C_{HR}\)</span> to enable adding the two fields together. The resulting SIC field, <span class="math notranslate nohighlight">\(C_{ER}\)</span> is
 thus at the locations of <span class="math notranslate nohighlight">\(C_{HR}\)</span>, with the spatial resolution of <span class="math notranslate nohighlight">\(C_{HR}\)</span> and the accuracy of <span class="math notranslate nohighlight">\(C_{LR}\)</span> (if the pan-sharpening works perfectly).</p>
 <p>There are thus 3 steps for building the pan-sharpened SIC <span class="math notranslate nohighlight">\(C_{ER}\)</span>:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Regrid ‘base’ SIC (coarse resolution) to ‘sharpener’ SIC (high resolution) grid</p></li>
 <li><p>Prepare the ‘blurred’ sharpener SIC field</p></li>
 <li><p>Compute <span class="math notranslate nohighlight">\(\Delta_{edges}\)</span> and finally <span class="math notranslate nohighlight">\(C_{ER}\)</span></p></li>
 </ol>
 <section id="step-3-1-regrid-base-sic-coarse-resolution-to-sharpener-sic-high-resolution-grid">
-<h3>Step 3.1 Regrid ‘base’ SIC (coarse resolution) to ‘sharpener’ SIC (high resolution) grid<a class="headerlink" href="#step-3-1-regrid-base-sic-coarse-resolution-to-sharpener-sic-high-resolution-grid" title="Permalink to this headline">#</a></h3>
+<h3>Step 3.1 Regrid ‘base’ SIC (coarse resolution) to ‘sharpener’ SIC (high resolution) grid<a class="headerlink" href="#step-3-1-regrid-base-sic-coarse-resolution-to-sharpener-sic-high-resolution-grid" title="Link to this heading">#</a></h3>
 <p>A first intermediate step is to have the base SIC field (e.g. <code class="docutils literal notranslate"><span class="pre">CKA</span></code>) on the same grid as the sharpener grid <code class="docutils literal notranslate"><span class="pre">KA</span></code>. For this we use some of our collocation tools in the toolbox.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1070,7 +898,7 @@ thus at the locations of <span class="math notranslate nohighlight">\(C_{HR}\)</
 </div>
 </section>
 <section id="step-3-2-prepare-the-blurred-sharpener-sic-field">
-<h3>Step 3.2 Prepare the ‘blurred’ sharpener SIC field<a class="headerlink" href="#step-3-2-prepare-the-blurred-sharpener-sic-field" title="Permalink to this headline">#</a></h3>
+<h3>Step 3.2 Prepare the ‘blurred’ sharpener SIC field<a class="headerlink" href="#step-3-2-prepare-the-blurred-sharpener-sic-field" title="Link to this heading">#</a></h3>
 <p>Second intermediate step is to prepare a blurred version of the sharpener SIC field, keeping it in its own grid (each grid point in the blurred SIC field is computed from the surrounding pixels in the field). The aim is to blur the ‘sharpener’ SIC until a resolution similar to that of the ‘base’ SIC (but to stay in the ‘sharpener’ grid).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1107,7 +935,7 @@ thus at the locations of <span class="math notranslate nohighlight">\(C_{HR}\)</
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/thomasl/mambaforge/envs/py310/lib/python3.10/site-packages/pyresample/kd_tree.py:259: UserWarning: Possible more than 55 neighbours within 62500.0 m for some data points
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/thomasl/mambaforge/envs/py311/lib/python3.11/site-packages/pyresample/kd_tree.py:261: UserWarning: Possible more than 55 neighbours within 62500.0 m for some data points
   get_neighbour_info(source_geo_def,
 </pre></div>
 </div>
@@ -1115,7 +943,7 @@ thus at the locations of <span class="math notranslate nohighlight">\(C_{HR}\)</
 </div>
 </section>
 <section id="step-3-3-compute-delta-edges-and-finally-c-er">
-<h3>Step 3.3 Compute <span class="math notranslate nohighlight">\(\Delta_{edges}\)</span> and finally <span class="math notranslate nohighlight">\(C_{ER}\)</span><a class="headerlink" href="#step-3-3-compute-delta-edges-and-finally-c-er" title="Permalink to this headline">#</a></h3>
+<h3>Step 3.3 Compute <span class="math notranslate nohighlight">\(\Delta_{edges}\)</span> and finally <span class="math notranslate nohighlight">\(C_{ER}\)</span><a class="headerlink" href="#step-3-3-compute-delta-edges-and-finally-c-er" title="Link to this heading">#</a></h3>
 <p>This is the final step of the pan-sharpening. We first compute <span class="math notranslate nohighlight">\(\Delta_{edges} = C_{HR} - C_{HR, blurred}\)</span>, then the final enhance-resolution SIC <span class="math notranslate nohighlight">\(C_{ER}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1192,21 +1020,21 @@ thus at the locations of <span class="math notranslate nohighlight">\(C_{HR}\)</
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_25_0.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_25_0.png" />
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_25_1.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_25_1.png" />
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_25_2.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_25_2.png" />
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_25_3.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_25_3.png" />
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_25_4.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_25_4.png" />
+<img alt="../_images/1b50a745b0435339f965f0d35392e020b5f7b5dbaf99be143a311a9c8a36670f.png" src="../_images/1b50a745b0435339f965f0d35392e020b5f7b5dbaf99be143a311a9c8a36670f.png" />
+<img alt="../_images/4d2a2283f3657a71f31a42b069d34e8a4d28eb58b7246e5aeee2d85d34360fee.png" src="../_images/4d2a2283f3657a71f31a42b069d34e8a4d28eb58b7246e5aeee2d85d34360fee.png" />
+<img alt="../_images/f37754e6e4487325137febef8d0f05d83abaed3bd805fe2ba8ef9dd12681ddff.png" src="../_images/f37754e6e4487325137febef8d0f05d83abaed3bd805fe2ba8ef9dd12681ddff.png" />
+<img alt="../_images/fb1929e215b28cb41fe6fe0b3d27ba556c34d67f2b95066a51e4203f99bfe500.png" src="../_images/fb1929e215b28cb41fe6fe0b3d27ba556c34d67f2b95066a51e4203f99bfe500.png" />
+<img alt="../_images/c07db47913ef9c253551935f0b84d6c73ad5e169527576f4899a480de78f2dfc.png" src="../_images/c07db47913ef9c253551935f0b84d6c73ad5e169527576f4899a480de78f2dfc.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="step-4-combine-forward-and-backward-scans">
-<h2>Step 4 : Combine forward and backward scans<a class="headerlink" href="#step-4-combine-forward-and-backward-scans" title="Permalink to this headline">#</a></h2>
+<h2>Step 4 : Combine forward and backward scans<a class="headerlink" href="#step-4-combine-forward-and-backward-scans" title="Link to this heading">#</a></h2>
 <p>For the time being, we resample the SICs from the forward and the backward scans (separately) to an EASE2 grid, then combine them on the grid. We define a status_flag to record if a particular grid cell is from forward+backward scans, only forward, or only backward.</p>
 <p>Note: in this implementation we only regrid to the Northern Hemisphere grid because we know that the simulated L1B orbit does not extend over the Southern Hemisphere. In general, orbits can cover both hemisphere and we will have to grid each orbit both to an NH and and SH grid.</p>
 <section id="step-4-1-load-the-grid-definition-from-parameter-file">
-<h3>Step 4.1 : Load the grid definition from parameter file<a class="headerlink" href="#step-4-1-load-the-grid-definition-from-parameter-file" title="Permalink to this headline">#</a></h3>
+<h3>Step 4.1 : Load the grid definition from parameter file<a class="headerlink" href="#step-4-1-load-the-grid-definition-from-parameter-file" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyresample</span> <span class="k">as</span> <span class="nn">pr</span>
@@ -1268,7 +1096,7 @@ Area extent: (0.0, -100000.0, 1400000.0, -1500000.0)
 </div>
 </section>
 <section id="step-4-2-grid-the-forward-and-backward-fields-separately">
-<h3>Step 4.2 : Grid the forward and backward fields separately<a class="headerlink" href="#step-4-2-grid-the-forward-and-backward-fields-separately" title="Permalink to this headline">#</a></h3>
+<h3>Step 4.2 : Grid the forward and backward fields separately<a class="headerlink" href="#step-4-2-grid-the-forward-and-backward-fields-separately" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fwd_grd</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -1327,7 +1155,7 @@ Area extent: (0.0, -100000.0, 1400000.0, -1500000.0)
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Grid FWD and BCK fields for KA
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/thomasl/mambaforge/envs/py310/lib/python3.10/site-packages/pyresample/kd_tree.py:259: UserWarning: Possible more than 8 neighbours within 5000.0 m for some data points
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/thomasl/mambaforge/envs/py311/lib/python3.11/site-packages/pyresample/kd_tree.py:261: UserWarning: Possible more than 8 neighbours within 5000.0 m for some data points
   get_neighbour_info(source_geo_def,
 </pre></div>
 </div>
@@ -1337,7 +1165,7 @@ Area extent: (0.0, -100000.0, 1400000.0, -1500000.0)
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Grid FWD and BCK fields for CKA
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/thomasl/mambaforge/envs/py310/lib/python3.10/site-packages/pyresample/kd_tree.py:259: UserWarning: Possible more than 8 neighbours within 12500.0 m for some data points
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/thomasl/mambaforge/envs/py311/lib/python3.11/site-packages/pyresample/kd_tree.py:261: UserWarning: Possible more than 8 neighbours within 12500.0 m for some data points
   get_neighbour_info(source_geo_def,
 </pre></div>
 </div>
@@ -1409,15 +1237,15 @@ Area extent: (0.0, -100000.0, 1400000.0, -1500000.0)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_30_0.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_30_0.png" />
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_30_1.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_30_1.png" />
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_30_2.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_30_2.png" />
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_30_3.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_30_3.png" />
+<img alt="../_images/498dca9907594d9525b31be1e021f43ce2e9aa7db8f2cb950728da42bc7a94d9.png" src="../_images/498dca9907594d9525b31be1e021f43ce2e9aa7db8f2cb950728da42bc7a94d9.png" />
+<img alt="../_images/c9be2991fe2e1b93c5b3f1f033f9c6a343b79660f12307d30cb89c762590e122.png" src="../_images/c9be2991fe2e1b93c5b3f1f033f9c6a343b79660f12307d30cb89c762590e122.png" />
+<img alt="../_images/74b5ff272bca650935e75728b9cb72001f8e59076ee523e4bf304c581be7cf49.png" src="../_images/74b5ff272bca650935e75728b9cb72001f8e59076ee523e4bf304c581be7cf49.png" />
+<img alt="../_images/7f276189e9e7550d9c766049bea83930df333911e3cc3569250c339b6c551130.png" src="../_images/7f276189e9e7550d9c766049bea83930df333911e3cc3569250c339b6c551130.png" />
 </div>
 </div>
 </section>
 <section id="step-4-3-combine-the-forward-and-backward-fields">
-<h3>Step 4.3 : Combine the forward and backward fields<a class="headerlink" href="#step-4-3-combine-the-forward-and-backward-fields" title="Permalink to this headline">#</a></h3>
+<h3>Step 4.3 : Combine the forward and backward fields<a class="headerlink" href="#step-4-3-combine-the-forward-and-backward-fields" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we call the result, the &quot;merged&quot; sic:</span>
@@ -1538,16 +1366,16 @@ Range of &#39;filtered&#39; SIC (after filtering and thesholding): [0.00:1.00]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_33_0.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_33_0.png" />
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_33_1.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_33_1.png" />
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_33_2.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_33_2.png" />
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_33_3.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_33_3.png" />
+<img alt="../_images/7305265494d56d28dc2fff73fb5bfc3fbb7bff91263cee0a856cc60ca4852bf1.png" src="../_images/7305265494d56d28dc2fff73fb5bfc3fbb7bff91263cee0a856cc60ca4852bf1.png" />
+<img alt="../_images/d1bf6563e036a9442b71ac7d429e18489eeb43dc995c33f377ccade3354892ab.png" src="../_images/d1bf6563e036a9442b71ac7d429e18489eeb43dc995c33f377ccade3354892ab.png" />
+<img alt="../_images/ce108d1145867a79882f3ae21fc76bc880c252e0289eda60f8f5b40f95419564.png" src="../_images/ce108d1145867a79882f3ae21fc76bc880c252e0289eda60f8f5b40f95419564.png" />
+<img alt="../_images/72feccc871a50a8261e9890838588bea0b64f71e4bb9210352f5b72e9c6a773b.png" src="../_images/72feccc871a50a8261e9890838588bea0b64f71e4bb9210352f5b72e9c6a773b.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="step-5-compute-the-sea-ice-edge-field">
-<h2>Step 5: Compute the sea-ice EDGE field<a class="headerlink" href="#step-5-compute-the-sea-ice-edge-field" title="Permalink to this headline">#</a></h2>
+<h2>Step 5: Compute the sea-ice EDGE field<a class="headerlink" href="#step-5-compute-the-sea-ice-edge-field" title="Link to this heading">#</a></h2>
 <p>SIED (Sea Ice Edge) is computed from SIC with a simple threshold at SIC = 15%. It is a binary water / ice field.</p>
 <p>Importantly, it uses the <strong>filtered SIC</strong> of <code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code> as input.</p>
 <p>In this version of the algorithm, we process it on the merged gridded output, but it could also be computed at an earlier stage, including in swath projection.</p>
@@ -1571,12 +1399,12 @@ Range of &#39;filtered&#39; SIC (after filtering and thesholding): [0.00:1.00]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_36_0.png" src="../_images/CIMR_L2_Sea_Ice_Concentration_algorithm_36_0.png" />
+<img alt="../_images/c620cdaa2e7e17be90c6102d22d8ee6569127a711978a439718fae9ee78510c8.png" src="../_images/c620cdaa2e7e17be90c6102d22d8ee6569127a711978a439718fae9ee78510c8.png" />
 </div>
 </div>
 </section>
 <section id="step-6-write-level-2-product-file">
-<h2>Step 6: Write Level-2 product file<a class="headerlink" href="#step-6-write-level-2-product-file" title="Permalink to this headline">#</a></h2>
+<h2>Step 6: Write Level-2 product file<a class="headerlink" href="#step-6-write-level-2-product-file" title="Link to this heading">#</a></h2>
 <p>We write a netCDF/CF files containing the merged SIC on the EASE2 2.5km grid. This requires a pre-processing of the SIC fields to apply the Open Water Filter, and have the “raw” SICs into specific variables.</p>
 <p>The main SIC is from <code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code>.</p>
 <p>Writing the netCDF/CF file is done via xarray.</p>
@@ -1730,16 +1558,40 @@ Range of &#39;filtered&#39; SIC (after filtering and thesholding): [0.00:1.00]
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_390016/1740271362.py:104: UserWarning: Times can&#39;t be serialized faithfully to int64 with requested units &#39;days since 2000-01-01T00:00:00+00:00&#39;. Resolution of &#39;nanoseconds&#39; needed. Serializing times to floating point instead. Set encoding[&#39;dtype&#39;] to integer dtype to serialize to int64. Set encoding[&#39;dtype&#39;] to floating point dtype to silence this warning.
+  ds_l2.to_netcdf(l2_n, format=&#39;NETCDF4_CLASSIC&#39;, encoding=encoding)
+/tmp/ipykernel_390016/1740271362.py:104: UserWarning: Times can&#39;t be serialized faithfully to int64 with requested units &#39;days since 2000-01-01T00:00:00+00:00&#39;. Resolution of &#39;nanoseconds&#39; needed. Serializing times to floating point instead. Set encoding[&#39;dtype&#39;] to integer dtype to serialize to int64. Set encoding[&#39;dtype&#39;] to floating point dtype to silence this warning.
+  ds_l2.to_netcdf(l2_n, format=&#39;NETCDF4_CLASSIC&#39;, encoding=encoding)
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../data/output/cimr_devalgo_l2_sic_ease2-1.0km-testcard_sceps-polar1.nc
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_390016/1740271362.py:104: UserWarning: Times can&#39;t be serialized faithfully to int64 with requested units &#39;days since 2000-01-01T00:00:00+00:00&#39;. Resolution of &#39;nanoseconds&#39; needed. Serializing times to floating point instead. Set encoding[&#39;dtype&#39;] to integer dtype to serialize to int64. Set encoding[&#39;dtype&#39;] to floating point dtype to silence this warning.
+  ds_l2.to_netcdf(l2_n, format=&#39;NETCDF4_CLASSIC&#39;, encoding=encoding)
+/tmp/ipykernel_390016/1740271362.py:104: UserWarning: Times can&#39;t be serialized faithfully to int64 with requested units &#39;days since 2000-01-01T00:00:00+00:00&#39;. Resolution of &#39;nanoseconds&#39; needed. Serializing times to floating point instead. Set encoding[&#39;dtype&#39;] to integer dtype to serialize to int64. Set encoding[&#39;dtype&#39;] to floating point dtype to silence this warning.
+  ds_l2.to_netcdf(l2_n, format=&#39;NETCDF4_CLASSIC&#39;, encoding=encoding)
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../data/output/cimr_devalgo_l2_sic-CKA_ease2-1.0km-testcard_sceps-polar1.nc
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_390016/1740271362.py:104: UserWarning: Times can&#39;t be serialized faithfully to int64 with requested units &#39;days since 2000-01-01T00:00:00+00:00&#39;. Resolution of &#39;nanoseconds&#39; needed. Serializing times to floating point instead. Set encoding[&#39;dtype&#39;] to integer dtype to serialize to int64. Set encoding[&#39;dtype&#39;] to floating point dtype to silence this warning.
+  ds_l2.to_netcdf(l2_n, format=&#39;NETCDF4_CLASSIC&#39;, encoding=encoding)
+/tmp/ipykernel_390016/1740271362.py:104: UserWarning: Times can&#39;t be serialized faithfully to int64 with requested units &#39;days since 2000-01-01T00:00:00+00:00&#39;. Resolution of &#39;nanoseconds&#39; needed. Serializing times to floating point instead. Set encoding[&#39;dtype&#39;] to integer dtype to serialize to int64. Set encoding[&#39;dtype&#39;] to floating point dtype to silence this warning.
+  ds_l2.to_netcdf(l2_n, format=&#39;NETCDF4_CLASSIC&#39;, encoding=encoding)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../data/output/cimr_devalgo_l2_sic-KKA_ease2-1.0km-testcard_sceps-polar1.nc
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>../data/output/cimr_devalgo_l2_sic-KA_ease2-1.0km-testcard_sceps-polar1.nc
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_390016/1740271362.py:104: UserWarning: Times can&#39;t be serialized faithfully to int64 with requested units &#39;days since 2000-01-01T00:00:00+00:00&#39;. Resolution of &#39;nanoseconds&#39; needed. Serializing times to floating point instead. Set encoding[&#39;dtype&#39;] to integer dtype to serialize to int64. Set encoding[&#39;dtype&#39;] to floating point dtype to silence this warning.
+  ds_l2.to_netcdf(l2_n, format=&#39;NETCDF4_CLASSIC&#39;, encoding=encoding)
+/tmp/ipykernel_390016/1740271362.py:104: UserWarning: Times can&#39;t be serialized faithfully to int64 with requested units &#39;days since 2000-01-01T00:00:00+00:00&#39;. Resolution of &#39;nanoseconds&#39; needed. Serializing times to floating point instead. Set encoding[&#39;dtype&#39;] to integer dtype to serialize to int64. Set encoding[&#39;dtype&#39;] to floating point dtype to silence this warning.
+  ds_l2.to_netcdf(l2_n, format=&#39;NETCDF4_CLASSIC&#39;, encoding=encoding)
 </pre></div>
 </div>
 </div>
@@ -1767,57 +1619,123 @@ Range of &#39;filtered&#39; SIC (after filtering and thesholding): [0.00:1.00]
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="CIMR_L2_SeaIceConcentration_OfflinePreparation.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Offline preparations for L2 Sea Ice Concentration (SIC) and Sea Ice Edge (SIED) algorithms for CIMR</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="CIMR_L2_SeaIceConcentration_OfflinePreparation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Offline preparations for L2 Sea Ice Concentration (SIC) and Sea Ice Edge (SIED) algorithms for CIMR</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="CIMR_L2_Sea_Ice_Concentration_performanceAssessment.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="CIMR_L2_Sea_Ice_Concentration_performanceAssessment.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Algorithm Performance Assessment</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametrize-the-run">Parametrize the run</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-tuned-cka-kka-and-ka-algorithms-from-the-offline-preparations-notebook">Load the tuned CKA, KKA, and KA algorithms (from the Offline Preparations notebook)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-load-the-l1b-files-and-prepare-remapped-tb-arrays-for-each-algo">Step 1: Load the L1B files and prepare remapped TB arrays for each algo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-apply-the-3-algos-to-compute-intermediate-sics">Step 2: Apply the 3 algos to compute intermediate SICs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-pan-sharpening-and-computation-of-final-level-2-sic">Step 3 : Pan-sharpening and computation of “final” Level-2 SIC</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-1-regrid-base-sic-coarse-resolution-to-sharpener-sic-high-resolution-grid">Step 3.1 Regrid ‘base’ SIC (coarse resolution) to ‘sharpener’ SIC (high resolution) grid</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-2-prepare-the-blurred-sharpener-sic-field">Step 3.2 Prepare the ‘blurred’ sharpener SIC field</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-3-compute-delta-edges-and-finally-c-er">Step 3.3 Compute <span class="math notranslate nohighlight">\(\Delta_{edges}\)</span> and finally <span class="math notranslate nohighlight">\(C_{ER}\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-combine-forward-and-backward-scans">Step 4 : Combine forward and backward scans</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-1-load-the-grid-definition-from-parameter-file">Step 4.1 : Load the grid definition from parameter file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-2-grid-the-forward-and-backward-fields-separately">Step 4.2 : Grid the forward and backward fields separately</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-3-combine-the-forward-and-backward-fields">Step 4.3 : Combine the forward and backward fields</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-compute-the-sea-ice-edge-field">Step 5: Compute the sea-ice EDGE field</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-write-level-2-product-file">Step 6: Write Level-2 product file</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Thomas Lavergne, Norwegian Meteorological Institute<br/>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thomas Lavergne, Norwegian Meteorological Institute
+</p>
+
+  </div>
   
-    <div class="extra_footer">
-      <p>
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
 This ATBD was developed in the context of the ESA-funded CIMR DEVALGO study (2022-2024) (contract 4000137493).
 <br>
 ESA is not responsible in any way for the content of this document.
 </p>
 
-    </div>
-</p>
-        </footer>
-    </div>
-    
 </div>
+  </div>
+  
+</div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
