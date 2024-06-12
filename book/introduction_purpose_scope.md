@@ -5,7 +5,7 @@ SIC is unitless and can equally be reported in the range [0,1] as well as [0%,10
 
 The retrieval of SIC from space-borne passive microwave radiometer (PMR) data has a long and successful history {cite:p}`comiso:1986:sic,cavalieri:1984:sic`. The retrieval is based
 on the contrast in emissivity (ε), and thus brightness temperature ({term}`TB`), between open water (low ε, low TB) and sea ice (high ε, high TB). This contrast depends on frequency,
-polarization, and type of sea-ice observed, as illustrated in {numref}`fig_emis`.
+polarization, and type of sea-ice observed, as illustrated in {numref}`fig_emis` {cite:p}`lu:2018:emis`.
 
 ```{figure} static_imgs/sea_ice_emis.png
 ---
@@ -13,8 +13,8 @@ name: fig_emis
 ---
 Average top of atmosphere brightness temperatures (TB) and standard deviations of Arctic open water ({term}`OW`), first-year ({term}`FYI`) and multiyear ({term}`MYI`) sea ice.
 Data from 6.9 to 89 GHz based on AMSR-E/2 observations with incidence angle 55°, at 1.4 GHz on SMOS observations averaged over 50° to 55° incidence angle, collected for footprints
-with pure surface types in the Round Robin data package of the ESA Climate Change Initiative project on sea ice {cite:p}`pedersen:2021:rrdp`. Solid lines denote vertically
-polarized TBs, and H horizontally. Note that lines connecting the TBs are meant for easy reading, but not for interpolation between the observation frequencies. Source: {cite:t}`lu:2018:emis`.
+with pure surface types in the Round Robin data package of the ESA Climate Change Initiative project on sea ice. Solid lines denote vertically
+polarized TBs, and H horizontally. Note that lines connecting the TBs are meant for easy reading, but not for interpolation between the observation frequencies.
 ```
 
 On {numref}`fig_emis` it appears clearly that better contrast between 0% SIC (Open Water, {term}`OW`) and 100% SIC (split here in two Arctic sea-ice types sea-ice  First Year Ice, {term}`FYI`,

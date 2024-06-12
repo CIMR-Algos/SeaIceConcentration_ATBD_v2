@@ -39,12 +39,13 @@ a continuous SIC variable, into a 'binary' SIEdge class.
 
 $$
 \left\{
-\begin{matrix}
-\textup{If SIC} & \lt & 15\% & \textup{, SIED} & = & 0\\ 
-\textup{If SIC} & \ge & 15\% & \textup{, SIED} & = & 1
-\end{matrix}
+\begin{array}{c}
+\textup{If SIC} < 15\% \textup{, SIED} = 0 \\ 
+\textup{If SIC} \geq 15\% \textup{, SIED} = 1 \\
+\end{array}
 \right.
-$$
+$$ (eq_SIED)
+
 
 ### Input data
 
