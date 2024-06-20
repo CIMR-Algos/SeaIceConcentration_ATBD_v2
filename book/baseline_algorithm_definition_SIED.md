@@ -20,7 +20,7 @@ in particular erroneous sea ice in the coastal regions or underestimation of thi
 to errors in the classification into ice classes as part of the SIED product.
 
 However, it is generally accepted that SIED presents less errors (than SIC) because of using
-thresholds that can hide some of the issues in SIC.
+thresholds that can hide some issues in SIC.
 
 ## Level-2 end to end algorithm functional flow diagram
 

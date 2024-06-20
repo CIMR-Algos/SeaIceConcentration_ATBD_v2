@@ -1,6 +1,6 @@
 # Introduction, purpose and scope
 
-{term}`Sea Ice Concentration` (SIC), aka sea-ice area fraction, measures the fraction of a pre-defined ocean area (sensor footprint, grid cell,...) that is covered by sea ice.
+{term}`Sea Ice Concentration` (SIC), aka sea-ice area fraction, measures the fraction of a pre-defined ocean area (sensor footprint, grid cell, ...) that is covered by sea ice.
 SIC is unitless and can equally be reported in the range [0,1] as well as [0%,100%].
 
 The retrieval of SIC from space-borne passive microwave radiometer (PMR) data has a long and successful history {cite:p}`comiso:1986:sic,cavalieri:1984:sic`. The retrieval is based
@@ -20,7 +20,7 @@ polarized TBs, and H horizontally. Note that lines connecting the TBs are meant 
 On {numref}`fig_emis` it appears clearly that better contrast between 0% SIC (Open Water, {term}`OW`) and 100% SIC (split here in two Arctic sea-ice types sea-ice  First Year Ice, {term}`FYI`,
 and Multiyear Ice, {term}`MYI`) is achieved with horizontal polarization (H-pol) radiation, and at low frequencies, e.g. L-band (1.4 GHz), C-band (6.9 GHz), and X-band (10.7 GHz).
 
-However, with real-aperture space-borne PMR sensors like {term}`SSMIS`, {term}`AMSR2`, and also {term}`CIMR`, the low frequency channels are those with coarsest spatial resolution. Even in
+However, with real-aperture space-borne PMR sensors like {term}`SSMIS`, {term}`AMSR2`, and also {term}`CIMR`, the low frequency channels are those with the coarsest spatial resolution. Even in
 the case of CIMR, the Level-2 SIC product cannot rely only on the L- or C-band imagery as the resulting spatial resolution would be too coarse.
 
 ```{important}
@@ -44,7 +44,7 @@ but not accuracy, by using its 89 GHz imagery channels. CIMR can meet both resol
 
 Key assets of {term}`CIMR` in terms of SIC monitoring are:
 1. high resolution (4-5 km) capabilities at K- and KA-band, two microwave frequencies that are at the core of most state-of-the-art sea-ice concentration algorithms today;
-2. medium resolution (15 km) capabilities at C-band, a channel where the the atmosphere is mostly transparent and the sea-ice emissivities do not vary too much with sea-ice type;
+2. medium resolution (15 km) capabilities at C-band, a channel where the atmosphere is mostly transparent and the sea-ice emissivities do not vary too much with sea-ice type;
 3. the swath width and especially the "no hole at the pole" capability to improve coverage of sea ice monitoring in the Arctic;
 4. the availability of a forward and a backward scan to improve the accuracy of retrievals.
 

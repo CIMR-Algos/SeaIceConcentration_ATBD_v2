@@ -18,16 +18,16 @@
 | ---   | ----------- | ------------ |
 | land mask | A land mask | Remapped to dimensions of the swaths (can also be available in Level-1b files). |
 | maximum ice | Climatological maximum ice coverage | Remapped to dimensions of the swaths. |
-| tie-points | Algorithm Tie-points (algorithm coefficients) are generated offline (e.g. once a day) as part of the Level-2 SIC chain. | a few text file per day |
+| tie-points | Algorithm Tie-points (algorithm coefficients) are generated offline (e.g. once a day) as part of the Level-2 SIC chain. | a few text files per day |
 
 Additional auxiliary data will be required if RTM correction of the brightness temperature is activated. In that case,
-fields of T2m, T0m, Wind Speed, Total Column Water Vapour, Total Cloud Liquid Water, remapped to the dimensions
+fields of T2m, T0m, Wind Speed, Total Column Water Vapor, Total Cloud Liquid Water, remapped to the dimensions
 of the swaths and collocated in time, will be required. They can for example come from ECMWF operational
 analysis and forecast system.
 
 ### Input L2 data
 
-The SIC and SIED algorithm does not require fileds prepared by other L2 processors as input.
+The SIC and SIED algorithm does not require fields prepared by other L2 processors as input.
 
 ## Output Data
 
