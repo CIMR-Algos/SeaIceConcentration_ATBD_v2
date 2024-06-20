@@ -361,7 +361,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rtm-based-correction-of-the-atmosphere-and-wind-roughening-contribution-to-the-tb-signal">RTM-based correction of the atmosphere and wind-roughening contribution to the TB signal</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#along-arc-collocation-and-feed-specific-kka-sic-algorithms">Along-arc collocation and feed-specific <code class="docutils literal notranslate"><span class="pre">KKA</span></code> SIC algorithms</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#better-and-multi-scale-pan-sharpening">Better and multi-scale pan-sharpening</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#better-and-multiscale-pan-sharpening">Better and multiscale pan-sharpening</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#better-and-more-robust-uncertainties">Better and more robust uncertainties</a></li>
 </ul>
             </nav>
@@ -376,15 +376,15 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="roadmap-for-future-atbd-development">
 <h1>Roadmap for future ATBD development<a class="headerlink" href="#roadmap-for-future-atbd-development" title="Link to this heading">#</a></h1>
-<p>Sevearl algorithmic steps that were not implemented during DEVALGO have the potential to improve the accuracy of CIMR L2 SIC and SIED products. We highlight some of them in this section.</p>
+<p>Several algorithmic steps that were not implemented during DEVALGO have the potential to improve the accuracy of CIMR L2 SIC and SIED products. We highlight some of them in this section.</p>
 <section id="rtm-based-correction-of-the-atmosphere-and-wind-roughening-contribution-to-the-tb-signal">
 <h2>RTM-based correction of the atmosphere and wind-roughening contribution to the TB signal<a class="headerlink" href="#rtm-based-correction-of-the-atmosphere-and-wind-roughening-contribution-to-the-tb-signal" title="Link to this heading">#</a></h2>
 <p>The contrast between open water and sea ice is largest at low frequency. One of the reasons is that wind roughening of the ocean surface, as well as emissivity and scattering
 in the atmosphere contribute to the brightness temperature recorded by the sensor. Given auxiliary information (analysis and forecast fields of from ECMWF) and a radiative transfer
-model, this contribution can be estimated and substracted from the TB signal to yield <em>no-wind surface</em> TBs. Using these TBs in the SIC algorithm has been shown to yield
+model, this contribution can be estimated and subtracted from the TB signal to yield <em>no-wind surface</em> TBs. Using these TBs in the SIC algorithm has been shown to yield
 more accurate SICs.</p>
 <p>The atmospheric correction of TB was first introduced by <span id="id1">Andersen <em>et al.</em> [<a class="reference internal" href="references.html#id3" title="Søren Andersen, Rasmus Tonboe, Stefan Kern, and Harald Schyberg. Improved retrieval of sea ice total concentration from spaceborne passive microwave observations using numerical weather prediction model fields: an intercomparison of nine algorithms. Remote Sensing of Environment, 104(4):374-392, 2006. doi:https://doi.org/10.1016/j.rse.2006.05.013.">2006</a>]</span> and later refined by <span id="id2">Tonboe <em>et al.</em> [<a class="reference internal" href="references.html#id20" title="R. T. Tonboe, S. Eastwood, T. Lavergne, A. M. Sørensen, N. Rathmann, G. Dybkjær, L. T. Pedersen, J. L. Høyer, and S. Kern. The eumetsat sea ice concentration climate data record. The Cryosphere, 10(5):2275–2290, 2016. URL: https://tc.copernicus.org/articles/10/2275/2016/, doi:10.5194/tc-10-2275-2016.">2016</a>]</span> and <span id="id3">Lavergne <em>et al.</em> [<a class="reference internal" href="references.html#id12" title="T. Lavergne, A. M. Sørensen, S. Kern, R. Tonboe, D. Notz, S. Aaboe, L. Bell, G. Dybkjær, S. Eastwood, C. Gabarro, G. Heygster, M. A. Killie, M. Brandt Kreiner, J. Lavelle, R. Saldo, S. Sandven, and L. T. Pedersen. Version 2 of the eumetsat osi saf and esa cci sea-ice concentration climate data records. The Cryosphere, 13(1):49–78, 2019. URL: https://tc.copernicus.org/articles/13/49/2019/, doi:10.5194/tc-13-49-2019.">2019</a>]</span> (Sect. 3.4.1). These authors used a <a class="reference internal" href="acronyms.html#term-RTM"><span class="xref std std-term">RTM</span></a>
-(typically those of <span id="id4">Wentz [<a class="reference internal" href="references.html#id21" title="Frank J. Wentz. A well-calibrated ocean algorithm for special sensor microwave / imager. Journal of Geophysical Research: Oceans, 102(C4):8703-8718, 1997. doi:https://doi.org/10.1029/96JC01751.">1997</a>]</span>) and auxiliary fields from Numerical Weather Prediction models (e.g. T2m, wind speed, total columnar water vapour, etc…) to correct TBs for the
+(typically those of <span id="id4">Wentz [<a class="reference internal" href="references.html#id21" title="Frank J. Wentz. A well-calibrated ocean algorithm for special sensor microwave / imager. Journal of Geophysical Research: Oceans, 102(C4):8703-8718, 1997. doi:https://doi.org/10.1029/96JC01751.">1997</a>]</span>) and auxiliary fields from Numerical Weather Prediction models (e.g. T2m, wind speed, total columnar water vapor, etc…) to correct TBs for the
 contribution of the atmosphere and ocean surfaces to the TOA signal. The effect in reducing SIC uncertainty is noticeable for algorithms using only K-, KA- or W-band imagery (Fig. 6, <span id="id5">Ivanova <em>et al.</em> [<a class="reference internal" href="references.html#id9" title="N. Ivanova, L. T. Pedersen, R. T. Tonboe, S. Kern, G. Heygster, T. Lavergne, A. Sørensen, R. Saldo, G. Dybkjær, L. Brucker, and M. Shokr. Inter-comparison and evaluation of sea ice algorithms: towards further identification of challenges and optimal approach using passive microwave observations. The Cryosphere, 9(5):1797–1817, 2015. URL: https://tc.copernicus.org/articles/9/1797/2015/, doi:10.5194/tc-9-1797-2015.">2015</a>]</span>)
 but not so much for algorithms using C-band imagery. The RTM-based correction step has most impact over low SIC areas, and no effect over consolidated 100% SIC areas.
 While mature, the technique requires a more complex flow-diagram and e.g. an internal iteration loop to implement the RTM-based correction.</p>
@@ -394,7 +394,7 @@ same time as the RTM-based correction introduced above, before running the SIC a
 </section>
 <section id="along-arc-collocation-and-feed-specific-kka-sic-algorithms">
 <h2>Along-arc collocation and feed-specific <code class="docutils literal notranslate"><span class="pre">KKA</span></code> SIC algorithms<a class="headerlink" href="#along-arc-collocation-and-feed-specific-kka-sic-algorithms" title="Link to this heading">#</a></h2>
-<p>As introduced in <a class="reference internal" href="baseline_algorithm_definition.html#l1b-resampling"><span class="std std-ref">CIMR Level-1b re-sampling approach</span></a>, along-arc resampling allows to collocate K and KA TB samples along the scanning arc of each feed (not mixing samples of different feeds together). This allows
+<p>As introduced in <a class="reference internal" href="baseline_algorithm_definition.html#l1b-resampling"><span class="std std-ref">CIMR Level-1b re-sampling approach</span></a>, along-arc resampling allows collocating K and KA TB samples along the scanning arc of each feed (not mixing samples of different feeds together). This allows
 keeping the same OZA during the collocation process. Because the Open Water tie-point will be different for each OZA, this opens the possibility to tune several SIC algorithms, one for each feed/OZA
 instead of adjusting TBs to a reference OZA and tune one SIC algorithm. Initial developments during the DEVALGO project have demonstrated that it is feasible to train feed-specific <code class="docutils literal notranslate"><span class="pre">KKA</span></code> SIC algorithms,
 and bypass the OZA adjustement step.</p>
@@ -403,19 +403,19 @@ and bypass the OZA adjustement step.</p>
 <p>Along-arc collocation followed by feed-specific <code class="docutils literal notranslate"><span class="pre">KKA</span></code> algorithm is a strong candidate for the CIMR L2 NRT1H SIC and SIED product.</p>
 </div>
 </section>
-<section id="better-and-multi-scale-pan-sharpening">
-<h2>Better and multi-scale pan-sharpening<a class="headerlink" href="#better-and-multi-scale-pan-sharpening" title="Link to this heading">#</a></h2>
+<section id="better-and-multiscale-pan-sharpening">
+<h2>Better and multiscale pan-sharpening<a class="headerlink" href="#better-and-multiscale-pan-sharpening" title="Link to this heading">#</a></h2>
 <p>A central step in the proposed <code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code> algorithm is the pan-sharpening of the CKA SICs (as base image) with the KA SICs (as sharpener image). At present, the pan-sharpening equation
 we implemented only uses the sharpener image for its improved resolution (its <span class="math notranslate nohighlight">\(\Delta_{ediges}\)</span> in eq. <a class="reference internal" href="baseline_algorithm_definition.html#equation-eq-pansharpen">(14)</a>), not its SIC values themselves. Other implementation
 of the pan-sharpening method <span id="id6">[<a class="reference internal" href="references.html#id10" title="Lise Kilic, Catherine Prigent, Filipe Aires, Georg Heygster, Victor Pellet, and Carlos Jimenez. Ice concentration retrieval from the analysis of microwaves: a new methodology designed for the copernicus imaging microwave radiometer. Remote Sensing, 2020. URL: https://www.mdpi.com/2072-4292/12/7/1060, doi:10.3390/rs12071060.">Kilic <em>et al.</em>, 2020</a>]</span> also enter the sharpener SICs in the base image, which might have some advantages when the base SIC from <code class="docutils literal notranslate"><span class="pre">CKA</span></code> is more sensitive
 to e.g. thin ice biases than the sharpening SICs from a <code class="docutils literal notranslate"><span class="pre">KA</span></code> algorithm.</p>
-<p>Another potential improvement to the pan-sharpening step would be to combine the three SICs (from <code class="docutils literal notranslate"><span class="pre">CKA</span></code>, <code class="docutils literal notranslate"><span class="pre">KKA</span></code>, and <code class="docutils literal notranslate"><span class="pre">KA</span></code>) at once in a final SIC. These three SICs have different noise
-characteristics and spatial resolutions, that could potential be optimally combined in a multi-scale pan-sharpening, rather than the two-scale pan-sharpening we used in this version.</p>
+<p>Another potential improvement to the pan-sharpening step would be to combine the three SICs (from <code class="docutils literal notranslate"><span class="pre">CKA</span></code>, <code class="docutils literal notranslate"><span class="pre">KKA</span></code>, and <code class="docutils literal notranslate"><span class="pre">KA</span></code>) at once in a final SIC.
+These three SICs have different noise characteristics and spatial resolutions, that could potentially be optimally combined in a
+multiscale pan-sharpening, rather than the two-scale pan-sharpening we used in this version.</p>
 </section>
 <section id="better-and-more-robust-uncertainties">
 <h2>Better and more robust uncertainties<a class="headerlink" href="#better-and-more-robust-uncertainties" title="Link to this heading">#</a></h2>
-<p>The uncertainty algorithms presented in this ATBD have the potential to be improved, in particular in terms of spatial / temporal correlation length scales, and the propagation of the SIC
-uncertainty into the SIED uncertainty.</p>
+<p>The uncertainty algorithms presented in this ATBD have the potential to be improved, in particular in terms of spatial / temporal correlation length scales, and the propagation of the SIC uncertainty into the SIED uncertainty.</p>
 </section>
 </section>
 
@@ -485,7 +485,7 @@ uncertainty into the SIED uncertainty.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rtm-based-correction-of-the-atmosphere-and-wind-roughening-contribution-to-the-tb-signal">RTM-based correction of the atmosphere and wind-roughening contribution to the TB signal</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#along-arc-collocation-and-feed-specific-kka-sic-algorithms">Along-arc collocation and feed-specific <code class="docutils literal notranslate"><span class="pre">KKA</span></code> SIC algorithms</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#better-and-multi-scale-pan-sharpening">Better and multi-scale pan-sharpening</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#better-and-multiscale-pan-sharpening">Better and multiscale pan-sharpening</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#better-and-more-robust-uncertainties">Better and more robust uncertainties</a></li>
 </ul>
   </nav></div>

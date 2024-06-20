@@ -12,7 +12,7 @@ of the brightness temperatures using {term}`RTM`s, and per-FoV uncertainties. Tr
 these algorithms have used the K and KA microwave bands from the {term}`SSMIS` and 
 later the {term}`AMSR2` missions.
 
-Since the mid 2010s, the CCI Sea Ice projects have contribute critical R&D input to the
+Since the mid 2010s, the CCI Sea Ice projects have contributed critical R&D input to the
 original OSI SAF approach. Of particular relevance to the proposed CIMR Level-2 SIC algorithm are
 the demonstration of the benefits of using C-band (in combination with KA-band) radiometry, and
 the demonstration of using pan-sharpening techniques to take advantage of high(er) resolution microwave
@@ -42,7 +42,7 @@ time-saving step can be to not estimate uncertainties, or at least with a simpli
 
 ## Sea Ice Edge (SIED)
 
-We derive {term}`Sea Ice Edge` from the SIC, by finding the FoVs whose SIC is higher than a threshold (TBD, but generally
+We derive {term}`Sea Ice Edge` from the SIC, by finding the FoVs whose SIC is higher than a threshold (TBC, but generally
 15%). This allows a low-cost derivation of this Level-2 product, that ensures consistency with the SIC product.
 
 
