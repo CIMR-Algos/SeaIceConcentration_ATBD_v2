@@ -12,10 +12,10 @@ authors:
     family-names: Lavergne
     orcid: 'https://orcid.org/0000-0002-9498-4551'
     affiliation: Norwegian Meteorological Institute
-repository-code: 'https://github.com/CIMR-Algos/SeaIceConcentration_ATBD'
+repository-code: 'https://github.com/CIMR-Algos/SeaIceConcentration_ATBD_v2'
 url: >-
-  https://cimr-algos.github.io/SeaIceConcentration_ATBD/intro.html
+  https://cimr-algos.github.io/SeaIceConcentration_ATBD_v2/book/intro.html
 keywords:
   - Copernicus Imaging Microwave Radiometer (CIMR)
   - ESA DEVALGO
-version: '1'
+version: '2'
