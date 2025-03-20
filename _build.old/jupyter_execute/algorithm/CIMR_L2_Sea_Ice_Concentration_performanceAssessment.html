@@ -1,0 +1,1070 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Algorithm Performance Assessment &#8212; CIMR L2 SIC, SIED, and SIC1H ATBD v2</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles.css?v=3437f865" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/watermark.css?v=80f188f4" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_build.old/jupyter_execute/algorithm/CIMR_L2_Sea_Ice_Concentration_performanceAssessment';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+
+  <div class="bd-header-announcement container-fluid bd-header-announcement">
+    <div class="bd-header-announcement__content">This ATBD was developed in the CIMR DEVALGO project. It is being further developed in the <a href="https://github.com/CIMR-L2PAD"style='color: #87CEEB;'>CIMR L2PAD</a> project.</div>
+  </div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../../book/intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.jpg" class="logo__image only-light" alt="CIMR L2 SIC, SIED, and SIC1H ATBD v2 - Home"/>
+    <script>document.write(`<img src="../../../_static/logo.jpg" class="logo__image only-dark" alt="CIMR L2 SIC, SIED, and SIC1H ATBD v2 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../book/intro.html">
+                    CIMR L2 SIC, SIED, and SIC1H ATBD
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../book/abstract.html">Abstract</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../book/applicable_ref_docs.html">Applicable and Reference Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../book/acronyms.html">Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../book/definitions.html">Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../book/introduction_purpose_scope.html">Introduction, purpose and scope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../book/background_justification_algorithm.html">Background and justification of selected algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../book/L2_product_definition.html">Level-2 product definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../book/baseline_algorithm_definition.html">Baseline Algorithm Definition for Sea Ice Concentration (SIC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../book/baseline_algorithm_definition_SIED.html">Baseline Algorithm Definition for Sea Ice EDge (SIED)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../book/algorithm_input_output_data_definition.html">Algorithm Input and Output Data Definition (IODD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../algorithm/CIMR_L2_SeaIceConcentration_OfflinePreparation.html">Prototype Implementation (Offline Preparation) (ATBD v2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../algorithm/CIMR_L2_Sea_Ice_Concentration_algorithm.html">Prototype Implementation (SIC and SIED) (ATBD v2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../algorithm/CIMR_L2_Sea_Ice_Concentration_performanceAssessment.html">Prototype Performance Assessment (ATBD v2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../book/roadmap_for_future_atbd_developments.html">Roadmap for future ATBD developments (ATBD v2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../book/references.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/CIMR-Algos/SeaIceConcentration_ATBD_v2" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/_build.old/jupyter_execute/algorithm/CIMR_L2_Sea_Ice_Concentration_performanceAssessment.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Algorithm Performance Assessment</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-e2es-demonstration-reference-scenario-picasso-scene-definition">L1 E2ES Demonstration Reference Scenario (Picasso) scene definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-performance-metrics-mpef">Algorithm Performance Metrics (MPEF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-calibration-data-set-acdat">Algorithm Calibration Data Set (ACDAT)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-validation-data-set-avdat">Algorithm Validation Data Set (AVDAT)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-results-using-demonstration-reference-scenario">Test Results using Demonstration Reference Scenario</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-l2-sic-cka-ka-against-the-reference-sic">Compare L2 SIC (CKA@KA) against the reference SIC</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coarsen-the-1km-sic-results-to-the-expected-spatial-resolution-of-the-l2-sic-product">Coarsen the 1km SIC results to the expected spatial resolution of the L2 SIC product</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-maps-of-sic-and-maps-of-sic-differences">Compare maps of SIC and maps of SIC differences</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-as-histogram-of-differences-with-bias-and-rmse-full-range-of-sic">Compare as histogram of differences, with BIAS and RMSE (full range of SIC)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-as-histogram-of-differences-with-bias-and-rmse-open-water-and-closed-ice">Compare as histogram of differences, with BIAS and RMSE (Open Water and Closed Ice)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-sied-with-integrated-ice-edge-error-and-related-metrics">Compare SIED with Integrated Ice Edge Error and related metrics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-evaluation-of-the-intermediate-sic-results-from-cka-kka-and-ka">Performance evaluation of the intermediate SIC results from <code class="docutils literal notranslate"><span class="pre">CKA</span></code>, <code class="docutils literal notranslate"><span class="pre">KKA</span></code> and <code class="docutils literal notranslate"><span class="pre">KA</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-performance-assessment-sic-and-sied">Summary Performance Assessment SIC and SIED</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="algorithm-performance-assessment">
+<h1>Algorithm Performance Assessment<a class="headerlink" href="#algorithm-performance-assessment" title="Link to this heading">#</a></h1>
+<p>We compare the outcome of the prototype Level-2 SIC algorithm against ground-truth from the the Test Cards. The main comparison is against the so-called “Polar Scene 1” prepared by the ESA CIMR SCEPS study. We use the v2.1 simulated L1B file (January 2024).</p>
+<section id="l1-e2es-demonstration-reference-scenario-picasso-scene-definition">
+<h2>L1 E2ES Demonstration Reference Scenario (Picasso) scene definition<a class="headerlink" href="#l1-e2es-demonstration-reference-scenario-picasso-scene-definition" title="Link to this heading">#</a></h2>
+<p>At this stage, we base our performance assessment on the more realistic “Polar Scene 1” prepared by the ESA CIMR SCEPS study. The scene represents a typical winter polar case in the area around Svalbard and the Barents Sea. For the v2.1 simulation, the SIC field used by SCEPS in their simulation is from a model run (NEMO/CICE system).</p>
+<p>The geophysical parameters are first processed through the SCEPS forward simulator to generate Top-of-Atmosphere (TOA) brightness temperatures at all microwave channels, and second through the SCEPS instrument simulator to prepare a simulated L1B file. The input data and various parts of the simulator are documented in SCEPS reports.</p>
+</section>
+<section id="algorithm-performance-metrics-mpef">
+<h2>Algorithm Performance Metrics (MPEF)<a class="headerlink" href="#algorithm-performance-metrics-mpef" title="Link to this heading">#</a></h2>
+<p>For SIC, the two main metrics are:</p>
+<ul class="simple">
+<li><p>the <strong>bias</strong> (arithmetic average of the errors)</p></li>
+<li><p>the <strong>RMSE</strong> (standard deviation of the errors)</p></li>
+</ul>
+<p>For SIED, the selected metric is the Integrated Ice Edge Error (<strong>IIEE</strong>) of Goeesling et al. (2016).</p>
+<p><em>Goessling, H. F., S. Tietsche, J. J. Day, E. Hawkins, and T. Jung (2016), Predictability of the Arctic sea ice edge, Geophys. Res. Lett., 43, 1642–1650, doi:10.1002/2015GL067232.</em></p>
+</section>
+<section id="algorithm-calibration-data-set-acdat">
+<h2>Algorithm Calibration Data Set (ACDAT)<a class="headerlink" href="#algorithm-calibration-data-set-acdat" title="Link to this heading">#</a></h2>
+<p>The L2 SIC algorithm is tuned in the Offline Preparation notebook. We have several types of tuning, and this chapter compares the results from these different tunings:</p>
+<ul class="simple">
+<li><p>Static tuning against ESA CCI RRDP SIC0 and SIC1 data;</p></li>
+<li><p>Dynamic tuning against the simulated CIMR L1B TBs;</p></li>
+</ul>
+</section>
+<section id="algorithm-validation-data-set-avdat">
+<h2>Algorithm Validation Data Set (AVDAT)<a class="headerlink" href="#algorithm-validation-data-set-avdat" title="Link to this heading">#</a></h2>
+<p>The L2 SIC is compared against the SIC (variable <code class="docutils literal notranslate"><span class="pre">sea_ice_concentration</span></code>) from the GEO files in the SCEPS simulations.</p>
+</section>
+<section id="test-results-using-demonstration-reference-scenario">
+<h2>Test Results using Demonstration Reference Scenario<a class="headerlink" href="#test-results-using-demonstration-reference-scenario" title="Link to this heading">#</a></h2>
+<p>In the following, we compare the result of the prototype L2 SIC algorithm (as stored in a L2 netCDF product file produced in the previous sections of this ATBD) against the ground truth from the SCEPS Polar Scene 1. The comparison is made in various ways to better understand the observed differences.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
+
+<span class="kn">import</span> <span class="nn">pyresample</span> <span class="k">as</span> <span class="nn">pr</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pylab</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">cmocean</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+
+<span class="kn">from</span> <span class="nn">sirrdp</span> <span class="kn">import</span> <span class="n">rrdp_file</span>
+<span class="kn">from</span> <span class="nn">pmr_sic</span> <span class="kn">import</span> <span class="n">tiepoints</span> <span class="k">as</span> <span class="n">tp</span>
+
+<span class="n">input_test_card</span> <span class="o">=</span> <span class="s1">&#39;sceps_polar_1&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read the SIC from the L2 netCDF file:</span>
+<span class="n">l2_n</span> <span class="o">=</span> <span class="s1">&#39;../data/output/cimr_devalgo_l2_sic_ease2-1.0km-testcard_sceps-polar1.nc&#39;</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">l2_n</span><span class="p">)</span>
+<span class="n">l2_sic</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;ice_conc&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">data</span>
+<span class="n">l2_rsic</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;raw_ice_conc_values&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">data</span>
+<span class="n">l2_sied</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;ice_edge&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int16&#39;</span><span class="p">)</span>
+
+<span class="n">adef</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">load_cf_area</span><span class="p">(</span><span class="n">l2_n</span><span class="p">,</span> <span class="p">)</span>
+<span class="n">cart_crs</span> <span class="o">=</span> <span class="n">adef</span><span class="o">.</span><span class="n">to_cartopy_crs</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main_algo</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;algorithm_name&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; +++ CHARACTERISTICS +++ &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;algorithm_name&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;use_oza_adjusted_tbs&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;algorithm_tuning&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> +++ CHARACTERISTICS +++ 
+CKA@KA
+Yes
+CIMRL1B-ALLFEEDS
+</pre></div>
+</div>
+</div>
+</div>
+<section id="compare-l2-sic-cka-ka-against-the-reference-sic">
+<h3>Compare L2 SIC (CKA&#64;KA) against the reference SIC<a class="headerlink" href="#compare-l2-sic-cka-ka-against-the-reference-sic" title="Link to this heading">#</a></h3>
+<p>Access the reference SIC from the Test Card and compare to the SIC retrieved by the algorithm.</p>
+<p>This requires access to the SCEPS files.</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">owci_flg_cice</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">owci_flg_ow</span>   <span class="o">=</span> <span class="mi">1</span>
+<span class="n">owci_flg_miz</span>  <span class="o">=</span> <span class="mi">3</span>
+
+<span class="n">tc_tbs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">input_test_card</span> <span class="o">==</span> <span class="s1">&#39;sceps_polar_1&#39;</span><span class="p">:</span>
+    <span class="c1"># load SIC truth from the GEO file</span>
+    <span class="n">geo_file</span> <span class="o">=</span> <span class="s1">&#39;../data/ref/cimr_sceps_geo_card_devalgo_polarscene_1_20161217_harmonised_v2p0_surface.nc&#39;</span>
+    <span class="n">tc_ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">geo_file</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GEO file: &quot;</span><span class="p">,</span> <span class="n">geo_file</span><span class="p">)</span>
+    <span class="n">tc_sic</span> <span class="o">=</span> <span class="n">tc_ds</span><span class="p">[</span><span class="s1">&#39;sea_ice_concentration&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">to_masked_array</span><span class="p">()</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+    
+    <span class="c1"># load TOA Tbs from the TOA file</span>
+    <span class="n">toa_file</span> <span class="o">=</span> <span class="s1">&#39;../data/ref/cimr_sceps_toa_card_devalgo_polarscene_1_20161217_v2p0_aa_000.nc&#39;</span>
+    <span class="n">tc_l1b</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">toa_file</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TOA file: &quot;</span><span class="p">,</span> <span class="n">toa_file</span><span class="p">)</span>
+    <span class="n">toa_band_name</span> <span class="o">=</span> <span class="s1">&#39;toa_tbs_</span><span class="si">{b:}</span><span class="s1">_</span><span class="si">{p:}</span><span class="s1">po&#39;</span>
+    
+    <span class="n">tc_tbs</span><span class="p">[</span><span class="s1">&#39;tb06v&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tc_l1b</span><span class="p">[</span><span class="n">toa_band_name</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">incidence_angle</span><span class="o">=</span><span class="mi">55</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+    <span class="n">tc_tbs</span><span class="p">[</span><span class="s1">&#39;tb19v&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tc_l1b</span><span class="p">[</span><span class="n">toa_band_name</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="s1">&#39;Ku&#39;</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">incidence_angle</span><span class="o">=</span><span class="mi">55</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+    <span class="n">tc_tbs</span><span class="p">[</span><span class="s1">&#39;tb37v&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tc_l1b</span><span class="p">[</span><span class="n">toa_band_name</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="s1">&#39;Ka&#39;</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">incidence_angle</span><span class="o">=</span><span class="mi">55</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+    <span class="n">tc_tbs</span><span class="p">[</span><span class="s1">&#39;tb37h&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tc_l1b</span><span class="p">[</span><span class="n">toa_band_name</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="s1">&#39;Ka&#39;</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="s1">&#39;H&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">incidence_angle</span><span class="o">=</span><span class="mi">55</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+    
+    <span class="n">tc_owci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">tc_tbs</span><span class="p">[</span><span class="s1">&#39;tb06v&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+    <span class="n">tc_owci</span><span class="p">[</span><span class="o">-</span><span class="mi">500</span><span class="p">:</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">:</span><span class="mi">500</span><span class="p">]</span> <span class="o">=</span> <span class="n">owci_flg_cice</span>
+    <span class="n">tc_owci</span><span class="p">[</span><span class="mi">20</span><span class="p">:</span><span class="mi">500</span><span class="p">,</span><span class="o">-</span><span class="mi">500</span><span class="p">:</span><span class="o">-</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="n">owci_flg_ow</span>
+    
+    <span class="c1"># how many pixels to mask around the test card</span>
+    <span class="n">margin</span> <span class="o">=</span> <span class="mi">3</span>
+    
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">tc_fn</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tc_path</span><span class="p">,</span> <span class="n">tc_fn</span><span class="p">)</span>
+    <span class="n">tc_l1b</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">tc_fn</span><span class="p">,)</span>
+    <span class="n">tc_surf</span> <span class="o">=</span> <span class="n">tc_l1b</span><span class="p">[</span><span class="s1">&#39;surfaces&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+    
+    <span class="c1"># how many pixels to mask around the test card</span>
+    <span class="n">margin</span> <span class="o">=</span> <span class="mi">15</span>
+    
+    <span class="c1"># use the surfaces variable to find where is ice and water</span>
+    <span class="n">tc_ice_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">tc_surf</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">tc_surf</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">tc_ocean_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">tc_surf</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">tc_surf</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">tc_surf</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">tc_surf</span> <span class="o">==</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="n">tc_oceanice_mask</span> <span class="o">=</span> <span class="n">tc_ice_mask</span> <span class="o">+</span> <span class="n">tc_ocean_mask</span>
+        
+    <span class="n">tc_sic</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">tc_surf</span><span class="p">))</span>
+    <span class="n">tc_sic</span><span class="p">[</span><span class="n">tc_ice_mask</span><span class="p">]</span> <span class="o">=</span> <span class="mf">100.</span>
+    <span class="n">tc_sic</span><span class="p">[</span><span class="o">~</span><span class="n">tc_oceanice_mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked</span>
+    
+    <span class="c1"># load TOA Tbs</span>
+    <span class="n">toa_band_name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{b:}</span><span class="s1">_band_</span><span class="si">{p:}</span><span class="s1">&#39;</span>
+    
+    <span class="n">tc_tbs</span><span class="p">[</span><span class="s1">&#39;tb06v&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tc_l1b</span><span class="p">[</span><span class="n">toa_band_name</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">to_masked_array</span><span class="p">()</span>
+    <span class="n">tc_tbs</span><span class="p">[</span><span class="s1">&#39;tb19v&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tc_l1b</span><span class="p">[</span><span class="n">toa_band_name</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="s1">&#39;Ku&#39;</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">to_masked_array</span><span class="p">()</span>
+    <span class="n">tc_tbs</span><span class="p">[</span><span class="s1">&#39;tb37v&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tc_l1b</span><span class="p">[</span><span class="n">toa_band_name</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="s1">&#39;Ka&#39;</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">to_masked_array</span><span class="p">()</span>
+    <span class="n">tc_tbs</span><span class="p">[</span><span class="s1">&#39;tb37h&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tc_l1b</span><span class="p">[</span><span class="n">toa_band_name</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="s1">&#39;Ka&#39;</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="s1">&#39;H&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">to_masked_array</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tc_tbs</span><span class="p">[</span><span class="s1">&#39;tb06v&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">tc_tbs</span><span class="p">[</span><span class="s1">&#39;tb06v&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">tc_tbs</span><span class="p">[</span><span class="s1">&#39;tb06v&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    
+    <span class="n">tc_owci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">tc_tbs</span><span class="p">[</span><span class="s1">&#39;tb06v&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+    <span class="n">tc_owci</span><span class="p">[</span><span class="n">tc_sic</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">owci_flg_cice</span>
+    <span class="n">tc_owci</span><span class="p">[</span><span class="n">tc_sic</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">owci_flg_ow</span>
+    
+    <span class="k">if</span> <span class="n">input_test_card</span> <span class="o">==</span> <span class="s1">&#39;radiometric&#39;</span><span class="p">:</span>    
+        <span class="c1"># Remove the top-most and right-most areas of the Radiometric TestCard</span>
+        <span class="c1">#   Because we focus on the cells for the time being.</span>
+        <span class="n">_margin</span> <span class="o">=</span> <span class="mi">200</span>
+        <span class="n">tc_geom</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">tc_surf</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;bool&#39;</span><span class="p">)</span>
+        <span class="n">tc_geom</span><span class="p">[:,:</span><span class="n">_margin</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">tc_geom</span><span class="p">[</span><span class="o">-</span><span class="n">_margin</span><span class="p">:,:]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">tc_sic</span><span class="p">[</span><span class="o">~</span><span class="n">tc_geom</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked</span>
+        <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">tc_tbs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">tc_tbs</span><span class="p">[</span><span class="n">ch</span><span class="p">][</span><span class="o">~</span><span class="n">tc_geom</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked</span>
+    
+
+<span class="c1"># Remove the border of the TestCard (because of the spill-over from the 0K from outside the scene):</span>
+<span class="n">tc_border</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">tc_sic</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;bool&#39;</span><span class="p">)</span>
+<span class="n">tc_border</span><span class="p">[</span><span class="o">-</span><span class="n">margin</span><span class="p">:,:]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">tc_border</span><span class="p">[:</span><span class="n">margin</span><span class="p">,:]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">tc_border</span><span class="p">[:,</span><span class="o">-</span><span class="n">margin</span><span class="p">:]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">tc_border</span><span class="p">[:,:</span><span class="n">margin</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">tc_sic</span><span class="p">[</span><span class="o">~</span><span class="n">tc_border</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked</span>
+<span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">tc_tbs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">tc_tbs</span><span class="p">[</span><span class="n">ch</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">tc_tbs</span><span class="p">[</span><span class="n">ch</span><span class="p">])</span>
+    <span class="n">tc_tbs</span><span class="p">[</span><span class="n">ch</span><span class="p">][</span><span class="o">~</span><span class="n">tc_border</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked</span>
+
+<span class="c1"># evaluate Reference SIED:</span>
+<span class="n">tc_sied</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">tc_sic</span> <span class="o">&gt;=</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int16&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GEO file:  ../data/ref/cimr_sceps_geo_card_devalgo_polarscene_1_20161217_harmonised_v2p0_surface.nc
+TOA file:  ../data/ref/cimr_sceps_toa_card_devalgo_polarscene_1_20161217_v2p0_aa_000.nc
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="coarsen-the-1km-sic-results-to-the-expected-spatial-resolution-of-the-l2-sic-product">
+<h4>Coarsen the 1km SIC results to the expected spatial resolution of the L2 SIC product<a class="headerlink" href="#coarsen-the-1km-sic-results-to-the-expected-spatial-resolution-of-the-l2-sic-product" title="Link to this heading">#</a></h4>
+<p>Both the Test Card and the L2 SIC product are prepared on an EASE2 polar grid with <strong>1 km spacing</strong>. However the planned resolution for the L2 SIC is coarser, possibly closer to <strong>4 km</strong>. Here we first coarsen both 2D fields before computing the metrics, to reduce unwanted (potential) gridding / remapping artefacts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">blockshaped</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    from: http://stackoverflow.com/questions/16873441/form-a-big-2d-array-from-multiple-smaller-2d-arrays/16873755#16873755</span>
+<span class="sd">    Return an array of shape (n, nrows, ncols) where</span>
+<span class="sd">    n * nrows * ncols = arr.size</span>
+
+<span class="sd">    If arr is a 2D array, the returned array looks like n subblocks with</span>
+<span class="sd">    each subblock preserving the &quot;physical&quot; layout of arr.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">h</span><span class="o">//</span><span class="n">nrows</span><span class="p">,</span> <span class="n">nrows</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="p">)</span>
+               <span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+               <span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span><span class="p">))</span>
+
+<span class="n">coarsening_factor</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">coarsened_shape</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">l2_sic</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">//</span><span class="n">coarsening_factor</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">))</span>
+<span class="n">area_km2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="n">coarsening_factor</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">l2_sic</span> <span class="o">=</span> <span class="n">blockshaped</span><span class="p">(</span><span class="n">l2_sic</span><span class="p">,</span> <span class="n">coarsening_factor</span><span class="p">,</span> <span class="n">coarsening_factor</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">coarsened_shape</span><span class="p">)</span>
+<span class="n">l2_rsic</span> <span class="o">=</span> <span class="n">blockshaped</span><span class="p">(</span><span class="n">l2_rsic</span><span class="p">,</span> <span class="n">coarsening_factor</span><span class="p">,</span> <span class="n">coarsening_factor</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">coarsened_shape</span><span class="p">)</span>
+<span class="n">tc_sic</span> <span class="o">=</span> <span class="n">blockshaped</span><span class="p">(</span><span class="n">tc_sic</span><span class="p">,</span> <span class="n">coarsening_factor</span><span class="p">,</span> <span class="n">coarsening_factor</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">coarsened_shape</span><span class="p">)</span>
+
+<span class="n">tc_sied</span> <span class="o">=</span> <span class="n">blockshaped</span><span class="p">(</span><span class="n">tc_sied</span><span class="p">,</span> <span class="n">coarsening_factor</span><span class="p">,</span> <span class="n">coarsening_factor</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">coarsened_shape</span><span class="p">)</span>
+<span class="n">l2_sied</span> <span class="o">=</span> <span class="n">blockshaped</span><span class="p">(</span><span class="n">l2_sied</span><span class="p">,</span> <span class="n">coarsening_factor</span><span class="p">,</span> <span class="n">coarsening_factor</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">coarsened_shape</span><span class="p">)</span>
+
+<span class="n">tc_owci</span> <span class="o">=</span> <span class="n">blockshaped</span><span class="p">(</span><span class="n">tc_owci</span><span class="p">,</span> <span class="n">coarsening_factor</span><span class="p">,</span> <span class="n">coarsening_factor</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">coarsened_shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="compare-maps-of-sic-and-maps-of-sic-differences">
+<h4>Compare maps of SIC and maps of SIC differences<a class="headerlink" href="#compare-maps-of-sic-and-maps-of-sic-differences" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cmap_sic</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">cmocean</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">ice</span><span class="p">)</span>
+<span class="n">cmap_sic</span><span class="o">.</span><span class="n">set_bad</span><span class="p">(</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+<span class="n">vmin</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">cmap_dif</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">cmocean</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">balance</span><span class="p">)</span>
+<span class="n">cmap_dif</span><span class="o">.</span><span class="n">set_bad</span><span class="p">(</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+<span class="n">dmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">25</span>
+<span class="n">dmax</span> <span class="o">=</span> <span class="o">-</span><span class="n">dmin</span>
+
+<span class="n">sic_diff</span> <span class="o">=</span> <span class="n">l2_sic</span> <span class="o">-</span> <span class="n">tc_sic</span>
+<span class="n">rsic_diff</span> <span class="o">=</span> <span class="n">l2_rsic</span> <span class="o">-</span> <span class="n">tc_sic</span>
+
+<span class="c1"># visualize / plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">cart_crs</span><span class="p">))</span>
+<span class="c1"># first col : SIC truth</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">tc_sic</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">cart_crs</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">cart_crs</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span>
+              <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_sic</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">1.01</span><span class="p">,</span><span class="s1">&#39;SIC (REF)&#39;</span><span class="p">,</span><span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span><span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="c1"># second col : SIC algorithm</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">l2_sic</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">cart_crs</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">cart_crs</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span>
+              <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_sic</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">1.01</span><span class="p">,</span><span class="s1">&#39;SIC (DEVALGO)&#39;</span><span class="p">,</span><span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span><span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="c1"># third col : SIC diff</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">sic_diff</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">cart_crs</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">cart_crs</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span>
+              <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_dif</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="n">dmin</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="n">dmax</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">1.01</span><span class="p">,</span><span class="s1">&#39;SIC (DEVALGO - REF)&#39;</span><span class="p">,</span><span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span><span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="c1"># fourth col : rSIC diff</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rsic_diff</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">cart_crs</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">cart_crs</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span>
+              <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_dif</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="n">dmin</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="n">dmax</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">1.01</span><span class="p">,</span><span class="s1">&#39;RSIC (DEVALGO - REF)&#39;</span><span class="p">,</span><span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span><span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/da69130fe68a284ff3991b798e548a89dd26d806e143f07265cfc6d1564ed928.png" src="../../../_images/da69130fe68a284ff3991b798e548a89dd26d806e143f07265cfc6d1564ed928.png" />
+</div>
+</div>
+<p>The maps above show the Reference SIC (Far left), the L2 SIC (field <em>ice_conc</em>) from <code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code> (Left), the difference of the two (Right), and the difference between field <em>raw_ice_conc_values</em> (still from <code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code> results) and the Reference SIC.</p>
+<p>Looking at the two first map, it is apparent that the L2 algorithm captures the main features of the Reference SIC field, including in the partial concentration areas north East for Franz Joseph Land (top-right corner of the maps). Details of the sea-ice edge regions seem to be well capture, including in the Barents Sea. The coastal polynyas north for Franz Joseph Land, that are often observed in case of nortwardly winds.</p>
+<p>Looking at the 3rd map <em>(DEVALGO - REF)</em> we see that differences are both positive and negatives, mostly in the range [-5 ; +5]. The difference is exactly 0% over the ocean, illustrating how the Open Water Filter (OWF) implemented in the L2 SIC algorithm successfully sets SIC to 0% where it detects open water. The most pronounced blue shades (L2 SIC &lt; REF SIC) are seen along the ice edge, which can indicate that the OWF cut away actual low-concentration sea ice. This is indeed a known caveat of weather filters that they can be too greedy and remove true low-concentration (and/or thin) sea ice (see the description in the ATBD).</p>
+<p>The 4th map <em>(DEVALGO RAW - REF)</em> confirms that the Open Water Filter is the cause of the underestimation seen in the sea-ice edge region in the 3rd map: the <em>raw_ice_conc_values</em> variable indeed holds the SIC values <em>before</em> applying the OWF and the thresholding to the [0 ; 100] range. When OWF is not applied, there is no specific underestimation by the L2 SIC in the marginal ice zone. In this 4th map, the difference is no more exactly 0% over the ocean (since the OWF was not applied to set SICs to 0% there). The differences over the ocean show the actual uncertainty of SIC before the OWF is applied, and is a good indicator of the uncertainty of SIC in the low concentration range.</p>
+<p>Next, we will look at histograms and metrics of the differences.</p>
+</section>
+<section id="compare-as-histogram-of-differences-with-bias-and-rmse-full-range-of-sic">
+<h4>Compare as histogram of differences, with BIAS and RMSE (full range of SIC)<a class="headerlink" href="#compare-as-histogram-of-differences-with-bias-and-rmse-full-range-of-sic" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">6</span><span class="p">),)</span>
+
+<span class="n">nbins</span><span class="o">=</span><span class="mi">51</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">l2_sic</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="n">nbins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">110</span><span class="p">],</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;DEVALGO SIC&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">tc_sic</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="n">nbins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">110</span><span class="p">],</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;REF SIC&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">l2_rsic</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="n">nbins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">110</span><span class="p">],</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;DEVALGO RSIC&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;SIC (DEVALGO &amp; REF) across SIC conditions</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">input_test_card</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;small&#39;</span><span class="p">)</span>
+
+<span class="n">sic_diff_1d</span> <span class="o">=</span> <span class="n">sic_diff</span><span class="o">.</span><span class="n">compressed</span><span class="p">()</span>
+<span class="n">hist_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">dmin</span><span class="p">,</span> <span class="n">dmax</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sic_diff_1d</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">nbins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="n">hist_range</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sic_diff_1d</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;SIC (DEVALGO - REF) across SIC conditions</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">input_test_card</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;small&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span><span class="mf">0.98</span><span class="p">,</span> <span class="s1">&#39;BIAS: </span><span class="si">{:.2f}</span><span class="s1"> [%]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sic_diff_1d</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;small&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span><span class="mf">0.93</span><span class="p">,</span> <span class="s1">&#39;RMSE: </span><span class="si">{:.2f}</span><span class="s1"> [%]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sic_diff_1d</span><span class="o">.</span><span class="n">std</span><span class="p">()),</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;small&#39;</span><span class="p">)</span>
+
+
+<span class="n">rsic_diff_1d</span> <span class="o">=</span> <span class="n">rsic_diff</span><span class="o">.</span><span class="n">compressed</span><span class="p">()</span>
+<span class="n">hist_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">dmin</span><span class="p">,</span> <span class="n">dmax</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">rsic_diff_1d</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">nbins</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="n">hist_range</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">rsic_diff_1d</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;RSIC (DEVALGO - REF) across SIC conditions</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">input_test_card</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;small&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span><span class="mf">0.98</span><span class="p">,</span> <span class="s1">&#39;BIAS: </span><span class="si">{:.2f}</span><span class="s1"> [%]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rsic_diff_1d</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span><span class="mf">0.93</span><span class="p">,</span> <span class="s1">&#39;RMSE: </span><span class="si">{:.2f}</span><span class="s1"> [%]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rsic_diff_1d</span><span class="o">.</span><span class="n">std</span><span class="p">()),</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/8f04c2b85c2912b0482b704008a90cebf8b77c10e857ccac3c7fa32b1ba5d26e.png" src="../../../_images/8f04c2b85c2912b0482b704008a90cebf8b77c10e857ccac3c7fa32b1ba5d26e.png" />
+</div>
+</div>
+<p>Three histograms are shown above. On the left a comparison of three histograms over the full range of SIC, at the center an histogram of the difference between L2 SIC (<code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code> <em>ice_conc</em>) and the Reference SIC, to the right an histogram of the difference betwen L2 SIC (<code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code> <em>raw_ice_conc_values</em>) and the Reference SIC.</p>
+<p>The orange bars (left-most panel) are for the reference SIC as read from the SCEPS GEO files. It shows that the most common value is 0%SIC (over the open ocean). Over consolidated / pack ice, the Reference SIC does not fully reach 100% (which we would have expected for a mid-December conditions in the Arctic). The blue bars (left-most panel) are for the <em>filtered</em> L2 SIC, after applying the OWF. We observe a good match at 0% SIC, while the SIC over consolidated / pack ice is slightly lower than the Reference SIC. The green bars (lef-most panel) are for the <em>non-filtered</em> SICs and show more spread around 0% SIC, including negative SIC values. These are the values that are set to 0% by the OWF in the <em>filtered</em> SIC (blue bars). At consolidate / pack ice conditions, the green bars exactly overlap the blue bars since the OWF does not modify SICs at high concentrations, and because the Reference SIC does not reach to 100%. In actual retrieval conditions, the blue bars would show more values at 100% SIC, and the green bars would show SICs higher than 100%.</p>
+<p>The histogram plot in the center panel reveals that SIC differences are almost entirely contained in the [-10 ; +10] range. The computed RMSE is 4.8%. This histogram has a high peak at 0% (difference) which mostly corresponds to the action of the OWF over the ocean.</p>
+<p>The histogram plot in the right panel is for the difference betwen L2 SIC (<code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code> <em>raw_ice_conc_values</em>) and the Reference SIC reveals that SIC differences are almost entirely contained in the [-10 ; +10] range. The computed RMSE is 4.8%.</p>
+</section>
+<section id="compare-as-histogram-of-differences-with-bias-and-rmse-open-water-and-closed-ice">
+<h4>Compare as histogram of differences, with BIAS and RMSE (Open Water and Closed Ice)<a class="headerlink" href="#compare-as-histogram-of-differences-with-bias-and-rmse-open-water-and-closed-ice" title="Link to this heading">#</a></h4>
+<p>Next we look at histograms and validation metrics for the two ends of the SIC range: Open Water and Consolidated Ice. We first show a map of the regions where the Open Water and Closed Ice conditions are extracted from:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">cart_crs</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">l2_rsic</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">cart_crs</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">cart_crs</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span>
+              <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_sic</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">tc_owci</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="mf">1.99</span><span class="p">),</span> <span class="n">colors</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="s1">&#39;gold&#39;</span><span class="p">),</span> <span class="n">transform</span><span class="o">=</span><span class="n">cart_crs</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">cart_crs</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/d9f61be3ed1b77e00cf3df1ee3f473929c723dbde3fc65f1adb1fc7cf114d38f.png" src="../../../_images/d9f61be3ed1b77e00cf3df1ee3f473929c723dbde3fc65f1adb1fc7cf114d38f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">),)</span>
+
+<span class="n">sic_diff_ow_1d</span> <span class="o">=</span> <span class="n">rsic_diff</span><span class="p">[</span><span class="n">tc_owci</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">compressed</span><span class="p">()</span>
+<span class="n">hist_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">dmin</span><span class="p">,</span> <span class="n">dmax</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sic_diff_ow_1d</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="n">hist_range</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sic_diff_ow_1d</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;RSIC (DEVALGO - REF) for Open Water</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">input_test_card</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;small&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span><span class="mf">0.98</span><span class="p">,</span> <span class="s1">&#39;BIAS: </span><span class="si">{:.2f}</span><span class="s1"> [%]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sic_diff_ow_1d</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span><span class="mf">0.93</span><span class="p">,</span> <span class="s1">&#39;RMSE: </span><span class="si">{:.2f}</span><span class="s1"> [%]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sic_diff_ow_1d</span><span class="o">.</span><span class="n">std</span><span class="p">()),</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">0.98</span><span class="p">,</span> <span class="s1">&#39;ALGO: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">main_algo</span><span class="o">.</span><span class="n">upper</span><span class="p">()),</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+
+<span class="n">sic_diff_ci_1d</span> <span class="o">=</span> <span class="n">rsic_diff</span><span class="p">[</span><span class="n">tc_owci</span><span class="o">==</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">compressed</span><span class="p">()</span>
+<span class="n">hist_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">dmin</span><span class="p">,</span> <span class="n">dmax</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sic_diff_ci_1d</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="n">hist_range</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sic_diff_ci_1d</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;RSIC (DEVALGO - REF) for Closed Ice</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">input_test_card</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;small&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span><span class="mf">0.98</span><span class="p">,</span> <span class="s1">&#39;BIAS: </span><span class="si">{:.2f}</span><span class="s1"> [%]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sic_diff_ci_1d</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span><span class="mf">0.93</span><span class="p">,</span> <span class="s1">&#39;RMSE: </span><span class="si">{:.2f}</span><span class="s1"> [%]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sic_diff_ci_1d</span><span class="o">.</span><span class="n">std</span><span class="p">()),</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">0.98</span><span class="p">,</span> <span class="s1">&#39;ALGO: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">main_algo</span><span class="o">.</span><span class="n">upper</span><span class="p">()),</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/fa1ca0f9850103af1dff9323d3a647f8981df48eee3daee4f8fbc79fde459b4a.png" src="../../../_images/fa1ca0f9850103af1dff9323d3a647f8981df48eee3daee4f8fbc79fde459b4a.png" />
+</div>
+</div>
+<p>The two histograms above show the difference between the <em>unfiltered</em> SICs (field <code class="docutils literal notranslate"><span class="pre">raw_ice_conc_values</span></code>) from the L2 SIC to the Reference SIC over Open Water conditions (left panel, red) and Closed Ice (right panel, yellow). We remind that the SIC over Closed Ice conditions is not 100% but rather in the 85 - 95% range.</p>
+<p>The two histograms report the retrieval accuracy away from the marginal ice zone, which is usually how SIC retrieval algorithms are typically evaluated because it is difficult to obtain realistic reference measurements of intermediate SIC conditions that are perfectly collocated in time with satellite acquisition.</p>
+<p>The bias reported for Open Water conditions (left panel) is very small (-0.2 % SIC). This is expected since the SIC algorithm was partly tuned on the simulated CIMR L1B brightness temperatures duringt the Offline Preparation step. Because we only had a single simulated L1B swath available, we had to train the SIC algorithm on the same swath that we applied it to. As mentionned above, the operational setup would be different since the algorithm would be tuned regularly (e.g. daily) against a rolling archive of CIMR swaths (typically 5-7 past days) and not directly on the swath bring processed. Nonetheless, experience of such dynamic tuning in the context of the ESA CCI or OSI SAF products show that low bias (&lt; 0.5%) can be achieved with the dynamic tuning over open water conditions.</p>
+<p>The bias reported for Closed Ice conditions (right panel) is slithly larger (-1.2 % SIC). Here we remind that the high-concentration range of the SIC algorithm was not trained dynamically against the simulated L1B TBs, but rather directly against the CCI Sea Ice Round-Robin Data Package (RRDP) SIC1 conditions, that collects both AMSR-E and AMSR2 TBs. The tuning is indirect since, to the best of our knowledge, the parametric sea-ice emissivity model used in the SCEPS simulator is also tuned against the same CCI RRDP SIC1 conditions. We could not tune against the simulated TBs because this would have required a significant number of samples over near 100% SIC conditions, while the Reference SIC is in the 85 - 95% range. Experience from the ESA CCI or OSI SAF products show that small (negative) biases can be achieved for high SIC range using dynamic tuning, but that regional biases can remain with different sea-ice types (typically negative bias for multiyear-ice conditions and positive biases for first-year ice conditions). The impact of sea-ice type on the performance of the selected L2 SIC algorithm could not be investigated here because the sea-ice emissivity model used to generate the SCEPS Polar Scene 1 (v2.1) does not include a dependency on sea-ice type (and because this region would mostly have first-year ice cover in reality).</p>
+<p>The RMSEs over Open Water and Closed Ice conditions are very similar and are less than 1.5%. This is smaller than the RMSEs reported in previous sections (that were for the whole SIC range at once) and smaller than the target requirement from the CIMR MRD for the L2 SIC product (5%). Such excellent performance are probably because:</p>
+<ol class="arabic simple">
+<li><p>the OW (red) and CI (yellow) evaluation regions avoid the Marginal Ice Zone and intermediate ice concentration regions, which is where footprint-mismatch and resampling errors have most impact;</p></li>
+<li><p>the simulated TBs do not necessarily cover the typical range of geophysical variability (e.g. wind speeds over the ocean, sea-ice type dependency, etc…).</p></li>
+</ol>
+<p>While staying careful in extrapolating the results above to potential in-flight performances, we note that previous studies, e.g. in OSI SAF and ESA CCI have shown that RMSE &lt; 5% could be achieved (in winter freezing conditions). The <code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code> algorithm applied to CIMR L1B data has a strong potential to achieve the MRD requirements and beyond.</p>
+</section>
+<section id="compare-sied-with-integrated-ice-edge-error-and-related-metrics">
+<h4>Compare SIED with Integrated Ice Edge Error and related metrics<a class="headerlink" href="#compare-sied-with-integrated-ice-edge-error-and-related-metrics" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">prepare_IIEE_mask</span><span class="p">(</span><span class="n">l2_sied</span><span class="p">,</span> <span class="n">tc_sied</span><span class="p">):</span>
+        
+    <span class="n">Flag_SIE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">l2_sied</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">Flag_SIE</span><span class="p">[</span><span class="n">tc_sied</span> <span class="o">==</span> <span class="n">l2_sied</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">Flag_SIE</span><span class="p">[</span><span class="n">tc_sied</span> <span class="o">&lt;</span> <span class="n">l2_sied</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">Flag_SIE</span><span class="p">[</span><span class="n">tc_sied</span> <span class="o">&gt;</span> <span class="n">l2_sied</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">Flag_SIE</span><span class="p">[(</span><span class="n">tc_sied</span><span class="o">==</span><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">l2_sied</span><span class="o">==</span><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">return</span> <span class="n">Flag_SIE</span>
+
+<span class="n">l2_sied</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">l2_sied</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">tc_sied</span><span class="o">.</span><span class="n">mask</span><span class="p">)</span>
+<span class="n">iiee_field</span> <span class="o">=</span> <span class="n">prepare_IIEE_mask</span><span class="p">(</span><span class="n">l2_sied</span><span class="p">,</span> <span class="n">tc_sied</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">cart_crs</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">tc_sied</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">cart_crs</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">cart_crs</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span>
+              <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_sic</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">1.01</span><span class="p">,</span><span class="s1">&#39;SIED (REF)&#39;</span><span class="p">,</span><span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span><span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">l2_sied</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">cart_crs</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">cart_crs</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span>
+              <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_sic</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">1.01</span><span class="p">,</span><span class="s1">&#39;SIED (DEVALGO)&#39;</span><span class="p">,</span><span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span><span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">iiee_field</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">cart_crs</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">cart_crs</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;upper&#39;</span><span class="p">,</span>
+              <span class="n">cmap</span><span class="o">=</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">bwr</span><span class="p">,</span><span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">1.01</span><span class="p">,</span><span class="s1">&#39;SIED MISMATCH&#39;</span><span class="p">,</span><span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span><span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+<span class="c1">#ax[0].set_xlim(1000000,None)</span>
+<span class="c1">#ax[0].set_ylim(-1000000,None)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/9d8df2b3999fa5405ce38bc7bd74e7a6cb14433578ccbe436960a3ce60864175.png" src="../../../_images/9d8df2b3999fa5405ce38bc7bd74e7a6cb14433578ccbe436960a3ce60864175.png" />
+</div>
+</div>
+<p>The maps above show a zoom of the Reference Sea Ice Edge (SIC &gt; 15%), the L2 SIED (computed by the L2 algorithm based on the <code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code> SIC), and a visualization of the agreement and mismatch between the two. White color is used where both SIED products agree. Blue where the L2 SIED misses sea-ice (underestimation), and red where the L2 SIED overestimates the sea-ice cover.</p>
+<p>From this example, it is apparent that the L2 SIED understimates the sea-ice cover in the marginal ice zone, especially in presence of thin sea ice (eastern part of the domain). Conversely, it detects more sea ice than there is along the coasts (land is grey in the left-most panel).</p>
+<p>The underestimation is not a surprise and might be a consequence of:</p>
+<ol class="arabic simple">
+<li><p>the SIED product being computed from the <em>filtered</em> SIC field (after OWF);</p></li>
+<li><p>the SIC being currently slightly low-biased because of its non-optimal tuning (see the results on SIC above).</p></li>
+</ol>
+<p>The overstimation along the coastline was also expected and can be improved in the future CIMR L2 processing by:</p>
+<ol class="arabic simple">
+<li><p>detecting and masking land-dominated FoVs ahead of the SIC processing (currently all FoVs are processed and gridded into the final product);</p></li>
+<li><p>implementing a land/water spill-over correction of the TBs as a pre-processing to the L2 algorithms (including SIC);</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_siedge_metrics</span><span class="p">(</span><span class="n">l2_sied</span><span class="p">,</span> <span class="n">tc_sied</span><span class="p">,</span> <span class="n">area_km2</span><span class="p">):</span>
+    
+    <span class="n">Flag_SIE</span> <span class="o">=</span> <span class="n">prepare_IIEE_mask</span><span class="p">(</span><span class="n">l2_sied</span><span class="p">,</span> <span class="n">tc_sied</span><span class="p">)</span>
+    
+    <span class="n">Underestimation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Flag_SIE</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">area_km2</span>
+    <span class="n">Overestimation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Flag_SIE</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">area_km2</span>
+    
+    <span class="n">IIEE_metric</span> <span class="o">=</span> <span class="n">Underestimation</span> <span class="o">+</span> <span class="n">Overestimation</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">IIEE_metric</span><span class="p">,</span> <span class="n">Underestimation</span><span class="p">,</span> <span class="n">Overestimation</span><span class="p">)</span>
+
+<span class="n">IIEE</span><span class="p">,</span> <span class="n">UE</span><span class="p">,</span> <span class="n">OE</span> <span class="o">=</span> <span class="n">compute_siedge_metrics</span><span class="p">(</span><span class="n">l2_sied</span><span class="p">,</span> <span class="n">tc_sied</span><span class="p">,</span> <span class="n">area_km2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Integrated Ice Edge Error: &quot;</span><span class="p">,</span> <span class="n">IIEE</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;UnderEstimation: &quot;</span><span class="p">,</span> <span class="n">UE</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;OverEstimation: &quot;</span><span class="p">,</span> <span class="n">OE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integrated Ice Edge Error:  20752
+UnderEstimation:  7520
+OverEstimation:  13232
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="performance-evaluation-of-the-intermediate-sic-results-from-cka-kka-and-ka">
+<h4>Performance evaluation of the intermediate SIC results from <code class="docutils literal notranslate"><span class="pre">CKA</span></code>, <code class="docutils literal notranslate"><span class="pre">KKA</span></code> and <code class="docutils literal notranslate"><span class="pre">KA</span></code><a class="headerlink" href="#performance-evaluation-of-the-intermediate-sic-results-from-cka-kka-and-ka" title="Link to this heading">#</a></h4>
+<p>For illustration purposes, show the validation statistics obtained from the <em>intermediate</em> SIC algorithms.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">alg</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;CKA&#39;</span><span class="p">,</span> <span class="s1">&#39;KKA&#39;</span><span class="p">,</span> <span class="s1">&#39;KA&#39;</span><span class="p">):</span>
+    <span class="c1"># read the SIC from the L2 netCDF file:</span>
+    <span class="n">l2_n</span> <span class="o">=</span> <span class="s1">&#39;../data/output/cimr_devalgo_l2_sic-</span><span class="si">{}</span><span class="s1">_ease2-1.0km-testcard_sceps-polar1.nc&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alg</span><span class="p">)</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">l2_n</span><span class="p">)</span>
+    <span class="n">_l2_sic</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;ice_conc&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">_l2_rsic</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;raw_ice_conc_values&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">data</span>
+
+    <span class="n">_l2_sic</span> <span class="o">=</span> <span class="n">blockshaped</span><span class="p">(</span><span class="n">_l2_sic</span><span class="p">,</span> <span class="n">coarsening_factor</span><span class="p">,</span> <span class="n">coarsening_factor</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">coarsened_shape</span><span class="p">)</span>
+    <span class="n">_l2_rsic</span> <span class="o">=</span> <span class="n">blockshaped</span><span class="p">(</span><span class="n">_l2_rsic</span><span class="p">,</span> <span class="n">coarsening_factor</span><span class="p">,</span> <span class="n">coarsening_factor</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">coarsened_shape</span><span class="p">)</span>
+
+    <span class="n">_sic_diff</span> <span class="o">=</span> <span class="n">_l2_sic</span> <span class="o">-</span> <span class="n">tc_sic</span>
+    <span class="n">_rsic_diff</span> <span class="o">=</span> <span class="n">_l2_rsic</span> <span class="o">-</span> <span class="n">tc_sic</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">),)</span>
+
+    <span class="n">sic_diff_ow_1d</span> <span class="o">=</span> <span class="n">_rsic_diff</span><span class="p">[</span><span class="n">tc_owci</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">compressed</span><span class="p">()</span>
+    <span class="n">hist_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">dmin</span><span class="p">,</span> <span class="n">dmax</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sic_diff_ow_1d</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="n">hist_range</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sic_diff_ow_1d</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;RSIC (DEVALGO - REF) for Open Water</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">input_test_card</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;small&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span><span class="mf">0.98</span><span class="p">,</span> <span class="s1">&#39;BIAS: </span><span class="si">{:.2f}</span><span class="s1"> [%]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sic_diff_ow_1d</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span><span class="mf">0.93</span><span class="p">,</span> <span class="s1">&#39;RMSE: </span><span class="si">{:.2f}</span><span class="s1"> [%]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sic_diff_ow_1d</span><span class="o">.</span><span class="n">std</span><span class="p">()),</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">0.98</span><span class="p">,</span> <span class="s1">&#39;ALGO: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alg</span><span class="o">.</span><span class="n">upper</span><span class="p">()),</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+
+    <span class="n">sic_diff_ci_1d</span> <span class="o">=</span> <span class="n">_rsic_diff</span><span class="p">[</span><span class="n">tc_owci</span><span class="o">==</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">compressed</span><span class="p">()</span>
+    <span class="n">hist_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">dmin</span><span class="p">,</span> <span class="n">dmax</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sic_diff_ci_1d</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="n">hist_range</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sic_diff_ci_1d</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;RSIC (DEVALGO - REF) for Closed Ice</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">input_test_card</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;small&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span><span class="mf">0.98</span><span class="p">,</span> <span class="s1">&#39;BIAS: </span><span class="si">{:.2f}</span><span class="s1"> [%]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sic_diff_ci_1d</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span><span class="mf">0.93</span><span class="p">,</span> <span class="s1">&#39;RMSE: </span><span class="si">{:.2f}</span><span class="s1"> [%]&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sic_diff_ci_1d</span><span class="o">.</span><span class="n">std</span><span class="p">()),</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">0.98</span><span class="p">,</span> <span class="s1">&#39;ALGO: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alg</span><span class="o">.</span><span class="n">upper</span><span class="p">()),</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/36d40edcd2f9ce36496127f29d178055eab6c4cd106c44a729cf2714eafed5f6.png" src="../../../_images/36d40edcd2f9ce36496127f29d178055eab6c4cd106c44a729cf2714eafed5f6.png" />
+<img alt="../../../_images/9810884cb727dca026ce4b97be58726629ac7828ede46cf26a9a57b579c037aa.png" src="../../../_images/9810884cb727dca026ce4b97be58726629ac7828ede46cf26a9a57b579c037aa.png" />
+<img alt="../../../_images/d2c390e7521e349ee83fd098385940d6ea965860e15fc406c2554b5d5ecb4353.png" src="../../../_images/d2c390e7521e349ee83fd098385940d6ea965860e15fc406c2554b5d5ecb4353.png" />
+</div>
+</div>
+<p>The 3 histograms above (top: <code class="docutils literal notranslate"><span class="pre">CKA</span></code>, middle: <code class="docutils literal notranslate"><span class="pre">KKA</span></code>, bottom: <code class="docutils literal notranslate"><span class="pre">KA</span></code>) illustrates well known performance of these algorithms: the performance of SIC algorithm is generally better when it makes use of lower microwave frequencies.</p>
+<p>Here we observe that the bias over Open Water cases is nearly 0% for all three algorithms, indicating that the dynamic tuning of the algorithms is effective. The bias at near 100% SIC increases when higher frequencies enter the algorithm. As noted above, the tuning at Closed Ice conditions is not dynamic but based on the ESA CCI RRDP. We expect the bias at high SICs to be much reduced when a fully dynamic tuning is implemented in the operational processing. Still, it is noted that the negative bias of the <code class="docutils literal notranslate"><span class="pre">KA</span></code> SICs do not affect the performance of <code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code> since only the local <span class="math notranslate nohighlight">\(Delta\)</span> of the <code class="docutils literal notranslate"><span class="pre">KA</span></code> SICs are used in the pan-sharpening step.</p>
+</section>
+</section>
+</section>
+<section id="summary-performance-assessment-sic-and-sied">
+<h2>Summary Performance Assessment SIC and SIED<a class="headerlink" href="#summary-performance-assessment-sic-and-sied" title="Link to this heading">#</a></h2>
+<p>In summary, the performance assessment conducted in this ATBD against the realistic SCEPS Polar Scene 1 is encouraging and validates the excellent capabilities CIMR will offer for sea-ice concentration and sea-ice edge mapping in the polar regions.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>The selected algorithm (<code class="docutils literal notranslate"><span class="pre">CKA&#64;KA</span></code>) combines the low retrieval uncertainties of using the C-band frequency, with the high spatial resolution of using the KA-band imagery (&lt; 5 km). This algorithm allows a retrieval with low bias and limited uncertainty (&lt; 5% SIC) which is compatible with the target accuracy in the CIMR MRD.</p>
+</div>
+<p>At the same time, these results are based on a single simulated scene which, although realistic in terms of brightness temperatures and imaging geometry, does not fully sample the expected geophysical variability, in particular in terms of sea-ice type/age. Additional simulated scenes, that samples several sea-ice conditions and seasons will be required in the future to better characterize the expected accuracy.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./_build.old/jupyter_execute/algorithm"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l1-e2es-demonstration-reference-scenario-picasso-scene-definition">L1 E2ES Demonstration Reference Scenario (Picasso) scene definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-performance-metrics-mpef">Algorithm Performance Metrics (MPEF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-calibration-data-set-acdat">Algorithm Calibration Data Set (ACDAT)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-validation-data-set-avdat">Algorithm Validation Data Set (AVDAT)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-results-using-demonstration-reference-scenario">Test Results using Demonstration Reference Scenario</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-l2-sic-cka-ka-against-the-reference-sic">Compare L2 SIC (CKA@KA) against the reference SIC</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coarsen-the-1km-sic-results-to-the-expected-spatial-resolution-of-the-l2-sic-product">Coarsen the 1km SIC results to the expected spatial resolution of the L2 SIC product</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-maps-of-sic-and-maps-of-sic-differences">Compare maps of SIC and maps of SIC differences</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-as-histogram-of-differences-with-bias-and-rmse-full-range-of-sic">Compare as histogram of differences, with BIAS and RMSE (full range of SIC)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-as-histogram-of-differences-with-bias-and-rmse-open-water-and-closed-ice">Compare as histogram of differences, with BIAS and RMSE (Open Water and Closed Ice)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-sied-with-integrated-ice-edge-error-and-related-metrics">Compare SIED with Integrated Ice Edge Error and related metrics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-evaluation-of-the-intermediate-sic-results-from-cka-kka-and-ka">Performance evaluation of the intermediate SIC results from <code class="docutils literal notranslate"><span class="pre">CKA</span></code>, <code class="docutils literal notranslate"><span class="pre">KKA</span></code> and <code class="docutils literal notranslate"><span class="pre">KA</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-performance-assessment-sic-and-sied">Summary Performance Assessment SIC and SIED</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thomas Lavergne, Norwegian Meteorological Institute
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+This ATBD was developed in the context of the ESA-funded CIMR DEVALGO study (2022-2024) (contract 4000137493).
+<br>
+ESA is not responsible in any way for the content of this document.
+</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
