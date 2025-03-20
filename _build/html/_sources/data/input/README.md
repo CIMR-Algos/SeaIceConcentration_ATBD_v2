@@ -1,3 +1,0 @@
-Place L1B file here:
-
-`SCEPS_l1b_sceps_geo_polar_scene_1_unfiltered_tot_minimal_nom_nedt_apc_tot_v2p1.nc`
