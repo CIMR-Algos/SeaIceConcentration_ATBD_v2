@@ -1,0 +1,3 @@
+_build/
+algorithm/.ipynb_checkpoints/
+*.pyc
